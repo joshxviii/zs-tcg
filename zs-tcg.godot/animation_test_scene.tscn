@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://csmf5qnp3b87b"]
+[gd_scene load_steps=5 format=3 uid="uid://csmf5qnp3b87b"]
 
 [ext_resource type="PackedScene" uid="uid://dln4gn1dgacmu" path="res://objects/play_area.tscn" id="1_lm317"]
 [ext_resource type="PackedScene" uid="uid://u7whawthsmbx" path="res://objects/zs_card.tscn" id="2_xr7sk"]
+[ext_resource type="PackedScene" uid="uid://dt0wf3ydndtyr" path="res://assets/particles/explosion.tscn" id="3_tmgx5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y554a"]
 resource_local_to_scene = true
@@ -21,6 +22,7 @@ metadata/_edit_lock_ = true
 
 [node name="attack_animations" parent="card" index="0"]
 autoplay = "attack_animations/explosion"
+particle = ExtResource("3_tmgx5")
 
 [node name="shape" parent="card" index="1"]
 shape = SubResource("RectangleShape2D_y554a")
@@ -47,10 +49,10 @@ metadata/_edit_lock_ = true
 [node name="type_icon" parent="card/card_ui/front" index="3"]
 metadata/_edit_lock_ = true
 
-[node name="name" parent="card/card_ui/front" index="4"]
+[node name="name" parent="card/card_ui/front" index="5"]
 metadata/_edit_lock_ = true
 
-[node name="vbox" parent="card/card_ui/front" index="5"]
+[node name="vbox" parent="card/card_ui/front" index="6"]
 metadata/_edit_lock_ = true
 
 [node name="m1_box" parent="card/card_ui/front/vbox" index="0"]

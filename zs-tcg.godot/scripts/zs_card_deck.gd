@@ -19,7 +19,6 @@ var top:Card2D
 const DECK_SPERATION := 5
 
 func _ready():
-	if randomized: deck
 	check_deck()
 		
 func check_deck():

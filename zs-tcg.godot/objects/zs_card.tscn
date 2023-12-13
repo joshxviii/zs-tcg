@@ -247,6 +247,24 @@ position = Vector2(-28, -43)
 texture = ExtResource("4_ruwno")
 hframes = 5
 
+[node name="hp" type="Label" parent="card_ui/front"]
+clip_contents = true
+layout_mode = 2
+offset_left = -33.0
+offset_top = -36.0
+offset_right = -25.0
+offset_bottom = -28.0
+theme_override_colors/font_color = Color(0.996078, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.443137)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = -1
+theme_override_fonts/font = ExtResource("4_y4yww")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/normal = SubResource("StyleBoxEmpty_n0p6y")
+text = "10
+"
+
 [node name="name" type="Label" parent="card_ui/front"]
 layout_mode = 1
 anchors_preset = 8
@@ -294,7 +312,11 @@ hframes = 5
 [node name="move" type="Label" parent="card_ui/front/vbox/m1_box"]
 clip_contents = true
 layout_mode = 2
-theme_override_colors/font_color = Color(0.372549, 0.356863, 0.14902, 0.705882)
+theme_override_colors/font_color = Color(0.996078, 1, 0.47451, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.0862745)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = -1
 theme_override_fonts/font = ExtResource("4_y4yww")
 theme_override_font_sizes/font_size = 8
 theme_override_styles/normal = SubResource("StyleBoxEmpty_n0p6y")
@@ -319,7 +341,11 @@ hframes = 5
 [node name="move" type="Label" parent="card_ui/front/vbox/m2_box"]
 clip_contents = true
 layout_mode = 2
-theme_override_colors/font_color = Color(0.372549, 0.356863, 0.14902, 0.705882)
+theme_override_colors/font_color = Color(0.996078, 1, 0.47451, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.0862745)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = -1
 theme_override_fonts/font = ExtResource("4_y4yww")
 theme_override_font_sizes/font_size = 8
 theme_override_styles/normal = SubResource("StyleBoxEmpty_n0p6y")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cpp0ggfrq60rh"]
+[gd_scene load_steps=8 format=3 uid="uid://cpp0ggfrq60rh"]
 
 [ext_resource type="Script" path="res://scripts/zs_database.gd" id="1_8jvk4"]
 [ext_resource type="PackedScene" uid="uid://f7waxa37afm5" path="res://objects/ui/gui.tscn" id="1_yikqi"]
@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://pogu7wgnj60w" path="res://objects/zs_card_deck.tscn" id="4_v8u8a"]
 [ext_resource type="PackedScene" uid="uid://bruqk3h0qhqhe" path="res://objects/trash_space.tscn" id="5_2ub2y"]
 [ext_resource type="PackedScene" uid="uid://beliecqhfu21d" path="res://objects/zs_card_hand.tscn" id="7_1iwq1"]
-[ext_resource type="PackedScene" uid="uid://u7whawthsmbx" path="res://objects/zs_card.tscn" id="8_ywjdn"]
 
 [node name="main_scene" type="Node2D"]
 
@@ -45,5 +44,3 @@ position = Vector2(384, 416)
 
 [node name="play_area" parent="." instance=ExtResource("4_ecrfn")]
 position = Vector2(384, 184)
-
-[node name="card" parent="." instance=ExtResource("8_ywjdn")]
