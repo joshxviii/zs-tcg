@@ -15,7 +15,7 @@
 
 [node name="zs_database" type="Node" parent="."]
 script = ExtResource("1_8jvk4")
-database_path = "res://assets/ZS_cards (3).json"
+database_path = "res://assets/zs_cards.json"
 
 [node name="background" type="Sprite2D" parent="."]
 z_index = -1
