@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://u7whawthsmbx"]
+
+[ext_resource type="PackedScene" uid="uid://bqevxexccg0ij" path="res://addons/2D_cards/card_template/card_template.tscn" id="1_ru58t"]
+[ext_resource type="Texture2D" uid="uid://ch6fd05aqlmq8" path="res://assets/textures/card_back_0.png" id="2_3ga57"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x8ft2"]
+resource_local_to_scene = true
+size = Vector2(14, 18)
+
+[node name="card" instance=ExtResource("1_ru58t")]
+scale = Vector2(8, 8)
+
+[node name="shape" parent="." index="0"]
+shape = SubResource("RectangleShape2D_x8ft2")
+
+[node name="sprite" parent="." index="1"]
+texture = ExtResource("2_3ga57")

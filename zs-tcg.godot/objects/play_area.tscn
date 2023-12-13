@@ -1,0 +1,53 @@
+[gd_scene load_steps=4 format=3 uid="uid://dln4gn1dgacmu"]
+
+[ext_resource type="Texture2D" uid="uid://cab3gp2sp0uc6" path="res://assets/textures/backgrounds/simulation_board.png" id="1_ag3yh"]
+[ext_resource type="PackedScene" uid="uid://bk8jqh6tiytgs" path="res://objects/zs_card_oppose_space.tscn" id="2_cmg1x"]
+[ext_resource type="PackedScene" uid="uid://cf470kj0215b8" path="res://objects/zs_card_play_space.tscn" id="3_n7e2f"]
+
+[node name="play_area" type="Node2D"]
+
+[node name="board" type="Sprite2D" parent="."]
+z_index = -1
+scale = Vector2(4, 4)
+texture = ExtResource("1_ag3yh")
+metadata/_edit_lock_ = true
+
+[node name="opponent_space_1" parent="." instance=ExtResource("2_cmg1x")]
+position = Vector2(-192, -72)
+input_pickable = false
+
+[node name="opponent_space_2" parent="." instance=ExtResource("2_cmg1x")]
+position = Vector2(-96, -72)
+input_pickable = false
+
+[node name="opponent_space_3" parent="." instance=ExtResource("2_cmg1x")]
+position = Vector2(0, -72)
+input_pickable = false
+
+[node name="opponent_space_4" parent="." instance=ExtResource("2_cmg1x")]
+position = Vector2(96, -72)
+input_pickable = false
+
+[node name="opponent_space_5" parent="." instance=ExtResource("2_cmg1x")]
+position = Vector2(192, -72)
+input_pickable = false
+
+[node name="player_space_1" parent="." instance=ExtResource("3_n7e2f")]
+position = Vector2(-192, 72)
+input_pickable = false
+
+[node name="player_space_2" parent="." instance=ExtResource("3_n7e2f")]
+position = Vector2(-96, 72)
+input_pickable = false
+
+[node name="player_space_3" parent="." instance=ExtResource("3_n7e2f")]
+position = Vector2(0, 72)
+input_pickable = false
+
+[node name="player_space_4" parent="." instance=ExtResource("3_n7e2f")]
+position = Vector2(96, 72)
+input_pickable = false
+
+[node name="player_space_5" parent="." instance=ExtResource("3_n7e2f")]
+position = Vector2(192, 72)
+input_pickable = false

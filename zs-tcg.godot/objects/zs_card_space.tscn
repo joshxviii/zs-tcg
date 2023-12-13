@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://b28nji74vp1ow"]
+
+[ext_resource type="Script" path="res://scripts/zs_card_space.gd" id="1_bhbkn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ys5c6"]
+resource_local_to_scene = true
+size = Vector2(12, 17)
+
+[node name="zs_card_space" type="StaticBody2D"]
+modulate = Color(0.678431, 0.847059, 0.901961, 0.5)
+z_index = -1
+input_pickable = true
+script = ExtResource("1_bhbkn")
+
+[node name="shape" type="CollisionShape2D" parent="."]
+scale = Vector2(6, 6)
+shape = SubResource("RectangleShape2D_ys5c6")
+
+[node name="area" type="ColorRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -36.0
+offset_top = -51.0
+offset_right = -24.0
+offset_bottom = -34.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(6, 6)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+color = Color(1, 1, 1, 0.443137)

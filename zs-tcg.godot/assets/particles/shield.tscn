@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://duiv80w7aghyi"]
+
+[ext_resource type="Texture2D" uid="uid://bh7owkkmn0yui" path="res://assets/textures/particles/shield.png" id="1_ocj3i"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_g6vbc"]
+particles_animation = true
+particles_anim_h_frames = 8
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_semhu"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 2.0
+scale_max = 2.0
+anim_speed_min = 1.59
+anim_speed_max = 1.59
+
+[node name="particle" type="GPUParticles2D"]
+material = SubResource("CanvasItemMaterial_g6vbc")
+emitting = false
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_semhu")
+texture = ExtResource("1_ocj3i")
+one_shot = true
+local_coords = true

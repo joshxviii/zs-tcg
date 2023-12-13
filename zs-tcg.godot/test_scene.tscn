@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://c1edqwa32xbqw"]
+
+[ext_resource type="PackedScene" uid="uid://u7whawthsmbx" path="res://objects/zs_card.tscn" id="1_roye8"]
+[ext_resource type="PackedScene" uid="uid://cf470kj0215b8" path="res://objects/zs_card_play_space.tscn" id="2_pgshc"]
+[ext_resource type="PackedScene" uid="uid://pogu7wgnj60w" path="res://objects/zs_card_deck.tscn" id="3_3j77x"]
+[ext_resource type="PackedScene" uid="uid://beliecqhfu21d" path="res://objects/zs_card_hand.tscn" id="4_0tths"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="card" parent="." instance=ExtResource("1_roye8")]
+position = Vector2(428, 178)
+facing_direction = 1
+
+[node name="card2" parent="." instance=ExtResource("1_roye8")]
+position = Vector2(471, 232)
+
+[node name="zs_card_space" parent="." instance=ExtResource("2_pgshc")]
+position = Vector2(282, 223)
+input_pickable = false
+
+[node name="zs_card_space2" parent="." instance=ExtResource("2_pgshc")]
+position = Vector2(224, 313)
+input_pickable = false
+face_down_space = true
+
+[node name="zs_card_space3" parent="." instance=ExtResource("2_pgshc")]
+position = Vector2(599, 368)
+input_pickable = false
+
+[node name="zs_card_deck" parent="." instance=ExtResource("3_3j77x")]
+position = Vector2(711, 70)
+can_add_to = true
+straight_to_hand = true
+randomized = false
+deck = Array[int]([0, 1])
+
+[node name="zs_card_space4" parent="." instance=ExtResource("4_0tths")]
+position = Vector2(391, 421)
+highlight_color = Color(0.678431, 0.847059, 0.901961, 1)

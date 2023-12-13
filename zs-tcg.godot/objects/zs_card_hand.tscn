@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://beliecqhfu21d"]
+
+[ext_resource type="Script" path="res://scripts/zs_card_hand.gd" id="1_o2lyk"]
+[ext_resource type="PackedScene" uid="uid://b28nji74vp1ow" path="res://objects/zs_card_space.tscn" id="1_rsnjt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1rkm3"]
+resource_local_to_scene = true
+size = Vector2(12, 17)
+
+[node name="zs_card_hand" groups=["card_hand"] instance=ExtResource("1_rsnjt")]
+modulate = Color(0, 0.752941, 1, 0.682353)
+scale = Vector2(1e-05, 1)
+script = ExtResource("1_o2lyk")
+MAX_CARDS = 9
+
+[node name="shape" parent="." index="0"]
+position = Vector2(0, -25)
+shape = SubResource("RectangleShape2D_1rkm3")
+
+[node name="area" parent="." index="1"]
+visible = false
+offset_top = -76.0
+offset_bottom = -59.0
+
+[connection signal="card_added" from="." to="." method="_on_card_added"]
+[connection signal="card_removed" from="." to="." method="_on_card_removed"]
+[connection signal="card_returned" from="." to="." method="_on_card_returned"]
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="selection_changed" from="." to="." method="_on_selection_changed"]

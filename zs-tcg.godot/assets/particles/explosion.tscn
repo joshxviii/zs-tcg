@@ -1,0 +1,55 @@
+[gd_scene load_steps=8 format=3 uid="uid://dt0wf3ydndtyr"]
+
+[ext_resource type="Texture2D" uid="uid://g6ey452bik4e" path="res://assets/textures/particles/explosion.png" id="1_kefx2"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_c833a"]
+particles_animation = true
+particles_anim_h_frames = 4
+particles_anim_v_frames = 1
+particles_anim_loop = true
+
+[sub_resource type="Gradient" id="Gradient_ysd8p"]
+offsets = PackedFloat32Array(0, 0.232416)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_6ab2h"]
+gradient = SubResource("Gradient_ysd8p")
+
+[sub_resource type="Curve" id="Curve_jdo1n"]
+max_value = 16.32
+_data = [Vector2(0, 0.575999), 0.0, 68.736, 0, 0, Vector2(0.21229, 8.352), 12.1616, 12.1616, 0, 0, Vector2(1, 16.32), 3.59884, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_upw73"]
+curve = SubResource("Curve_jdo1n")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_oiifw"]
+lifetime_randomness = 0.07
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.0
+particle_flag_disable_z = true
+direction = Vector3(0, 0, 0)
+flatness = 1.0
+gravity = Vector3(0, 0, 0)
+angular_velocity_min = 618.22
+angular_velocity_max = 716.23
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_curve = SubResource("CurveTexture_upw73")
+color_ramp = SubResource("GradientTexture1D_6ab2h")
+anim_speed_min = 16.0
+anim_speed_max = 16.0
+sub_emitter_mode = 1
+sub_emitter_frequency = 6.29
+sub_emitter_keep_velocity = true
+
+[node name="explosion" type="GPUParticles2D"]
+material = SubResource("CanvasItemMaterial_c833a")
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_oiifw")
+texture = ExtResource("1_kefx2")
+lifetime = 5.0
+local_coords = true

@@ -1,0 +1,120 @@
+[gd_scene load_steps=7 format=3 uid="uid://2pbwog8fx8n0"]
+
+[ext_resource type="Script" path="res://scripts/ui/move_info.gd" id="1_gfa2q"]
+[ext_resource type="Texture2D" uid="uid://dqme20rssurd7" path="res://assets/textures/ui/move_info.png" id="1_tnt1o"]
+[ext_resource type="Texture2D" uid="uid://djvf8bpuft8yg" path="res://assets/textures/ui/type_indicator_2.png" id="3_6xss4"]
+[ext_resource type="FontFile" uid="uid://3wrkvjx6bpvf" path="res://assets/fonts/pxlsupersmall.ttf" id="4_xfb1y"]
+[ext_resource type="Texture2D" uid="uid://cbckw1x4diw0b" path="res://assets/textures/ui/type_indicator_1.png" id="5_pt8i3"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ecisy"]
+texture = ExtResource("1_tnt1o")
+texture_margin_left = 3.0
+texture_margin_top = 3.0
+texture_margin_right = 3.0
+texture_margin_bottom = 3.0
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+
+[node name="panel" type="PanelContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(16, 16)
+offset_right = 87.0
+offset_bottom = 50.0
+pivot_offset = Vector2(43.5, 24)
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxTexture_ecisy")
+script = ExtResource("1_gfa2q")
+
+[node name="moves" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="name" type="Label" parent="moves"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_color = Color(1, 0.959739, 0.559189, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "Name"
+horizontal_alignment = 1
+
+[node name="move_1" type="HBoxContainer" parent="moves"]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_constants/separation = 3
+
+[node name="type" type="HBoxContainer" parent="moves/move_1"]
+layout_mode = 2
+theme_override_constants/separation = 1
+
+[node name="icon" type="TextureButton" parent="moves/move_1/type"]
+layout_mode = 2
+toggle_mode = true
+action_mode = 0
+button_mask = 3
+texture_normal = ExtResource("3_6xss4")
+stretch_mode = 5
+
+[node name="power" type="Label" parent="moves/move_1/type"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(1, 0.960784, 0.560784, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 0.27451)
+theme_override_constants/outline_size = 1
+theme_override_fonts/font = ExtResource("4_xfb1y")
+theme_override_font_sizes/font_size = 8
+text = "+1"
+
+[node name="name" type="Button" parent="moves/move_1"]
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+action_mode = 0
+button_mask = 3
+text = "Move attack 1"
+flat = true
+alignment = 0
+
+[node name="move_2" type="HBoxContainer" parent="moves"]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_constants/separation = 3
+metadata/_edit_lock_ = true
+
+[node name="type" type="HBoxContainer" parent="moves/move_2"]
+layout_mode = 2
+theme_override_constants/separation = 1
+
+[node name="icon" type="TextureButton" parent="moves/move_2/type"]
+layout_mode = 2
+toggle_mode = true
+action_mode = 0
+button_mask = 3
+texture_normal = ExtResource("5_pt8i3")
+stretch_mode = 5
+
+[node name="power" type="Label" parent="moves/move_2/type"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(1, 0.960784, 0.560784, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 0.27451)
+theme_override_constants/outline_size = 1
+theme_override_fonts/font = ExtResource("4_xfb1y")
+theme_override_font_sizes/font_size = 8
+text = "+1"
+
+[node name="name" type="Button" parent="moves/move_2"]
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+action_mode = 0
+button_mask = 3
+text = "Move attack 2"
+flat = true
+alignment = 0
+
+[connection signal="toggled" from="moves/move_1/type/icon" to="." method="_on_move_1_button_down"]
+[connection signal="toggled" from="moves/move_1/name" to="." method="_on_move_1_button_down"]
+[connection signal="toggled" from="moves/move_2/type/icon" to="." method="_on_move_2_button_down"]
+[connection signal="toggled" from="moves/move_2/name" to="." method="_on_move_2_button_down"]

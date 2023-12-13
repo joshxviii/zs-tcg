@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://bruqk3h0qhqhe"]
+
+[ext_resource type="PackedScene" uid="uid://b28nji74vp1ow" path="res://objects/zs_card_space.tscn" id="1_4er5f"]
+[ext_resource type="Script" path="res://scripts/trash_space.gd" id="2_2yu0s"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wseql"]
+resource_local_to_scene = true
+size = Vector2(12, 17)
+
+[node name="trash_space" instance=ExtResource("1_4er5f")]
+modulate = Color(1, 0, 0.101961, 0.32549)
+script = ExtResource("2_2yu0s")
+highlight_color = Color(0.658824, 0, 1, 1)
+
+[node name="shape" parent="." index="0"]
+shape = SubResource("RectangleShape2D_wseql")
+
+[connection signal="card_added" from="." to="." method="_on_card_added"]

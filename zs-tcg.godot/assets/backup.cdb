@@ -1,0 +1,511 @@
+{
+	"sheets": [
+		{
+			"name": "cards",
+			"columns": [
+				{
+					"typeStr": "1",
+					"name": "name"
+				},
+				{
+					"typeStr": "5:NEUTRAL,KI,STRENGTH,DEFENSE,SPEED",
+					"name": "type"
+				},
+				{
+					"typeStr": "3",
+					"name": "pack_id"
+				},
+				{
+					"typeStr": "6:moves",
+					"name": "move_1",
+					"opt": true
+				},
+				{
+					"typeStr": "6:moves",
+					"name": "move_2",
+					"opt": true
+				}
+			],
+			"lines": [
+				{
+					"pack_id": 0,
+					"name": "Android 18",
+					"move_1": "android_barrier",
+					"move_2": "destructo_disc",
+					"type": 3
+				},
+				{
+					"pack_id": 1,
+					"name": "Babidi",
+					"move_1": "mind_control",
+					"move_2": "block",
+					"type": 0
+				},
+				{
+					"pack_id": 0,
+					"name": "Bubbles",
+					"move_1": "dodge",
+					"type": 4
+				},
+				{
+					"pack_id": 0,
+					"name": "Bluma",
+					"type": 0,
+					"move_1": "meele",
+					"move_2": "block"
+				},
+				{
+					"pack_id": 0,
+					"name": "Buuhan",
+					"move_1": "absorb",
+					"move_2": "ki_wave",
+					"type": 4
+				},
+				{
+					"pack_id": 0,
+					"name": "Buutenks",
+					"move_1": "glactic_dount",
+					"move_2": "absorb",
+					"type": 1
+				},
+				{
+					"pack_id": 0,
+					"name": "Chi-chi",
+					"move_1": "scold",
+					"move_2": "block",
+					"type": 0
+				},
+				{
+					"pack_id": 0,
+					"name": "Chronoa",
+					"move_1": "future_sight",
+					"type": 4
+				},
+				{
+					"pack_id": 0,
+					"name": "Dabura",
+					"move_2": "ki_wave",
+					"type": 0,
+					"move_1": "meele"
+				},
+				{
+					"pack_id": 0,
+					"name": "Elder Kai",
+					"move_1": "meele",
+					"type": 1,
+					"move_2": "block"
+				},
+				{
+					"pack_id": 0,
+					"name": "Evil Buu",
+					"move_1": "candy_beam",
+					"type": 2
+				},
+				{
+					"pack_id": 0,
+					"name": "Tien",
+					"move_1": "dodon_ray",
+					"type": 2
+				},
+				{
+					"pack_id": 0,
+					"name": "Buu",
+					"move_1": "candy_beam",
+					"move_2": "explosion",
+					"type": 3
+				},
+				{
+					"pack_id": 0,
+					"name": "Baba",
+					"move_1": "future_sight",
+					"type": 0
+				},
+				{
+					"pack_id": 0,
+					"name": "Ghost GGohan",
+					"move_1": "block",
+					"type": 0
+				},
+				{
+					"pack_id": 0,
+					"name": "Goku",
+					"move_1": "kamehameha",
+					"move_2": "spirit_bomb",
+					"type": 2
+				},
+				{
+					"pack_id": 0,
+					"name": "Goz",
+					"type": 2,
+					"move_1": "meele"
+				},
+				{
+					"pack_id": 0,
+					"name": "GGohn",
+					"move_1": "block",
+					"move_2": "quick_kick",
+					"type": 0
+				},
+				{
+					"pack_id": 0,
+					"name": "Gregory",
+					"move_1": "dodge",
+					"type": 0
+				},
+				{
+					"pack_id": 0,
+					"name": "Trash",
+					"type": 0
+				},
+				{
+					"pack_id": 0,
+					"name": "Jin",
+					"type": 3
+				},
+				{
+					"pack_id": 0,
+					"name": "Kami",
+					"move_1": "ki_wave",
+					"move_2": "quick_kick",
+					"type": 1
+				},
+				{
+					"pack_id": 0,
+					"name": "Kid Buu",
+					"move_1": "ki_wave",
+					"type": 2
+				},
+				{
+					"pack_id": 0,
+					"name": "Oozaru",
+					"move_1": "mouth_beam",
+					"type": 3
+				},
+				{
+					"pack_id": 0,
+					"name": "King Kai",
+					"move_1": "dodge",
+					"type": 4
+				},
+				{
+					"pack_id": 0,
+					"name": "King Yama",
+					"move_1": "scold",
+					"type": 3
+				},
+				{
+					"pack_id": 0,
+					"name": "Korin",
+					"move_1": "senzu_bean",
+					"move_2": "quick_kick",
+					"type": 4
+				},
+				{
+					"pack_id": 0,
+					"name": "Krillin",
+					"move_1": "destructo_disc",
+					"move_2": "senzu_bean",
+					"type": 1
+				},
+				{
+					"pack_id": 0,
+					"name": "Mez",
+					"type": 2,
+					"move_1": "meele"
+				},
+				{
+					"pack_id": 0,
+					"name": "SSJ2 Vegeta",
+					"move_1": "big_bang",
+					"move_2": "explosion",
+					"type": 1
+				},
+				{
+					"pack_id": 0,
+					"name": "SSJ3 Goku",
+					"move_1": "dragon_fist",
+					"move_2": "skamehameha",
+					"type": 1
+				},
+				{
+					"pack_id": 0,
+					"name": "SSJ3 Gotenks",
+					"move_1": "glactic_dount",
+					"move_2": "mouth_beam",
+					"type": 4
+				},
+				{
+					"pack_id": 0,
+					"name": "Shin",
+					"move_1": "dodge",
+					"move_2": "ki_wave",
+					"type": 1
+				},
+				{
+					"pack_id": 0,
+					"name": "Simu",
+					"move_1": "quick_kick",
+					"type": 3
+				},
+				{
+					"pack_id": 0,
+					"name": "South Kai",
+					"type": 0,
+					"move_1": "meele"
+				},
+				{
+					"pack_id": 0,
+					"name": "Super Buu",
+					"move_1": "skamehameha",
+					"move_2": "ki_wave",
+					"type": 2
+				},
+				{
+					"pack_id": 0,
+					"name": "Sus",
+					"move_1": "impostor",
+					"type": 0
+				},
+				{
+					"pack_id": 0,
+					"name": "Super Gohn",
+					"move_2": "quick_kick",
+					"move_1": "masenko",
+					"type": 4
+				},
+				{
+					"pack_id": 0,
+					"name": "Unknown",
+					"move_1": "sword_slash",
+					"type": 2
+				},
+				{
+					"pack_id": 0,
+					"name": "Yajirobe",
+					"move_2": "sword_slash",
+					"move_1": "senzu_bean",
+					"type": 3
+				},
+				{
+					"pack_id": 0,
+					"name": "Yamcha",
+					"move_1": "wold_fang_fist",
+					"move_2": "kamehameha",
+					"type": 4
+				},
+				{
+					"pack_id": 0,
+					"name": "BR",
+					"type": 2,
+					"move_1": "meele"
+				},
+				{
+					"pack_id": 0,
+					"name": "Mr. Popo",
+					"move_1": "quick_kick",
+					"move_2": "block",
+					"type": 4
+				},
+				{
+					"pack_id": 0,
+					"name": "Piccolo",
+					"move_1": "sbeam_cannon",
+					"move_2": "quick_kick",
+					"type": 1
+				}
+			],
+			"separators": [],
+			"props": {}
+		},
+		{
+			"name": "moves",
+			"columns": [
+				{
+					"typeStr": "0",
+					"name": "id_name"
+				},
+				{
+					"typeStr": "1",
+					"name": "name",
+					"display": null
+				},
+				{
+					"typeStr": "5:NEUTRAL,KI,STRENGTH,DEFENSE,SPEED",
+					"name": "type"
+				},
+				{
+					"typeStr": "3",
+					"name": "power"
+				}
+			],
+			"lines": [
+				{
+					"type": 2,
+					"power": 0,
+					"id_name": "meele",
+					"name": "Meele"
+				},
+				{
+					"type": 4,
+					"power": 0,
+					"id_name": "quick_kick",
+					"name": "Quick Kick"
+				},
+				{
+					"type": 1,
+					"power": 0,
+					"id_name": "ki_wave",
+					"name": "Ki Wave"
+				},
+				{
+					"type": 1,
+					"power": 0,
+					"id_name": "kamehameha",
+					"name": "Kamehameha"
+				},
+				{
+					"type": 1,
+					"power": 0,
+					"id_name": "destructo_disc",
+					"name": "Destructo Disc"
+				},
+				{
+					"type": 1,
+					"power": 0,
+					"id_name": "dodon_ray",
+					"name": "Dodon Ray"
+				},
+				{
+					"type": 2,
+					"power": 0,
+					"id_name": "explosion",
+					"name": "Explosion"
+				},
+				{
+					"type": 4,
+					"power": 0,
+					"id_name": "dodge",
+					"name": "Dodge"
+				},
+				{
+					"type": 4,
+					"power": 0,
+					"id_name": "sword_slash",
+					"name": "Sword Slash"
+				},
+				{
+					"type": 1,
+					"power": 0,
+					"id_name": "skamehameha",
+					"name": "SKamehameha"
+				},
+				{
+					"id_name": "spirit_bomb",
+					"name": "Spirit Bomb",
+					"type": 1,
+					"power": 0
+				},
+				{
+					"id_name": "big_bang",
+					"name": "Big Bang",
+					"type": 1,
+					"power": 0
+				},
+				{
+					"id_name": "wold_fang_fist",
+					"name": "Wold Fang Fist",
+					"type": 4,
+					"power": 0
+				},
+				{
+					"id_name": "mouth_beam",
+					"name": "Mouth Beam",
+					"type": 1,
+					"power": 0
+				},
+				{
+					"id_name": "candy_beam",
+					"name": "Candy Beam",
+					"type": 0,
+					"power": 0
+				},
+				{
+					"id_name": "future_sight",
+					"name": "Future Sight",
+					"type": 4,
+					"power": 0
+				},
+				{
+					"id_name": "scold",
+					"name": "Scold",
+					"type": 2,
+					"power": 0
+				},
+				{
+					"id_name": "sbeam_cannon",
+					"name": "SBeam Cannon",
+					"type": 1,
+					"power": 0
+				},
+				{
+					"id_name": "block",
+					"name": "Block",
+					"type": 3,
+					"power": 0
+				},
+				{
+					"id_name": "android_barrier",
+					"name": "Android Barrier",
+					"type": 3,
+					"power": 0
+				},
+				{
+					"id_name": "absorb",
+					"name": "Absorb",
+					"type": 3,
+					"power": 0
+				},
+				{
+					"id_name": "mind_control",
+					"name": "Mind Control",
+					"type": 4,
+					"power": 0
+				},
+				{
+					"id_name": "masenko",
+					"name": "Masenko",
+					"type": 1,
+					"power": 0
+				},
+				{
+					"id_name": "dragon_fist",
+					"name": "Dragon Fist",
+					"type": 2,
+					"power": 0
+				},
+				{
+					"id_name": "glactic_dount",
+					"name": "Glactic Dount",
+					"type": 1,
+					"power": 0
+				},
+				{
+					"id_name": "impostor",
+					"name": "Impostor",
+					"type": 2,
+					"power": 0
+				},
+				{
+					"id_name": "senzu_bean",
+					"name": "Senzu Bean",
+					"type": 0,
+					"power": 0
+				}
+			],
+			"separators": [],
+			"props": {}
+		}
+	],
+	"customTypes": [],
+	"compress": false
+}

@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://pogu7wgnj60w"]
+
+[ext_resource type="Script" path="res://scripts/zs_card_deck.gd" id="1_qcf5u"]
+[ext_resource type="PackedScene" uid="uid://b28nji74vp1ow" path="res://objects/zs_card_space.tscn" id="1_tfdo6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qa1of"]
+resource_local_to_scene = true
+size = Vector2(12, 17)
+
+[node name="zs_card_deck" groups=["card_deck"] instance=ExtResource("1_tfdo6")]
+modulate = Color(0.34902, 0.886275, 0.337255, 0.501961)
+script = ExtResource("1_qcf5u")
+can_add_to = false
+straight_to_hand = false
+randomized = false
+deck = Array[int]([])
+MAX_CARDS = 3
+
+[node name="shape" parent="." index="0"]
+shape = SubResource("RectangleShape2D_qa1of")
+
+[connection signal="card_added" from="." to="." method="_on_card_added"]
+[connection signal="card_removed" from="." to="." method="_on_card_removed"]
+[connection signal="card_returned" from="." to="." method="_on_card_returned"]
+[connection signal="input_event" from="." to="." method="_on_input_event"]

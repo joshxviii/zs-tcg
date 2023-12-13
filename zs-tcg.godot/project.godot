@@ -1,0 +1,50 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="ZS TCG"
+run/main_scene="res://main_scene.tscn"
+config/features=PackedStringArray("4.1", "GL Compatibility")
+boot_splash/use_filter=false
+config/icon="res://icon.png"
+
+[autoload]
+
+Global="*res://scripts/global.gd"
+CardHandler="*res://scripts/global_card_handler.gd"
+
+[display]
+
+window/size/viewport_width=768
+window/size/viewport_height=432
+window/size/always_on_top=true
+window/size/window_width_override=1200
+window/size/window_height_override=675
+window/stretch/mode="viewport"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/castledb_handler/plugin.cfg")
+
+[filesystem]
+
+import/blender/enabled=false
+
+[gui]
+
+theme/custom="res://assets/themes/theme_1.tres"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
+renderer/rendering_method.mobile="gl_compatibility"
+textures/decals/filter=0
+textures/light_projectors/filter=0

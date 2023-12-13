@@ -1,0 +1,86 @@
+[gd_scene load_steps=4 format=3 uid="uid://csmf5qnp3b87b"]
+
+[ext_resource type="PackedScene" uid="uid://dln4gn1dgacmu" path="res://objects/play_area.tscn" id="1_lm317"]
+[ext_resource type="PackedScene" uid="uid://u7whawthsmbx" path="res://objects/zs_card.tscn" id="2_xr7sk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y554a"]
+resource_local_to_scene = true
+size = Vector2(12, 17)
+
+[node name="test_scene" type="Node2D"]
+
+[node name="camera" type="Camera2D" parent="."]
+position = Vector2(0, -71)
+ignore_rotation = false
+
+[node name="play_area" parent="." instance=ExtResource("1_lm317")]
+position = Vector2(0, -72)
+metadata/_edit_lock_ = true
+
+[node name="card" parent="." instance=ExtResource("2_xr7sk")]
+
+[node name="attack_animations" parent="card" index="0"]
+autoplay = "attack_animations/explosion"
+
+[node name="shape" parent="card" index="1"]
+shape = SubResource("RectangleShape2D_y554a")
+metadata/_edit_lock_ = true
+
+[node name="card_ui" parent="card" index="2"]
+metadata/_edit_lock_ = true
+
+[node name="shadow" parent="card/card_ui" index="1"]
+metadata/_edit_lock_ = true
+
+[node name="front" parent="card/card_ui" index="2"]
+metadata/_edit_lock_ = true
+
+[node name="background" parent="card/card_ui/front" index="0"]
+metadata/_edit_lock_ = true
+
+[node name="profile" parent="card/card_ui/front" index="1"]
+metadata/_edit_lock_ = true
+
+[node name="border" parent="card/card_ui/front" index="2"]
+metadata/_edit_lock_ = true
+
+[node name="type_icon" parent="card/card_ui/front" index="3"]
+metadata/_edit_lock_ = true
+
+[node name="name" parent="card/card_ui/front" index="4"]
+metadata/_edit_lock_ = true
+
+[node name="vbox" parent="card/card_ui/front" index="5"]
+metadata/_edit_lock_ = true
+
+[node name="m1_box" parent="card/card_ui/front/vbox" index="0"]
+metadata/_edit_lock_ = true
+
+[node name="type_icon" parent="card/card_ui/front/vbox/m1_box" index="0"]
+metadata/_edit_lock_ = true
+
+[node name="move" parent="card/card_ui/front/vbox/m1_box" index="1"]
+metadata/_edit_lock_ = true
+
+[node name="select_star" parent="card/card_ui/front/vbox/m1_box" index="2"]
+metadata/_edit_lock_ = true
+
+[node name="m2_box" parent="card/card_ui/front/vbox" index="1"]
+metadata/_edit_lock_ = true
+
+[node name="type_icon" parent="card/card_ui/front/vbox/m2_box" index="0"]
+metadata/_edit_lock_ = true
+
+[node name="move" parent="card/card_ui/front/vbox/m2_box" index="1"]
+metadata/_edit_lock_ = true
+
+[node name="select_star" parent="card/card_ui/front/vbox/m2_box" index="2"]
+metadata/_edit_lock_ = true
+
+[node name="back" parent="card/card_ui" index="3"]
+metadata/_edit_lock_ = true
+
+[node name="texture" parent="card/card_ui/back" index="0"]
+metadata/_edit_lock_ = true
+
+[editable path="card"]
