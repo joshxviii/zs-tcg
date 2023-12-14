@@ -29,8 +29,8 @@ script = ExtResource("1_gfa2q")
 
 [node name="target_getter" type="Area2D" parent="."]
 z_index = -1
-collision_layer = 2
-collision_mask = 2
+collision_layer = 3
+collision_mask = 3
 
 [node name="shape" type="CollisionShape2D" parent="target_getter"]
 shape = SubResource("RectangleShape2D_a5vsx")

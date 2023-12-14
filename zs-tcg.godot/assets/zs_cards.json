@@ -2377,14 +2377,21 @@
 					"power": 0,
 					"id_name": "quick_kick",
 					"name": "Quick Kick",
-					"target_mode": 0
+					"target_mode": 1
 				},
 				{
 					"type": 1,
 					"power": 0,
 					"id_name": "ki_wave",
 					"name": "Ki Wave",
-					"target_mode": 0
+					"target_mode": 2
+				},
+				{
+					"id_name": "block",
+					"name": "Block",
+					"type": 3,
+					"power": 0,
+					"target_mode": 3
 				},
 				{
 					"type": 1,
@@ -2488,13 +2495,6 @@
 					"id_name": "sbeam_cannon",
 					"name": "SBeam Cannon",
 					"type": 1,
-					"power": 0,
-					"target_mode": 0
-				},
-				{
-					"id_name": "block",
-					"name": "Block",
-					"type": 3,
 					"power": 0,
 					"target_mode": 0
 				},

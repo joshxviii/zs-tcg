@@ -8,6 +8,13 @@ enum {
 	SPEED
 }
 
+enum {
+	ATTACK,
+	SUPPORT,
+	SUPPORT_SELF,
+	ATTACK_ALL
+}
+
 const NEUTRAL_COLOR=Color.PERU
 const KI_COLOR=Color.AQUA
 const STRENGTH_COLOR=Color.CRIMSON
