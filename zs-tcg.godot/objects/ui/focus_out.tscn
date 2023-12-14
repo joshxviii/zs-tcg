@@ -3,11 +3,13 @@
 [ext_resource type="Script" path="res://scripts/ui/focus_out.gd" id="1_ho6mo"]
 
 [node name="focus_out" type="ColorRect"]
+modulate = Color(1, 1, 1, 0)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 color = Color(0, 0, 0, 0.0784314)
 script = ExtResource("1_ho6mo")
 

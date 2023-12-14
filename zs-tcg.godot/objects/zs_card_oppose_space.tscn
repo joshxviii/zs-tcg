@@ -7,11 +7,14 @@
 resource_local_to_scene = true
 size = Vector2(12, 17)
 
-[node name="zs_oppose_space" instance=ExtResource("1_aai12")]
+[node name="zs_oppose_space" groups=["opposing_space"] instance=ExtResource("1_aai12")]
 modulate = Color(1, 0.262745, 0, 0.501961)
-collision_layer = 0
-collision_mask = 0
+collision_layer = 3
+collision_mask = 3
 script = ExtResource("2_l0fq7")
 
 [node name="shape" parent="." index="0"]
 shape = SubResource("RectangleShape2D_160xg")
+
+[connection signal="card_added" from="." to="." method="_on_card_added"]
+[connection signal="card_returned" from="." to="." method="_on_card_returned"]

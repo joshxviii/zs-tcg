@@ -1,0 +1,32 @@
+[gd_scene load_steps=8 format=3 uid="uid://cpsfke1rkhfaa"]
+
+[ext_resource type="Texture2D" uid="uid://ua02s8qyohxn" path="res://assets/textures/ui/target_arrow/target_0.png" id="1_d4qfo"]
+[ext_resource type="Texture2D" uid="uid://c162ixicm2iwb" path="res://assets/textures/ui/target_arrow/target_1.png" id="2_bp2kv"]
+[ext_resource type="Texture2D" uid="uid://beud5mthbd32w" path="res://assets/textures/ui/target_arrow/target_2.png" id="3_olnko"]
+[ext_resource type="Texture2D" uid="uid://d248rnadhyou4" path="res://assets/textures/ui/target_arrow/target_3.png" id="4_3k72i"]
+[ext_resource type="Texture2D" uid="uid://dbqu1dp1bggo1" path="res://assets/textures/ui/target_arrow/target_4.png" id="5_ublk0"]
+
+[sub_resource type="Gradient" id="Gradient_1swam"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_m5nbt"]
+frames = 5
+speed_scale = 1.5
+frame_0/texture = ExtResource("1_d4qfo")
+frame_0/duration = 0.1
+frame_1/texture = ExtResource("2_bp2kv")
+frame_1/duration = 0.1
+frame_2/texture = ExtResource("3_olnko")
+frame_2/duration = 0.1
+frame_3/texture = ExtResource("4_3k72i")
+frame_3/duration = 0.1
+frame_4/texture = ExtResource("5_ublk0")
+frame_4/duration = 0.1
+
+[node name="target_arrow" type="Line2D"]
+z_index = -1
+width = 24.0
+gradient = SubResource("Gradient_1swam")
+texture = SubResource("AnimatedTexture_m5nbt")
+texture_mode = 1
+end_cap_mode = 2

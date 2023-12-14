@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://2pbwog8fx8n0"]
+[gd_scene load_steps=8 format=3 uid="uid://2pbwog8fx8n0"]
 
 [ext_resource type="Texture2D" uid="uid://bud2ofn7qcujm" path="res://assets/textures/ui/attackUiBox.png" id="1_640cb"]
 [ext_resource type="Script" path="res://scripts/ui/move_info.gd" id="1_gfa2q"]
@@ -15,8 +15,10 @@ texture_margin_bottom = 3.0
 axis_stretch_horizontal = 2
 axis_stretch_vertical = 2
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a5vsx"]
+size = Vector2(256, 256)
+
 [node name="panel" type="PanelContainer"]
-clip_contents = true
 custom_minimum_size = Vector2(16, 16)
 offset_right = 87.0
 offset_bottom = 50.0
@@ -24,6 +26,14 @@ pivot_offset = Vector2(43.5, 24)
 size_flags_horizontal = 4
 theme_override_styles/panel = SubResource("StyleBoxTexture_ecisy")
 script = ExtResource("1_gfa2q")
+
+[node name="target_getter" type="Area2D" parent="."]
+z_index = -1
+collision_layer = 2
+collision_mask = 2
+
+[node name="shape" type="CollisionShape2D" parent="target_getter"]
+shape = SubResource("RectangleShape2D_a5vsx")
 
 [node name="moves" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -114,6 +124,7 @@ text = "Move attack 2"
 flat = true
 alignment = 0
 
+[connection signal="body_entered" from="target_getter" to="." method="_on_target_getter_body_entered"]
 [connection signal="toggled" from="moves/move_1/type/icon" to="." method="_on_move_1_button_down"]
 [connection signal="toggled" from="moves/move_1/name" to="." method="_on_move_1_button_down"]
 [connection signal="toggled" from="moves/move_2/type/icon" to="." method="_on_move_2_button_down"]

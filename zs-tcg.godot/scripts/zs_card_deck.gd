@@ -32,6 +32,7 @@ func check_deck():
 		var tween = get_tree().create_tween()
 		tween.tween_property(card,"position",Vector2(global_position.x,  global_position.y - offset),0.3).set_ease(Tween.EASE_IN)
 		card.target_pos = card.position
+		card.target_z_layer=cards.size()-i
 		#card.modulate.a = i/(VISIBLE_DECK_SIZE-1.0)+.1
 #		if i < VISIBLE_DECK_SIZE:
 #			var tween = create_tween()
@@ -42,7 +43,9 @@ func check_deck():
 		#print(visible_deck[-(i+1)].id)
 	if cards.size() > 0:
 		open_position = cards[0].position
-		if !straight_to_hand: cards[0].draggable = true
+		if !straight_to_hand:
+			cards[0].input_pickable = true
+			cards[0].draggable = true
 		
 func generate_card():
 	var new_card = load(card_path).instantiate() 
@@ -79,7 +82,7 @@ func _on_card_removed(_card):
 
 
 func _on_input_event(_viewport, e, _shape_idx):
-	if e is InputEventMouseButton and e.pressed:
+	if e is InputEventMouseButton and e.pressed and e.button_mask==1 and !e.double_click:
 		if straight_to_hand && CardHandler.PLAYER_HAND && cards.size() > 0:
 			if CardHandler.PLAYER_HAND.has_open_space && cards.size() <= MAX_CARDS:
 				CardHandler.PLAYER_HAND.add(cards[0])
@@ -87,4 +90,7 @@ func _on_input_event(_viewport, e, _shape_idx):
 
 func _on_card_returned(card):
 	card.move_to(card.target_pos)
+	card.z_index = card.target_z_layer
+	card.facing_direction = 1
+	check_deck()
 	pass # Replace with function body.

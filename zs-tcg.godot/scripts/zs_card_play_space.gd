@@ -6,6 +6,7 @@ class_name CardPlaySpace2D extends CardSpace2D
 @export var face_down_space := false
 @export var can_swap := true
 
+var default_target : CardSpace2D
 
 func _ready():
 	pass
@@ -13,13 +14,15 @@ func _ready():
 
 func _on_card_added(card):
 	if card.selected_move == 0: card.selected_move=1
+	
+	card.targeted_space = default_target
 	card.target_z_layer=0
 	card.move_to(self.global_position,0)
 	disabled = true
 	
 	if cards.size()>MAX_CARDS:
 		if can_swap:
-			swap()
+			if cards[0].draggable: swap()
 		else:
 			push_error("MAX CARDS exceeded.")
 	
@@ -45,4 +48,10 @@ func swap():
 func _on_card_returned(card):
 	card.move_to(card.target_pos)
 	if !lock_space: card.draggable=true
+	pass # Replace with function body.
+
+
+func _on_opposing_space_getter_body_entered(body):
+	if body.is_in_group("opposing_space"):
+		default_target = body
 	pass # Replace with function body.

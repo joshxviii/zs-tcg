@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=3 uid="uid://chj4ysdisblw3"]
+
+[ext_resource type="Script" path="res://scripts/ui/float_text.gd" id="1_18lb1"]
+
+[node name="float_text" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 2
+script = ExtResource("1_18lb1")
+
+[node name="text" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -66.5
+offset_top = -7.0
+offset_right = 66.5
+offset_bottom = 7.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(66.5, 7)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 25
+text = "HELLO."
+horizontal_alignment = 1
+vertical_alignment = 1

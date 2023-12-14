@@ -34,8 +34,6 @@ input_pickable = false
 
 [node name="zs_card_deck" parent="." instance=ExtResource("4_v8u8a")]
 position = Vector2(720, 368)
-can_add_to = true
-straight_to_hand = true
 randomized = true
 MAX_CARDS = 5
 
