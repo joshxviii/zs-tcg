@@ -85,10 +85,21 @@ var target_z_layer := 0
 @onready var m2_star = $card_ui/front/vbox/m2_box/select_star
 @onready var m1_text = $card_ui/front/vbox/m1_box/move
 @onready var m2_text = $card_ui/front/vbox/m2_box/move
+@onready var hp_text = $card_ui/front/hp
 
 @onready var animator = $card_ui/animation_player
 
-
+##Health variables
+var max_health : int = 0
+@onready var current_health : int:
+	set(value):
+		if value < 0:
+			current_health = 0
+		elif value > max_health:
+			current_health = max_health
+		else:
+			current_health = value
+		hp_text.text = str(current_health)
 
 
 
@@ -110,9 +121,11 @@ func load_attributes():##Use id number to fill in all the attributes
 			var size = clamp(13 - (name_text.text.length() - 10),9,13)
 			name_text.add_theme_font_size_override("font_size",size)
 		else: name_text.add_theme_font_size_override("font_size",13)
-#		else:
-#			name_text.add_theme_font_size_override("font_size",13)
+
 		type_icon.frame = attributes["type"]
+		max_health = attributes["hp"]
+		current_health = max_health
+		
 		profile.texture = TextureHandler.new().get_texture("res://assets/textures/cards/profiles/" + str(id) + ".png")
 		border.texture = TextureHandler.new().get_texture("res://assets/textures/cards/card_layers/border_" + str(attributes["pack_id"]) + ".png")
 		border_back.texture = TextureHandler.new().get_texture("res://assets/textures/cards/card_layers/border_background_" + str(attributes["pack_id"]) + ".png")
@@ -131,6 +144,8 @@ func load_attributes():##Use id number to fill in all the attributes
 		m2_indicator.frame = m2_attributes["type"]
 		m2_text.visible_characters = 13
 	else: m2_box.visible = false
+
+
 
 func _on_facing_changed():
 	if get_parent() != null:

@@ -69,7 +69,7 @@ stretch_mode = 5
 [node name="power" type="Label" parent="moves/move_1/type"]
 layout_mode = 2
 size_flags_horizontal = 0
-theme_override_colors/font_color = Color(1, 0.960784, 0.560784, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 0.27451)
 theme_override_constants/outline_size = 1
 theme_override_fonts/font = ExtResource("4_xfb1y")
@@ -107,7 +107,7 @@ stretch_mode = 5
 [node name="power" type="Label" parent="moves/move_2/type"]
 layout_mode = 2
 size_flags_horizontal = 0
-theme_override_colors/font_color = Color(1, 0.960784, 0.560784, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 0.27451)
 theme_override_constants/outline_size = 1
 theme_override_fonts/font = ExtResource("4_xfb1y")
