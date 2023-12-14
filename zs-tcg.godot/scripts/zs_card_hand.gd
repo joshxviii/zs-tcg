@@ -43,10 +43,10 @@ func update_hand():
 		var card = cards[i]
 		var b = (.5*a) + ((i)*a)
 		var c = Vector2(global_position.x+SEPERATION_SCALE*(b-.5),global_position.y)
+		card.target_z_layer=cards.size()-i
 		if !card.dragging:
 			card.move_to(c)
 			card.z_index=cards.size()-i
-		card.target_z_layer=cards.size()-i
 		card.target_pos = c
 	scale.x = log(6*cards.size()+1)+1
 	await get_tree().create_timer(.4).timeout
@@ -108,6 +108,7 @@ func _on_selection_changed(current, previous):
 
 
 func _on_card_returned(card):
+	
 	if card == selected_card:
 		card.draggable = true
 		card.move_to(Vector2(card.target_pos.x, card.target_pos.y -50),0,card.target_z_layer+10,false)
