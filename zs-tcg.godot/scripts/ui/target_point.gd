@@ -10,5 +10,5 @@ func _ready():
 func _on_texture_button_pressed():
 	if get_parent():
 		get_parent().target_space = space
-		get_parent().update_target()
+		get_parent().update_targets()
 	pass # Replace with function body.

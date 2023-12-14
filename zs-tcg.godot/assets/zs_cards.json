@@ -2358,6 +2358,10 @@
 				{
 					"typeStr": "3",
 					"name": "power"
+				},
+				{
+					"typeStr": "5:ATTACK,SUPPORT,SUPPORT_SELF,ATTACK_ALL",
+					"name": "target_mode"
 				}
 			],
 			"lines": [
@@ -2365,391 +2369,456 @@
 					"type": 0,
 					"power": 0,
 					"id_name": "meele",
-					"name": "Meele"
+					"name": "Meele",
+					"target_mode": 0
 				},
 				{
 					"type": 4,
 					"power": 0,
 					"id_name": "quick_kick",
-					"name": "Quick Kick"
+					"name": "Quick Kick",
+					"target_mode": 0
 				},
 				{
 					"type": 1,
 					"power": 0,
 					"id_name": "ki_wave",
-					"name": "Ki Wave"
+					"name": "Ki Wave",
+					"target_mode": 0
 				},
 				{
 					"type": 1,
 					"power": 0,
 					"id_name": "kamehameha",
-					"name": "Kamehameha"
+					"name": "Kamehameha",
+					"target_mode": 0
 				},
 				{
 					"type": 1,
 					"power": 0,
 					"id_name": "destructo_disc",
-					"name": "Destructo Disc"
+					"name": "Destructo Disc",
+					"target_mode": 0
 				},
 				{
 					"type": 1,
 					"power": 0,
 					"id_name": "dodon_ray",
-					"name": "Dodon Ray"
+					"name": "Dodon Ray",
+					"target_mode": 0
 				},
 				{
 					"type": 1,
 					"power": 0,
 					"id_name": "ki_explosion",
-					"name": "Ki Explosion"
+					"name": "Ki Explosion",
+					"target_mode": 0
 				},
 				{
 					"type": 4,
 					"power": 0,
 					"id_name": "dodge",
-					"name": "Dodge"
+					"name": "Dodge",
+					"target_mode": 0
 				},
 				{
 					"type": 4,
 					"power": 0,
 					"id_name": "sword_slash",
-					"name": "Sword Slash"
+					"name": "Sword Slash",
+					"target_mode": 0
 				},
 				{
 					"type": 1,
 					"power": 0,
 					"id_name": "skamehameha",
-					"name": "S.Kamehameha"
+					"name": "S.Kamehameha",
+					"target_mode": 0
 				},
 				{
 					"id_name": "spirit_bomb",
 					"name": "Spirit Bomb",
 					"type": 1,
-					"power": 0
+					"power": 0,
+					"target_mode": 0
 				},
 				{
 					"id_name": "big_bang",
 					"name": "Big Bang",
 					"type": 1,
-					"power": 0
+					"power": 0,
+					"target_mode": 0
 				},
 				{
 					"id_name": "wold_fang_fist",
 					"name": "Wold Fang Fist",
 					"type": 4,
-					"power": 0
+					"power": 0,
+					"target_mode": 0
 				},
 				{
 					"id_name": "mouth_beam",
 					"name": "Mouth Beam",
 					"type": 1,
-					"power": 0
+					"power": 0,
+					"target_mode": 0
 				},
 				{
 					"id_name": "candy_beam",
 					"name": "Candy Beam",
 					"type": 0,
-					"power": 0
+					"power": 0,
+					"target_mode": 0
 				},
 				{
 					"id_name": "future_sight",
 					"name": "Future Sight",
 					"type": 4,
-					"power": 0
+					"power": 0,
+					"target_mode": 0
 				},
 				{
 					"id_name": "scold",
 					"name": "Scold",
 					"type": 2,
-					"power": 0
+					"power": 0,
+					"target_mode": 0
 				},
 				{
 					"id_name": "sbeam_cannon",
 					"name": "SBeam Cannon",
 					"type": 1,
-					"power": 0
+					"power": 0,
+					"target_mode": 0
 				},
 				{
 					"id_name": "block",
 					"name": "Block",
 					"type": 3,
-					"power": 0
+					"power": 0,
+					"target_mode": 0
 				},
 				{
 					"id_name": "android_barrier",
 					"name": "Android Barrier",
 					"type": 3,
-					"power": 0
+					"power": 0,
+					"target_mode": 0
 				},
 				{
 					"id_name": "absorb",
 					"name": "Absorb",
 					"type": 3,
-					"power": 0
+					"power": 0,
+					"target_mode": 0
 				},
 				{
 					"id_name": "mind_control",
 					"name": "Mind Control",
 					"type": 4,
-					"power": 0
+					"power": 0,
+					"target_mode": 0
 				},
 				{
 					"id_name": "masenko",
 					"name": "Masenko",
 					"type": 1,
-					"power": 0
+					"power": 0,
+					"target_mode": 0
 				},
 				{
 					"id_name": "dragon_fist",
 					"name": "Dragon Fist",
 					"type": 2,
-					"power": 0
+					"power": 0,
+					"target_mode": 0
 				},
 				{
 					"id_name": "glactic_dount",
 					"name": "Glactic Dount",
 					"type": 1,
-					"power": 0
+					"power": 0,
+					"target_mode": 0
 				},
 				{
 					"id_name": "impostor",
 					"name": "Impostor",
 					"type": 2,
-					"power": 0
+					"power": 0,
+					"target_mode": 0
 				},
 				{
 					"id_name": "senzu_bean",
 					"name": "Senzu Bean",
 					"type": 0,
-					"power": 0
+					"power": 0,
+					"target_mode": 0
 				},
 				{
 					"id_name": "kaioken_rush",
 					"name": "KK.Rush",
 					"type": 4,
-					"power": 0
+					"power": 0,
+					"target_mode": 0
 				},
 				{
 					"id_name": "final_kamehameha",
 					"name": "F.Kamehameha",
 					"type": 1,
-					"power": 0
+					"power": 0,
+					"target_mode": 0
 				},
 				{
 					"id_name": "gun",
 					"name": "Gun",
 					"type": 0,
-					"power": 0
+					"power": 0,
+					"target_mode": 0
 				},
 				{
 					"id_name": "charm",
 					"name": "Charm",
 					"type": 3,
-					"power": 0
+					"power": 0,
+					"target_mode": 0
 				},
 				{
 					"id_name": "gallic_gun",
 					"name": "Gallic Gun",
 					"type": 1,
-					"power": 0
+					"power": 0,
+					"target_mode": 0
 				},
 				{
 					"id_name": "telekenisis",
 					"name": "Telekenisis",
 					"type": 0,
-					"power": 0
+					"power": 0,
+					"target_mode": 0
 				},
 				{
 					"id_name": "death_beam",
 					"name": "Death Beam",
 					"type": 1,
-					"power": 0
+					"power": 0,
+					"target_mode": 0
 				},
 				{
 					"id_name": "ki_blast",
 					"name": "Ki Blast",
 					"type": 1,
-					"power": 0
+					"power": 0,
+					"target_mode": 0
 				},
 				{
 					"id_name": "instant_transmission",
 					"name": "Instant Transmission",
 					"type": 4,
-					"power": 0
+					"power": 0,
+					"target_mode": 0
 				},
 				{
 					"id_name": "instant_transmission_kamehameha",
 					"name": "IT.Kamehameha",
 					"type": 1,
-					"power": 0
+					"power": 0,
+					"target_mode": 0
 				},
 				{
 					"id_name": "grapple",
 					"name": "Grapple",
 					"type": 3,
-					"power": 0
+					"power": 0,
+					"target_mode": 0
 				},
 				{
 					"id_name": "scythe_cut",
 					"name": "Scythe Cut",
 					"type": 0,
-					"power": 0
+					"power": 0,
+					"target_mode": 0
 				},
 				{
 					"id_name": "bad_lore",
 					"name": "Bad Lore",
 					"type": 0,
-					"power": 0
+					"power": 0,
+					"target_mode": 0
 				},
 				{
 					"id_name": "fire_magic",
 					"name": "Fire Magic",
 					"type": 1,
-					"power": 0
+					"power": 0,
+					"target_mode": 0
 				},
 				{
 					"id_name": "fat_sheild",
 					"name": "Fat Sheild",
 					"type": 3,
-					"power": 0
+					"power": 0,
+					"target_mode": 0
 				},
 				{
 					"id_name": "rakshasas_claw",
 					"name": "Rakshasa's Claw",
 					"type": 1,
-					"power": 0
+					"power": 0,
+					"target_mode": 0
 				},
 				{
 					"id_name": "error",
 					"name": "Error",
 					"type": 0,
-					"power": 0
+					"power": 0,
+					"target_mode": 0
 				},
 				{
 					"id_name": "slam",
 					"name": "Slam",
 					"type": 2,
-					"power": 0
+					"power": 0,
+					"target_mode": 0
 				},
 				{
 					"id_name": "br_bone",
 					"name": "BR Bone",
 					"type": 2,
-					"power": 0
+					"power": 0,
+					"target_mode": 0
 				},
 				{
 					"id_name": "cold_magic",
 					"name": "Cold Magic",
 					"type": 1,
-					"power": 0
+					"power": 0,
+					"target_mode": 0
 				},
 				{
 					"id_name": "big_bang_Kamehameha",
 					"name": "BB Kamehameha",
 					"type": 1,
-					"power": 0
+					"power": 0,
+					"target_mode": 0
 				},
 				{
 					"id_name": "impale",
 					"name": "Impale",
 					"type": 4,
-					"power": 0
+					"power": 0,
+					"target_mode": 0
 				},
 				{
 					"id_name": "angelic_light",
 					"name": "Angelic Light",
 					"type": 1,
-					"power": 0
+					"power": 0,
+					"target_mode": 0
 				},
 				{
 					"id_name": "ki_blade",
 					"name": "Ki Blade",
 					"type": 4,
-					"power": 0
+					"power": 0,
+					"target_mode": 0
 				},
 				{
 					"id_name": "bind",
 					"name": "Bind",
 					"type": 3,
-					"power": 0
+					"power": 0,
+					"target_mode": 0
 				},
 				{
 					"id_name": "fusion_combo",
 					"name": "Fuse Combo",
 					"type": 0,
-					"power": 0
+					"power": 0,
+					"target_mode": 0
 				},
 				{
 					"id_name": "burning_attack",
 					"name": "Burning Attack",
 					"type": 1,
-					"power": 0
+					"power": 0,
+					"target_mode": 0
 				},
 				{
 					"id_name": "dragon_wrath",
 					"name": "Dragon Wrath",
 					"type": 0,
-					"power": 0
+					"power": 0,
+					"target_mode": 0
 				},
 				{
 					"id_name": "heal",
 					"name": "Heal",
 					"type": 1,
-					"power": 0
+					"power": 0,
+					"target_mode": 0
 				},
 				{
 					"id_name": "hakai",
 					"name": "Hakai",
 					"type": 1,
-					"power": 0
+					"power": 0,
+					"target_mode": 0
 				},
 				{
 					"id_name": "final_flash",
 					"name": "Final Flash",
 					"type": 1,
-					"power": 0
+					"power": 0,
+					"target_mode": 0
 				},
 				{
 					"id_name": "ki_volley",
 					"name": "Key Volley",
 					"type": 4,
-					"power": 0
+					"power": 0,
+					"target_mode": 0
 				},
 				{
 					"id_name": "fruit_punch",
 					"name": "Fruit Punch",
 					"type": 2,
-					"power": 0
+					"power": 0,
+					"target_mode": 0
 				},
 				{
 					"id_name": "power_pole",
 					"name": "Power Pole",
 					"type": 2,
-					"power": 0
+					"power": 0,
+					"target_mode": 0
 				},
 				{
 					"id_name": "liberation",
 					"name": "Liberation",
 					"type": 0,
-					"power": 0
+					"power": 0,
+					"target_mode": 0
 				},
 				{
 					"id_name": "spit",
 					"name": "Spit",
 					"type": 1,
-					"power": 0
+					"power": 0,
+					"target_mode": 0
 				},
 				{
 					"id_name": "counter",
 					"name": "Counter",
 					"type": 3,
-					"power": 0
+					"power": 0,
+					"target_mode": 0
 				},
 				{
 					"id_name": "explosion",
 					"name": "Explosion",
 					"type": 0,
-					"power": 0
+					"power": 0,
+					"target_mode": 0
 				}
 			],
 			"separators": [],

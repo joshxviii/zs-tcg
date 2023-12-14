@@ -29,7 +29,7 @@ var focus_out
 func _ready():
 	open()
 	target_arrow = target_arrow_path.instantiate()
-	get_parent().get_parent().add_child(target_arrow)
+	add_child(target_arrow)
 	pass
 		
 
@@ -55,7 +55,7 @@ func update_info():
 		
 		if card.targeted_space:
 			target_space=card.targeted_space
-			update_target()
+			update_targets()
 		
 		match card.selected_move:
 			1:
@@ -81,7 +81,7 @@ func update_info():
 			m2_icon.texture_normal = TextureHandler.new().get_texture("res://assets/textures/ui/type_indicator_"+str(card.m2_attributes["type"])+".png")
 		else: m2_box.visible = false
 
-func update_target():
+func update_targets():
 	target_arrow.clear_points()
 	target_arrow.add_point(Vector2(0.0,0.0),0)
 	target_arrow.add_point(target_space.global_position-target_arrow.global_position,1)
