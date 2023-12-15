@@ -8,7 +8,7 @@ func _ready():
 	tween.tween_property(self,"modulate",Color(1,1,1,1),.1)
 
 func _on_texture_button_pressed():
-	if get_parent():
-		get_parent().target_space = space
-		get_parent().update_targets()
+	if get_parent().get_parent():
+		get_parent().get_parent().target_space = space
+		get_parent().get_parent().update_targets()
 	pass # Replace with function body.

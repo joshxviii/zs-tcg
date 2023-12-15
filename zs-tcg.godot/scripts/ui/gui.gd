@@ -14,9 +14,9 @@ func create_move_info(card : Card2D):
 	var closer = create_focus_out()
 	ui_focused=true
 	var move_info = move_info_path.instantiate()
-	add_child(move_info)
 	move_info.card = card
 	move_info.position = card.get_global_mouse_position()-Vector2(10,-20)
+	add_child(move_info)
 	move_info.update_info()
 	await closer.closed
 	move_info.close()

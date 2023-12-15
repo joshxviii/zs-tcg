@@ -19,7 +19,7 @@ shader = ExtResource("1_dmxnv")
 shader_parameter/mask = SubResource("GradientTexture1D_l45xi")
 
 [sub_resource type="Gradient" id="Gradient_x2va7"]
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.215686)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.0313726)
 
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_m5nbt"]
 frames = 5
@@ -36,10 +36,8 @@ frame_4/texture = ExtResource("5_ublk0")
 frame_4/duration = 0.1
 
 [node name="target_arrow" type="Line2D"]
-modulate = Color(1, 0.266667, 0.12549, 1)
 z_index = -1
 material = SubResource("ShaderMaterial_t123v")
-points = PackedVector2Array(16, -16, 240, -56)
 width = 24.0
 gradient = SubResource("Gradient_x2va7")
 texture = SubResource("AnimatedTexture_m5nbt")

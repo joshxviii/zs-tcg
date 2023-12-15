@@ -13,9 +13,26 @@ func _ready():
 
 
 func _on_card_added(card):
-	if card.selected_move == 0: card.selected_move=1
 	
-	card.targeted_space = default_target
+	if card.selected_move == 0:
+		if card.m1_attributes.has("target_mode"):
+			card.selected_move=1
+			card.current_move_info=card.m1_attributes
+	
+	if card.current_move_info.has("target_mode"):
+		match int(card.current_move_info["target_mode"]):
+			Global.ATTACK:
+				card.targeted_space = default_target
+			Global.SUPPORT:
+				card.targeted_space = self
+			Global.SUPPORT_SELF:
+				card.targeted_space = self
+			Global.ATTACK_ALL:
+				card.targeted_space = default_target
+			_:
+				pass
+	else: card.targeted_space = self
+	
 	card.target_z_layer=0
 	card.move_to(self.global_position,0)
 	disabled = true

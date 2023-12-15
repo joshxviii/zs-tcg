@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://scripts/ui/target_point.gd" id="1_rq64h"]
 
 [node name="target_space" type="Marker2D"]
-z_index = 4
-scale = Vector2(5, 5)
+z_index = 1
+scale = Vector2(4, 4)
 script = ExtResource("1_rq64h")
 
 [node name="TextureButton" type="TextureButton" parent="."]
@@ -20,7 +20,7 @@ offset_right = 6.0
 offset_bottom = 8.5
 grow_horizontal = 2
 grow_vertical = 2
-button_mask = 3
+mouse_filter = 1
 
 [node name="ColorRect" type="ColorRect" parent="TextureButton"]
 layout_mode = 1

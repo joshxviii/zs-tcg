@@ -12,10 +12,11 @@ signal id_changed
 
 ##Data for the card
 @onready var attributes : Dictionary = CardHandler.db.retrive_attributes("cards",id)
-@onready var m1_attributes : Dictionary
-@onready var m2_attributes : Dictionary
+@onready var m1_attributes : Dictionary = {}
+@onready var m2_attributes : Dictionary = {}
 var is_in_deck := false
 
+var current_move_info:Dictionary
 @onready var selected_move:=0:
 	set(value):
 		selected_move=value
@@ -23,12 +24,15 @@ var is_in_deck := false
 			1:
 				m1_star.visible=true
 				m2_star.visible=false
+				current_move_info=m1_attributes
 			2:
 				m1_star.visible=false
 				m2_star.visible=true
+				current_move_info=m2_attributes
 			0:
 				m1_star.visible=false
 				m2_star.visible=false
+				current_move_info={}
 
 signal facing_changed
 ##Whether the card is acing down or not
@@ -136,14 +140,19 @@ func load_attributes():##Use id number to fill in all the attributes
 		m1_text.text = m1_attributes["name"]
 		m1_indicator.frame = m1_attributes["type"]
 		m1_text.visible_characters = 13
-	else: m1_box.visible = false
+		current_move_info=m1_attributes
+	else:
+		m1_attributes = {}
+		m1_box.visible = false
 
 	if attributes.has("move_2"):
 		m2_attributes = CardHandler.db.retrive_attributes("moves",attributes["move_2"])
 		m2_text.text = m2_attributes["name"]
 		m2_indicator.frame = m2_attributes["type"]
 		m2_text.visible_characters = 13
-	else: m2_box.visible = false
+	else: 
+		m2_attributes = {}
+		m2_box.visible = false
 
 
 

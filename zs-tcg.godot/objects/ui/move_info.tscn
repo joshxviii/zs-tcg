@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://2pbwog8fx8n0"]
+[gd_scene load_steps=9 format=3 uid="uid://2pbwog8fx8n0"]
 
 [ext_resource type="Texture2D" uid="uid://bud2ofn7qcujm" path="res://assets/textures/ui/attackUiBox.png" id="1_640cb"]
 [ext_resource type="Script" path="res://scripts/ui/move_info.gd" id="1_gfa2q"]
 [ext_resource type="Texture2D" uid="uid://djvf8bpuft8yg" path="res://assets/textures/ui/type_indicator_2.png" id="3_6xss4"]
 [ext_resource type="FontFile" uid="uid://3wrkvjx6bpvf" path="res://assets/fonts/pxlsupersmall.ttf" id="4_xfb1y"]
 [ext_resource type="Texture2D" uid="uid://cbckw1x4diw0b" path="res://assets/textures/ui/type_indicator_1.png" id="5_pt8i3"]
+[ext_resource type="ButtonGroup" uid="uid://dpqwcpr3eq1lo" path="res://objects/ui/button_groups/move_buttons.tres" id="5_ujvu5"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ecisy"]
 texture = ExtResource("1_640cb")
@@ -29,11 +30,14 @@ script = ExtResource("1_gfa2q")
 
 [node name="target_getter" type="Area2D" parent="."]
 z_index = -1
-collision_layer = 3
+collision_layer = 0
 collision_mask = 3
+monitoring = false
 
 [node name="shape" type="CollisionShape2D" parent="target_getter"]
 shape = SubResource("RectangleShape2D_a5vsx")
+
+[node name="targetting_nodes" type="Node2D" parent="."]
 
 [node name="moves" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -82,6 +86,7 @@ size_flags_horizontal = 3
 toggle_mode = true
 action_mode = 0
 button_mask = 3
+button_group = ExtResource("5_ujvu5")
 text = "Move attack 1"
 flat = true
 alignment = 0
@@ -90,7 +95,6 @@ alignment = 0
 layout_mode = 2
 size_flags_vertical = 6
 theme_override_constants/separation = 3
-metadata/_edit_lock_ = true
 
 [node name="type" type="HBoxContainer" parent="moves/move_2"]
 layout_mode = 2
@@ -120,12 +124,14 @@ size_flags_horizontal = 3
 toggle_mode = true
 action_mode = 0
 button_mask = 3
+button_group = ExtResource("5_ujvu5")
 text = "Move attack 2"
 flat = true
 alignment = 0
 
-[connection signal="body_entered" from="target_getter" to="." method="_on_target_getter_body_entered"]
-[connection signal="toggled" from="moves/move_1/type/icon" to="." method="_on_move_1_button_down"]
+[connection signal="target_mode_changed" from="." to="." method="_on_target_mode_changed"]
+[connection signal="body_shape_entered" from="target_getter" to="." method="_on_target_getter_body_shape_entered"]
+[connection signal="pressed" from="moves/move_1/type/icon" to="." method="_on_m1_icon_pressed"]
 [connection signal="toggled" from="moves/move_1/name" to="." method="_on_move_1_button_down"]
-[connection signal="toggled" from="moves/move_2/type/icon" to="." method="_on_move_2_button_down"]
+[connection signal="pressed" from="moves/move_2/type/icon" to="." method="_on_m2_icon_pressed"]
 [connection signal="toggled" from="moves/move_2/name" to="." method="_on_move_2_button_down"]
