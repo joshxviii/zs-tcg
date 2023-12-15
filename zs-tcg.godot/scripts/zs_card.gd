@@ -154,8 +154,6 @@ func load_attributes():##Use id number to fill in all the attributes
 		m2_attributes = {}
 		m2_box.visible = false
 
-
-
 func _on_facing_changed():
 	if get_parent() != null:
 		if is_facing_down: animator.play("front_to_back")

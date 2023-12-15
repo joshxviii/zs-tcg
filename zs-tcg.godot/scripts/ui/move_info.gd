@@ -1,6 +1,5 @@
 extends UIWindow
 
-const target_arrow_path = preload("res://objects/ui/target_arrow.tscn")
 const target_point_path = preload("res://objects/ui/target_point.tscn")
 
 
@@ -22,7 +21,6 @@ const target_point_path = preload("res://objects/ui/target_point.tscn")
 @onready var target_box = $targetting_nodes
 
 var target_point
-var target_arrow
 var target_space : CardSpace2D
 var card : Card2D
 var focus_out
@@ -80,12 +78,6 @@ func update_info():
 		m2_icon.texture_normal = TextureHandler.new().get_texture("res://assets/textures/ui/type_indicator_"+str(card.m2_attributes["type"])+".png")
 	else: m2_box.visible = false
 
-func update_targets():
-	target_arrow.clear_points()
-	target_arrow.add_point(Vector2(0.0,0.0),0)
-	target_arrow.add_point(target_space.global_position-target_arrow.global_position,1)
-	pass
-
 func open():
 	pass
 	
@@ -95,41 +87,39 @@ func close():
 	elif m2.button_pressed:card.selected_move = 2
 	else: card.selected_move = 0
 	if target_space: card.targeted_space = target_space
-	if target_arrow: target_arrow.queue_free()
 	queue_free()
 
 func refresh_target_mode():
 	target_getter.monitoring = false
 	for c in target_box.get_children():
 		c.queue_free()
-	target_arrow = target_arrow_path.instantiate()
-	target_box.add_child(target_arrow)
-	target_arrow.global_position = card.global_position
 	target_getter.monitoring = true
-	await target_getter.body_shape_entered
-	if target_space: update_targets()
 	
-#func create_target_arrow():
-#	pass
-	
-func create_target(body):
+func create_target(body,disable:=false):
 	target_point = target_point_path.instantiate()
 	target_box.add_child(target_point)
 	target_point.space = body
 	target_point.global_position = body.global_position
+	if target_mode==Global.ATTACK_ALL:
+		target_point.btn.mouse_filter = 2
+		target_point.btn.button_group = null
+		target_point.btn.disabled = true
+		target_point.btn.button_pressed = true
+	elif body == target_space: target_point.btn.button_pressed=true
 
 func _on_target_getter_body_shape_entered(_body_rid, body, _body_shape_index, _local_shape_index):
 	match target_mode:
 		Global.ATTACK:
-			target_arrow.modulate = Color.RED
+			target_box.modulate = Color.RED
 			if body.is_in_group("opposing_space"): create_target(body)
 		Global.SUPPORT:
-			target_arrow.modulate = Color.GREEN
+			target_box.modulate = Color.GREEN
 			if body.is_in_group("play_space"): create_target(body)
 		Global.SUPPORT_SELF:
-			target_arrow.modulate = Color.GREEN
+			target_box.modulate = Color.GREEN
+			if body == card.owner_space: create_target(body)
 		Global.ATTACK_ALL:
-			target_arrow.modulate = Color.RED
+			target_box.modulate = Color.RED
 			if body.is_in_group("play_space") || body.is_in_group("opposing_space"): create_target(body)
 		_:
 			pass

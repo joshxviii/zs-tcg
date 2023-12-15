@@ -1,37 +1,45 @@
-[gd_scene load_steps=2 format=3 uid="uid://bv85leflamv0r"]
+[gd_scene load_steps=4 format=3 uid="uid://bv85leflamv0r"]
 
 [ext_resource type="Script" path="res://scripts/ui/target_point.gd" id="1_rq64h"]
+[ext_resource type="ButtonGroup" uid="uid://dqqhgckr0vtiv" path="res://objects/ui/button_groups/target_selector.tres" id="2_n4d2x"]
+[ext_resource type="Texture2D" uid="uid://dwu0qffb3k5th" path="res://assets/textures/ui/target_selector.png" id="3_dcwwe"]
 
 [node name="target_space" type="Marker2D"]
-z_index = 1
-scale = Vector2(4, 4)
 script = ExtResource("1_rq64h")
 
-[node name="TextureButton" type="TextureButton" parent="."]
-custom_minimum_size = Vector2(12, 17)
+[node name="target_selector" type="TextureButton" parent="."]
+custom_minimum_size = Vector2(72, 102)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -6.0
-offset_top = -8.5
-offset_right = 6.0
-offset_bottom = 8.5
+offset_left = -36.0
+offset_top = -51.0
+offset_right = 36.0
+offset_bottom = 51.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(36, 51)
+size_flags_horizontal = 4
 mouse_filter = 1
+toggle_mode = true
+action_mode = 0
+button_group = ExtResource("2_n4d2x")
+texture_pressed = ExtResource("3_dcwwe")
+texture_disabled = ExtResource("3_dcwwe")
+stretch_mode = 4
 
-[node name="ColorRect" type="ColorRect" parent="TextureButton"]
+[node name="ColorRect" type="ColorRect" parent="target_selector"]
+custom_minimum_size = Vector2(72, 102)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -0.333336
-offset_bottom = -0.333336
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(36, 51)
 mouse_filter = 2
-color = Color(1, 1, 0.407843, 0.290196)
+color = Color(1, 1, 1, 0.12549)
 
-[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]
+[connection signal="toggled" from="target_selector" to="." method="_on_texture_button_toggled"]
