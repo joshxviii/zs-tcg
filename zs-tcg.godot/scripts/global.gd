@@ -14,7 +14,9 @@ enum {
 	ALLY,
 	FOE_ALL,
 	ALLY_ALL,
-	ALL
+	ALL,
+	ANY,
+	RANDOM
 }
 
 const NEUTRAL_COLOR=Color.PERU

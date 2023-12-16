@@ -13,6 +13,8 @@ const target_point_path = preload("res://objects/ui/target_point.tscn")
 @onready var m2_icon = $moves/move_2/type/icon
 @onready var m1_name = $moves/move_1/name
 @onready var m2_name = $moves/move_2/name
+@onready var m1_star = $moves/move_1/select_star
+@onready var m2_star = $moves/move_2/select_star
 
 @onready var m1_box = $moves/move_1
 @onready var m2_box = $moves/move_2
@@ -36,25 +38,30 @@ func _ready():
 
 signal target_mode_changed(mode)
 func _on_move_1_button_down(button_pressed):
+	m1_star.visible=button_pressed
 	if m1.button_pressed:
 		if card.current_move_info.size() > 0:
 			target_mode = int(card.current_move_info["target_mode"])
 			if target_mode != int(card.m1_attributes["target_mode"]): target_mode_changed.emit(int(card.m1_attributes["target_mode"]))
-			card.selected_move = 1	
-	elif !m1.button_pressed && !m2.button_pressed:
-		card.selected_move = 0
-		target_mode_changed.emit(-1)
-		target_mode = -1
+			card.selected_move = 1
+	elif !m1.button_pressed:
+		if !m2.button_pressed:
+			card.selected_move = 0
+			target_mode_changed.emit(-1)
+			target_mode = -1
 func _on_move_2_button_down(button_pressed):
+	m2_star.visible=button_pressed
 	if m2.button_pressed:
 		if card.current_move_info.size() > 0:
 			target_mode = int(card.current_move_info["target_mode"])
 			if target_mode != int(card.m2_attributes["target_mode"]): target_mode_changed.emit(int(card.m2_attributes["target_mode"]))
 			card.selected_move = 2
-	elif !m1.button_pressed && !m2.button_pressed:
-		card.selected_move = 0
-		target_mode_changed.emit(-1)
-		target_mode = -1
+	elif !m1.button_pressed:
+		if !m2.button_pressed:
+			card.selected_move = 0
+			target_mode_changed.emit(-1)
+			target_mode = -1
+		
 func _on_m1_icon_pressed():
 	m1.button_pressed=!m1.button_pressed
 func _on_m2_icon_pressed():
@@ -133,6 +140,9 @@ func _on_target_getter_body_shape_entered(_body_rid, body, _body_shape_index, _l
 			#target_box.modulate = Color.RED
 			if body.is_in_group("play_space"): create_target(body)
 		Global.ALL:
+			#target_box.modulate = Color.RED
+			if body.is_in_group("play_space") || body.is_in_group("opposing_space"): create_target(body)
+		Global.ANY:
 			#target_box.modulate = Color.RED
 			if body.is_in_group("play_space") || body.is_in_group("opposing_space"): create_target(body)
 		_:

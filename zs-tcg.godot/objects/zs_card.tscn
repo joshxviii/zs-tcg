@@ -243,17 +243,16 @@ expand_mode = 1
 stretch_mode = 5
 
 [node name="type_icon" type="Sprite2D" parent="card_ui/front"]
-position = Vector2(-28, -43)
+position = Vector2(-25, -40)
 texture = ExtResource("4_ruwno")
 hframes = 5
 
 [node name="hp" type="Label" parent="card_ui/front"]
 clip_contents = true
-layout_mode = 2
-offset_left = -33.0
-offset_top = -36.0
-offset_right = -25.0
-offset_bottom = -28.0
+offset_left = -30.0
+offset_top = -33.0
+offset_right = -22.0
+offset_bottom = -25.0
 theme_override_colors/font_color = Color(0.996078, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.443137)
 theme_override_constants/shadow_offset_x = 1
