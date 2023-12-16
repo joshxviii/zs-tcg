@@ -18,7 +18,7 @@ func _on_texture_button_pressed():
 
 func _on_texture_button_toggled(button_pressed):
 	if button_pressed:
-		if get_parent().get_parent():
+		if get_parent().get_parent() and !target_arrow:
 			get_parent().get_parent().target_space = space
 			#get_parent().get_parent().update_targets()
 			target_arrow = target_arrow_path.instantiate()

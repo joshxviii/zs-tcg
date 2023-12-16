@@ -32,7 +32,8 @@ var current_move_info:Dictionary
 			0:
 				m1_star.visible=false
 				m2_star.visible=false
-				current_move_info={}
+				current_move_info={"target_mode":-1}
+
 
 signal facing_changed
 ##Whether the card is acing down or not

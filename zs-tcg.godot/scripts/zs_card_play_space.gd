@@ -20,18 +20,11 @@ func _on_card_added(card):
 			card.current_move_info=card.m1_attributes
 	
 	if card.current_move_info.has("target_mode"):
-		match int(card.current_move_info["target_mode"]):
-			Global.ATTACK:
-				card.targeted_space = default_target
-			Global.SUPPORT:
-				card.targeted_space = self
-			Global.SUPPORT_SELF:
-				card.targeted_space = self
-			Global.ATTACK_ALL:
-				card.targeted_space = default_target
-			_:
-				pass
-	else: card.targeted_space = self
+		var mode = int(card.current_move_info["target_mode"])
+		if mode == Global.FOE || mode == Global.FOE_ALL || mode == Global.ALL:
+			card.targeted_space = default_target
+		else:
+			card.targeted_space = self
 	
 	card.target_z_layer=0
 	card.move_to(self.global_position,0)

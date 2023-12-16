@@ -9,10 +9,12 @@ enum {
 }
 
 enum {
-	ATTACK,
-	SUPPORT,
-	SUPPORT_SELF,
-	ATTACK_ALL
+	SELF,
+	FOE,
+	ALLY,
+	FOE_ALL,
+	ALLY_ALL,
+	ALL
 }
 
 const NEUTRAL_COLOR=Color.PERU
