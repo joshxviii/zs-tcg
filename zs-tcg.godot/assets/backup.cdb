@@ -2347,10 +2347,6 @@
 					"name": "id_name"
 				},
 				{
-					"typeStr": "5:SELF,FOE,ALLY,FOE_ALL,ALLY_ALL,ALL,ANY,RANDOM",
-					"name": "target_mode"
-				},
-				{
 					"typeStr": "1",
 					"name": "name",
 					"display": null
@@ -2358,6 +2354,10 @@
 				{
 					"typeStr": "5:NEUTRAL,KI,STRENGTH,DEFENSE,SPEED",
 					"name": "type"
+				},
+				{
+					"typeStr": "5:SELF,FOE,ALLY,FOE_ALL,ALLY_ALL,ALL,ANY,RANDOM",
+					"name": "target_mode"
 				},
 				{
 					"typeStr": "3",
