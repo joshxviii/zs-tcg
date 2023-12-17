@@ -1,10 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://2pbwog8fx8n0"]
+[gd_scene load_steps=9 format=3 uid="uid://2pbwog8fx8n0"]
 
 [ext_resource type="Texture2D" uid="uid://bud2ofn7qcujm" path="res://assets/textures/ui/attackUiBox.png" id="1_640cb"]
 [ext_resource type="Script" path="res://scripts/ui/move_info.gd" id="1_gfa2q"]
-[ext_resource type="Texture2D" uid="uid://djvf8bpuft8yg" path="res://assets/textures/ui/type_indicator_2.png" id="3_6xss4"]
+[ext_resource type="Texture2D" uid="uid://11g47k3bgeyq" path="res://assets/textures/ui/type_indicators/type_indicator_0.png" id="3_ikmyn"]
 [ext_resource type="FontFile" uid="uid://3wrkvjx6bpvf" path="res://assets/fonts/pxlsupersmall.ttf" id="4_xfb1y"]
-[ext_resource type="Texture2D" uid="uid://cbckw1x4diw0b" path="res://assets/textures/ui/type_indicator_1.png" id="5_pt8i3"]
 [ext_resource type="ButtonGroup" uid="uid://dpqwcpr3eq1lo" path="res://objects/ui/button_groups/move_buttons.tres" id="5_ujvu5"]
 [ext_resource type="Texture2D" uid="uid://bggkjgl2nd0su" path="res://assets/textures/cards/select_star.png" id="6_fhjc7"]
 
@@ -69,7 +68,7 @@ layout_mode = 2
 toggle_mode = true
 action_mode = 0
 button_mask = 3
-texture_normal = ExtResource("3_6xss4")
+texture_normal = ExtResource("3_ikmyn")
 stretch_mode = 5
 
 [node name="power" type="Label" parent="moves/move_1/type"]
@@ -113,7 +112,7 @@ layout_mode = 2
 toggle_mode = true
 action_mode = 0
 button_mask = 3
-texture_normal = ExtResource("5_pt8i3")
+texture_normal = ExtResource("3_ikmyn")
 stretch_mode = 5
 
 [node name="power" type="Label" parent="moves/move_2/type"]

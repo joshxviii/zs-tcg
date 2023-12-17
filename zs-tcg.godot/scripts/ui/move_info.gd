@@ -84,13 +84,13 @@ func update_info():
 		m1_name.text = card.m1_attributes["name"]
 		m1_power.text = "+" + str(card.m1_attributes["power"])
 		m1_power.modulate=Global.get_type_color(card.m1_attributes["type"])
-		m1_icon.texture_normal = TextureHandler.new().get_texture("res://assets/textures/ui/type_indicator_"+str(card.m1_attributes["type"])+".png")
+		m1_icon.texture_normal = TextureHandler.new().get_texture("res://assets/textures/ui/type_indicators/type_indicator_"+str(card.m1_attributes["type"])+".png")
 	else: m1_box.visible = false
 	if card.m2_attributes.size() > 0:
 		m2_name.text = card.m2_attributes["name"]
 		m2_power.text =  "+" + str(card.m2_attributes["power"])
 		m2_power.modulate=Global.get_type_color(card.m2_attributes["type"])
-		m2_icon.texture_normal = TextureHandler.new().get_texture("res://assets/textures/ui/type_indicator_"+str(card.m2_attributes["type"])+".png")
+		m2_icon.texture_normal = TextureHandler.new().get_texture("res://assets/textures/ui/type_indicators/type_indicator_"+str(card.m2_attributes["type"])+".png")
 	else: m2_box.visible = false
 
 func open():

@@ -11,8 +11,10 @@ config_version=5
 [application]
 
 config/name="ZS TCG"
+config/version="0.0"
 run/main_scene="res://main_scene.tscn"
-config/features=PackedStringArray("4.1", "GL Compatibility")
+config/features=PackedStringArray("4.2", "GL Compatibility")
+boot_splash/show_image=false
 boot_splash/use_filter=false
 config/icon="res://icon.png"
 

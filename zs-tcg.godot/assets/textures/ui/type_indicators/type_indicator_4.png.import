@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://djvf8bpuft8yg"
-path="res://.godot/imported/type_indicator_2.png-95109d8e7ac5cb81a01702dc4419aaaa.ctex"
+uid="uid://c7ewaefyhguwa"
+path="res://.godot/imported/type_indicator_4.png-618f14ccb9dbc0e485c9bcb1eee9f5aa.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/ui/type_indicator_2.png"
-dest_files=["res://.godot/imported/type_indicator_2.png-95109d8e7ac5cb81a01702dc4419aaaa.ctex"]
+source_file="res://assets/textures/ui/type_indicators/type_indicator_4.png"
+dest_files=["res://.godot/imported/type_indicator_4.png-618f14ccb9dbc0e485c9bcb1eee9f5aa.ctex"]
 
 [params]
 

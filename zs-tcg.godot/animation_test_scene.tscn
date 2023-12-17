@@ -47,6 +47,12 @@ metadata/_edit_lock_ = true
 [node name="type_icon" parent="card/card_ui/front" index="3"]
 metadata/_edit_lock_ = true
 
+[node name="hp" parent="card/card_ui/front" index="4"]
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 8.0
+offset_bottom = 23.0
+
 [node name="name" parent="card/card_ui/front" index="5"]
 metadata/_edit_lock_ = true
 

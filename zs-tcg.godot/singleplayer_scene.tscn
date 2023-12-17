@@ -1,0 +1,61 @@
+[gd_scene load_steps=11 format=3 uid="uid://cpp0ggfrq60rh"]
+
+[ext_resource type="PackedScene" uid="uid://f7waxa37afm5" path="res://objects/ui/gui.tscn" id="1_34s5l"]
+[ext_resource type="Script" path="res://scripts/zs_database.gd" id="2_7pd73"]
+[ext_resource type="Texture2D" uid="uid://djjqcpip47nvu" path="res://assets/textures/ui/settings/settings_0.png" id="2_lmdwm"]
+[ext_resource type="Texture2D" uid="uid://cmn0yg3ihe4kb" path="res://assets/textures/ui/settings/settings_1.png" id="3_6jxvu"]
+[ext_resource type="Texture2D" uid="uid://criakq8vjllb2" path="res://assets/textures/backgrounds/simulation_background.png" id="3_gw2of"]
+[ext_resource type="PackedScene" uid="uid://d1ndlffcdqcdt" path="res://objects/ui/in_game_menu.tscn" id="4_64iyj"]
+[ext_resource type="PackedScene" uid="uid://bruqk3h0qhqhe" path="res://objects/trash_space.tscn" id="4_73yk3"]
+[ext_resource type="PackedScene" uid="uid://pogu7wgnj60w" path="res://objects/zs_card_deck.tscn" id="5_j1f6m"]
+[ext_resource type="PackedScene" uid="uid://beliecqhfu21d" path="res://objects/zs_card_hand.tscn" id="6_38tpr"]
+[ext_resource type="PackedScene" uid="uid://dln4gn1dgacmu" path="res://objects/play_area.tscn" id="7_0xilk"]
+
+[node name="main_scene" type="Node2D"]
+
+[node name="GUI" parent="." instance=ExtResource("1_34s5l")]
+
+[node name="menu" type="TextureButton" parent="GUI"]
+offset_left = 732.0
+offset_top = 4.0
+offset_right = 764.0
+offset_bottom = 36.0
+texture_normal = ExtResource("2_lmdwm")
+texture_pressed = ExtResource("3_6jxvu")
+stretch_mode = 3
+
+[node name="in-game_menu" parent="GUI" instance=ExtResource("4_64iyj")]
+visible = false
+
+[node name="zs_database" type="Node" parent="."]
+script = ExtResource("2_7pd73")
+database_path = "res://assets/zs_cards.json"
+
+[node name="background" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(384, 216)
+scale = Vector2(4, 4)
+texture = ExtResource("3_gw2of")
+metadata/_edit_lock_ = true
+
+[node name="camera" type="Camera2D" parent="."]
+position = Vector2(384, 216)
+ignore_rotation = false
+metadata/_edit_lock_ = true
+
+[node name="trash_space10" parent="." instance=ExtResource("4_73yk3")]
+position = Vector2(48, 368)
+input_pickable = false
+
+[node name="zs_card_deck" parent="." instance=ExtResource("5_j1f6m")]
+position = Vector2(720, 368)
+randomized = true
+MAX_CARDS = 5
+
+[node name="zs_card_hand" parent="." instance=ExtResource("6_38tpr")]
+position = Vector2(384, 416)
+
+[node name="play_area" parent="." instance=ExtResource("7_0xilk")]
+position = Vector2(384, 184)
+
+[connection signal="pressed" from="GUI/menu" to="GUI/in-game_menu" method="_on_menu_pressed"]

@@ -7,6 +7,8 @@ var dragged_card : Card2D
 
 var PLAYER_HAND : CardHand2D
 
+
+
 func _ready():
 	InputMap.add_action("click")
 	var ev = InputEventMouseButton.new()

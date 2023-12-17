@@ -1,5 +1,7 @@
 extends Node
 
+var VERSION = ProjectSettings.get_setting_with_override("application/config/version")
+
 enum {
 	NEUTRAL,
 	KI,
@@ -45,5 +47,5 @@ func get_type_color(type:int) -> Color:
 var GUI 
 
 func _ready():
-		#cursor.load_cursor()
-		pass
+	#cursor.load_cursor()
+	pass

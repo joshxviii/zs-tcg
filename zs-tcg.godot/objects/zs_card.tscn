@@ -146,10 +146,10 @@ theme = ExtResource("2_5fipb")
 
 [node name="animation_player" type="AnimationPlayer" parent="card_ui"]
 root_node = NodePath("../..")
-speed_scale = 4.0
 libraries = {
 "": SubResource("AnimationLibrary_tw5sx")
 }
+speed_scale = 4.0
 
 [node name="shadow" type="ColorRect" parent="card_ui"]
 layout_mode = 1
@@ -249,6 +249,7 @@ hframes = 5
 
 [node name="hp" type="Label" parent="card_ui/front"]
 clip_contents = true
+layout_mode = 0
 offset_left = -30.0
 offset_top = -33.0
 offset_right = -22.0
