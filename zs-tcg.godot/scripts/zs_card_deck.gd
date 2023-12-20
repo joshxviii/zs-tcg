@@ -61,7 +61,7 @@ func generate_card():
 	check_deck()
 	
 func generate_random_card():
-	var max_id = CardHandler.db.Database["cards"].size()
+	var max_id = Global.db.Database["cards"].size()
 	deck.append(randi_range(0,max_id-1))
 	check_deck()
 
@@ -83,9 +83,9 @@ func _on_card_removed(_card):
 
 func _on_input_event(_viewport, e, _shape_idx):
 	if e is InputEventMouseButton and e.pressed and e.button_mask==1 and !e.double_click:
-		if straight_to_hand && CardHandler.PLAYER_HAND && cards.size() > 0:
-			if CardHandler.PLAYER_HAND.has_open_space && cards.size() <= MAX_CARDS:
-				CardHandler.PLAYER_HAND.add(cards[0])
+		if straight_to_hand && Global.PLAYER_HAND && cards.size() > 0:
+			if Global.PLAYER_HAND.has_open_space && cards.size() <= MAX_CARDS:
+				Global.PLAYER_HAND.add(cards[0])
 
 
 func _on_card_returned(card):

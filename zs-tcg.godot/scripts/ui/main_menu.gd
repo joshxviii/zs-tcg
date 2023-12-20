@@ -6,6 +6,7 @@ func _ready():
 func _on_singleplayer_pressed():
 	var scene = load("res://singleplayer_scene.tscn").instantiate()
 	get_tree().root.add_child(scene)
+	Global.PLAYAREA = scene
 	self.hide()
 	pass
 

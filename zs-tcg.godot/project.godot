@@ -22,7 +22,6 @@ config/windows_native_icon="res://assets/icons/logo.ico"
 [autoload]
 
 Global="*res://scripts/global.gd"
-CardHandler="*res://scripts/global_card_handler.gd"
 
 [display]
 

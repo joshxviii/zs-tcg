@@ -23,7 +23,7 @@ var prev_selected_card
 		else: pass 
 
 func _ready():
-	CardHandler.PLAYER_HAND = self
+	Global.PLAYER_HAND = self
 
 
 func _on_card_added(card):
@@ -65,7 +65,7 @@ func _process(_delta):
 		tween.tween_property(selected_card,"rotation",( (get_global_mouse_position().x - selected_card.position.x)/-360 ) ,0.12).set_ease(Tween.EASE_IN)
 	if hovered && cards.size() > 0:
 		var select_pos = get_global_mouse_position()-Vector2(cards.size()/2.0,0)
-		if !CardHandler.is_dragging:
+		if !Global.is_dragging:
 			if can_select:
 				var test_card = cards[0]
 				for card in cards:
@@ -75,15 +75,15 @@ func _process(_delta):
 				#selection_changed.emit(selected_card,prev_selected_card)
 				#var tween = get_tree().create_tween()
 				#tween.tween_property(selected_card,"rotation",( (get_global_mouse_position().x - position.x)/360 ) ,0.12).set_ease(Tween.EASE_IN)
-		elif CardHandler.is_dragging:
+		elif Global.is_dragging:
 			var dragged_card = swap_card
 			swap_card = cards[0]
 			for card in cards:
 				if card.target_pos.distance_to(get_global_mouse_position()) < swap_card.target_pos.distance_to(get_global_mouse_position()):
 					swap_card = card
-			if CardHandler.dragged_card != swap_card:
-				if cards.has(swap_card) && cards.has(CardHandler.dragged_card):
-					cards = swap(swap_card,CardHandler.dragged_card,cards)
+			if Global.dragged_card != swap_card:
+				if cards.has(swap_card) && cards.has(Global.dragged_card):
+					cards = swap(swap_card,Global.dragged_card,cards)
 					update_hand()
 
 func swap(c1:Card2D,c2:Card2D,a:Array[Card2D]) -> Array[Card2D]:

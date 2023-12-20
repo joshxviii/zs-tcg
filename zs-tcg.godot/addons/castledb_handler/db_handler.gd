@@ -2,11 +2,6 @@
 class_name DataBaseHandler extends Node
 ##Used to handler json files made with castle db.
 
-
-
-
-var old_db:Dictionary
-
 var Database : Dictionary = {}
 ##Path to a json file with card info
 @export_file() var database_path : String:
@@ -16,7 +11,6 @@ var Database : Dictionary = {}
 			#db = load_db()
 			#Rearange database for easier use
 			Database = format_db()
-
 var og_db
 
 

@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://sjckyl6cd7o"]
+[gd_scene load_steps=7 format=3 uid="uid://sjckyl6cd7o"]
 
+[ext_resource type="Theme" uid="uid://dxxt0em6v1rwd" path="res://assets/themes/main_menu.tres" id="1_fyxab"]
 [ext_resource type="Script" path="res://scripts/ui/main_menu.gd" id="1_txojc"]
 [ext_resource type="FontFile" uid="uid://3wrkvjx6bpvf" path="res://assets/fonts/pxlsupersmall.ttf" id="2_nsepl"]
+[ext_resource type="Texture2D" uid="uid://b0kw633qcl75k" path="res://assets/textures/backgrounds/simulation_background_white.png" id="3_guwkx"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5fwau"]
 bg_color = Color(0.247059, 0.188235, 0.34902, 1)
@@ -16,8 +18,19 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_fyxab")
 script = ExtResource("1_txojc")
 metadata/_edit_vertical_guides_ = [384.0]
+
+[node name="bg" type="TextureRect" parent="."]
+modulate = Color(0.0431373, 0.52549, 0.0745098, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_guwkx")
 
 [node name="main_menu" type="Control" parent="."]
 layout_mode = 1
@@ -96,7 +109,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.109804)
+color = Color(0, 0, 0, 0.235294)
 
 [node name="multiplayer_menu" type="Panel" parent="mutliplayer"]
 layout_mode = 0
@@ -308,60 +321,43 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.109804)
+color = Color(0, 0, 0, 0.235294)
 metadata/_edit_lock_ = true
 
-[node name="tab_menu" type="Control" parent="options"]
-anchors_preset = 0
-offset_left = 120.0
-offset_top = 64.0
-offset_right = 648.0
-offset_bottom = 352.0
-
-[node name="TabBar" type="TabBar" parent="options/tab_menu"]
-layout_mode = 0
-offset_left = 8.0
-offset_top = -22.0
-offset_right = 520.0
-tab_count = 3
-scroll_to_selected = false
-tab_0/title = "Video"
-tab_1/title = "Audio"
-tab_2/title = "Gameplay"
-
-[node name="Gameplay" type="Panel" parent="options/tab_menu"]
+[node name="TabContainer" type="TabContainer" parent="options"]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -288.0
+offset_top = -184.0
+offset_right = 288.0
+offset_bottom = 152.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Audio" type="Panel" parent="options/tab_menu"]
+[node name="Video" type="Control" parent="options/TabContainer"]
+layout_mode = 2
+
+[node name="Audio" type="Control" parent="options/TabContainer"]
 visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
 
-[node name="Video" type="Panel" parent="options/tab_menu"]
+[node name="Gameplay" type="Control" parent="options/TabContainer"]
 visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
 
-[node name="back" type="Button" parent="options/tab_menu"]
+[node name="back" type="Button" parent="options"]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -20.0
-offset_bottom = 26.0
+offset_left = -115.0
+offset_top = 68.0
+offset_right = -103.0
+offset_bottom = 94.0
 grow_horizontal = 0
 theme_override_font_sizes/font_size = 25
 text = "X"
@@ -375,4 +371,4 @@ text = "X"
 [connection signal="pressed" from="mutliplayer/multiplayer_menu/menu/lan" to="." method="_on_multiplayer_lan_pressed"]
 [connection signal="pressed" from="mutliplayer/online/back" to="." method="_on_online_back_pressed"]
 [connection signal="pressed" from="mutliplayer/lan/back" to="." method="_on_lan_back_pressed"]
-[connection signal="pressed" from="options/tab_menu/back" to="." method="_on_options_back_pressed"]
+[connection signal="pressed" from="options/back" to="." method="_on_options_back_pressed"]

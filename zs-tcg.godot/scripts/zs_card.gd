@@ -11,7 +11,7 @@ signal id_changed
 			if get_parent() != null: id_changed.emit()
 
 ##Data for the card
-@onready var attributes : Dictionary = CardHandler.db.retrive_attributes("cards",id)
+@onready var attributes : Dictionary = Global.db.retrive_attributes("cards",id)
 @onready var m1_attributes : Dictionary = {}
 @onready var m2_attributes : Dictionary = {}
 var is_in_deck := false
@@ -55,8 +55,8 @@ var draggable:=true:
 		draggable = value
 var dragging:=false:
 	set(value):
-		CardHandler.dragged_card = self
-		CardHandler.is_dragging = value
+		Global.dragged_card = self
+		Global.is_dragging = value
 		dragging = value
 ##Whether the card is currently been moved or not
 var selected_spaces : Array[CardSpace2D]
@@ -120,7 +120,7 @@ func _on_id_changed():
 
 func load_attributes():##Use id number to fill in all the attributes
 	if attributes.has("name"): 
-		attributes = CardHandler.db.retrive_attributes("cards",id)
+		attributes = Global.db.retrive_attributes("cards",id)
 		name_text.text = attributes["name"]
 		if name_text.text.length() > 11:
 			var size = clamp(13 - (name_text.text.length() - 10),9,13)
@@ -137,7 +137,7 @@ func load_attributes():##Use id number to fill in all the attributes
 		back_img.texture = TextureHandler.new().get_texture("res://assets/textures/cards/card_layers/back_" + str(attributes["pack_id"]) + ".png")
 
 	if attributes.has("move_1"):
-		m1_attributes = CardHandler.db.retrive_attributes("moves",attributes["move_1"])
+		m1_attributes = Global.db.retrive_attributes("moves",attributes["move_1"])
 		m1_text.text = m1_attributes["name"]
 		m1_indicator.frame = m1_attributes["type"]
 		m1_text.visible_characters = 13
@@ -147,7 +147,7 @@ func load_attributes():##Use id number to fill in all the attributes
 		m1_box.visible = false
 
 	if attributes.has("move_2"):
-		m2_attributes = CardHandler.db.retrive_attributes("moves",attributes["move_2"])
+		m2_attributes = Global.db.retrive_attributes("moves",attributes["move_2"])
 		m2_text.text = m2_attributes["name"]
 		m2_indicator.frame = m2_attributes["type"]
 		m2_text.visible_characters = 13
@@ -214,7 +214,7 @@ func _on_input_event(_viewport, e, _shape_idx):
 	if e is InputEventMouseButton and e.pressed and !e.double_click:##Press mouse button
 		match e.button_mask:
 			1:
-				if !CardHandler.is_dragging && draggable:
+				if !Global.is_dragging && draggable:
 					dragging = true
 					var tween = get_tree().create_tween()
 					tween.parallel().tween_property(shadow,"position",Vector2(14,23),0.06).set_ease(Tween.EASE_IN)
@@ -222,8 +222,8 @@ func _on_input_event(_viewport, e, _shape_idx):
 					tween.parallel().tween_property(self,"rotation",( 1 ) ,0.12).set_ease(Tween.EASE_IN)
 					if owner_space:
 						if owner_space.is_in_group("card_deck"):
-							if CardHandler.PLAYER_HAND.has_open_space:
-								CardHandler.PLAYER_HAND.add(self)
+							if Global.PLAYER_HAND.has_open_space:
+								Global.PLAYER_HAND.add(self)
 								facing_direction = 0
 							else:
 								Global.GUI.create_float_text(get_global_mouse_position(),"FULL HAND!")
