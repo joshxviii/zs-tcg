@@ -1,6 +1,7 @@
 @icon("res://assets/icons/card2D.svg")
 class_name Card2D extends Area2D
 
+#region Variables
 signal id_changed
 ##ID for the Card. this number will determine all attributes of the card such as its name and stats.
 @export_range(0,999) var id := 0:
@@ -69,8 +70,6 @@ var offset := -16
 @onready var target_pos := position
 var target_z_layer := 0
 
-
-
 @onready var ui = $card_ui
 @onready var front = $card_ui/front
 @onready var back = $card_ui/back
@@ -105,11 +104,9 @@ var max_health : int = 0
 		else:
 			current_health = value
 		hp_text.text = str(current_health)
+#endregion
 
-
-
-
-
+#region Load Card
 func _ready():
 	load_attributes()
 	if is_facing_down:
@@ -117,6 +114,7 @@ func _ready():
 
 func _on_id_changed():
 	load_attributes()
+	
 
 func load_attributes():##Use id number to fill in all the attributes
 	if attributes.has("name"): 
@@ -131,11 +129,11 @@ func load_attributes():##Use id number to fill in all the attributes
 		max_health = attributes["hp"]
 		current_health = max_health
 		
-		profile.texture = TextureHandler.new().get_texture("res://assets/textures/cards/profiles/" + str(id) + ".png")
-		border.texture = TextureHandler.new().get_texture("res://assets/textures/cards/card_layers/border_" + str(attributes["pack_id"]) + ".png")
-		border_back.texture = TextureHandler.new().get_texture("res://assets/textures/cards/card_layers/border_background_" + str(attributes["pack_id"]) + ".png")
-		back_img.texture = TextureHandler.new().get_texture("res://assets/textures/cards/card_layers/back_" + str(attributes["pack_id"]) + ".png")
-
+		profile.texture = Global.image_load("res://assets/textures/cards/profiles/" + str(id) + ".png")
+		border.texture = Global.image_load("res://assets/textures/cards/card_layers/border_" + str(attributes["pack_id"]) + ".png")
+		border_back.texture = Global.image_load("res://assets/textures/cards/card_layers/border_background_" + str(attributes["pack_id"]) + ".png")
+		back_img.texture = Global.image_load("res://assets/textures/cards/card_layers/back_" + str(attributes["pack_id"]) + ".png")
+		
 	if attributes.has("move_1"):
 		m1_attributes = Global.db.retrive_attributes("moves",attributes["move_1"])
 		m1_text.text = m1_attributes["name"]
@@ -154,38 +152,10 @@ func load_attributes():##Use id number to fill in all the attributes
 	else: 
 		m2_attributes = {}
 		m2_box.visible = false
+#endregion
 
-func _on_facing_changed():
-	if get_parent() != null:
-		if is_facing_down: animator.play("front_to_back")
-		else: animator.play("back_to_front")
-	pass # Replace with function body.
-
-
-#func on_card_space_entered(space:CardSpace2D):
-#	if !space.disabled:
-#		if selected_space && selected_space.selected: selected_space.selected = false
-#
-#		if space.is_in_group("card_deck"):
-#			if !is_in_deck:
-#				selected_space = space
-#				selected_space.selected = true
-#		else:
-#			selected_space = space
-#			selected_space.selected = true
-
-#func on_card_space_exited(space:CardSpace2D):
-#	if space==selected_space:
-#		space.selected = false
-#		set_deferred("monitoring",false)
-#		set_deferred("monitoring",true)
-#	else:
-#		space.selected = false
-#	pass
-
-
+#region Dragging/Moving Card
 func move_to(pos:Vector2,rot:=0,z_layer:=target_z_layer,wait:=true,time:=.2):
-	
 	var tween = create_tween()
 	tween.parallel().tween_property(self,"position",pos,time).set_ease(Tween.EASE_IN)
 	tween.parallel().tween_property(self,"rotation",rot,time).set_ease(Tween.EASE_IN)
@@ -196,6 +166,10 @@ func move_to(pos:Vector2,rot:=0,z_layer:=target_z_layer,wait:=true,time:=.2):
 		z_index = z_layer
 		pass
 
+func _on_facing_changed():
+	if get_parent() != null:
+		if is_facing_down: animator.play("front_to_back")
+		else: animator.play("back_to_front")
 
 func _process(_delta):
 	if dragging:
@@ -262,10 +236,9 @@ func _on_body_entered(space):
 			if space.can_add_to: selected_spaces.append(space)
 		#elif space.is_in_group("card_hand"): pass
 		elif space.has_open_space: selected_spaces.append(space)
-	pass # Replace with function body.
 
 func _on_body_exited(space):
 	selected_spaces.erase(space)
 	space.selected = false
 	selected_space = null
-	pass # Replace with function body.
+#endregion

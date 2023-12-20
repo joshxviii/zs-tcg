@@ -11,7 +11,6 @@ var default_target : CardSpace2D
 func _ready():
 	pass
 
-
 func _on_card_added(card):
 	
 	if card.selected_move == 0:

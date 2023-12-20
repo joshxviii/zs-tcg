@@ -1,6 +1,9 @@
 extends Node
 
 var VERSION = ProjectSettings.get_setting_with_override("application/config/version")
+var NULLIMAGE = ResourceLoader.load("res://assets/textures/missing.png")
+
+#region Variables
 
 #region Constants
 
@@ -54,9 +57,17 @@ var is_dragging := false
 var dragged_card : Card2D
 
 @onready var cursor = Cursor.new()
+#endregion
 
 var GUI 
 
 func _ready():
+	var title_version = "(" + VERSION + ")"
+	DisplayServer.window_set_title("ZS Trading Card Game " + title_version)
 	#cursor.load_cursor()
 	pass
+
+##load image from path if there is one. otherwise load missing texture file
+func image_load(path:String):
+	if ResourceLoader.load(path): return ResourceLoader.load(path)
+	else: return NULLIMAGE
