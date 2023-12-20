@@ -37,12 +37,12 @@ grow_vertical = 2
 
 [node name="back" type="Button" parent="menu"]
 layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -14.0
-offset_right = 20.0
-grow_vertical = 0
-text = "Back"
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -20.0
+offset_bottom = 14.0
+grow_horizontal = 0
+text = "X"
 
 [connection signal="pressed" from="menu/back" to="." method="_on_back_pressed"]

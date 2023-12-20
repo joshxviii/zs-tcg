@@ -1,7 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://sjckyl6cd7o"]
+[gd_scene load_steps=5 format=3 uid="uid://sjckyl6cd7o"]
 
 [ext_resource type="Script" path="res://scripts/ui/main_menu.gd" id="1_txojc"]
 [ext_resource type="FontFile" uid="uid://3wrkvjx6bpvf" path="res://assets/fonts/pxlsupersmall.ttf" id="2_nsepl"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5fwau"]
+bg_color = Color(0.247059, 0.188235, 0.34902, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_47dv8"]
+bg_color = Color(0.317647, 0.243137, 0.45098, 1)
 
 [node name="title_screen" type="Control"]
 layout_mode = 3
@@ -40,15 +46,20 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 25
 text = "Singleplayer"
 
-[node name="multiplayer (LAN)" type="Button" parent="main_menu/menu"]
+[node name="multiplayer" type="Button" parent="main_menu/menu"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
-text = "Multiplayer (LAN)"
+text = "Multiplayer"
 
 [node name="options" type="Button" parent="main_menu/menu"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
 text = "Options"
+
+[node name="exit" type="Button" parent="main_menu/menu"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Exit"
 
 [node name="version" type="Label" parent="main_menu"]
 layout_mode = 1
@@ -86,14 +97,200 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.109804)
-metadata/_edit_lock_ = true
 
-[node name="Panel" type="Panel" parent="mutliplayer"]
+[node name="multiplayer_menu" type="Panel" parent="mutliplayer"]
 layout_mode = 0
-offset_left = 152.0
-offset_top = 64.0
-offset_right = 616.0
-offset_bottom = 368.0
+offset_left = 232.0
+offset_top = 160.0
+offset_right = 536.0
+offset_bottom = 272.0
+
+[node name="back" type="Button" parent="mutliplayer/multiplayer_menu"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -20.0
+offset_bottom = 14.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 25
+text = "X"
+
+[node name="menu" type="VBoxContainer" parent="mutliplayer/multiplayer_menu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="online" type="Button" parent="mutliplayer/multiplayer_menu/menu"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Online"
+
+[node name="lan" type="Button" parent="mutliplayer/multiplayer_menu/menu"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Lan"
+
+[node name="online" type="Panel" parent="mutliplayer"]
+visible = false
+layout_mode = 0
+offset_left = 192.0
+offset_top = 128.0
+offset_right = 576.0
+offset_bottom = 304.0
+
+[node name="title" type="Label" parent="mutliplayer/online"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 14.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 25
+text = "ONLINE"
+horizontal_alignment = 1
+
+[node name="back" type="Button" parent="mutliplayer/online"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -20.0
+offset_bottom = 14.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 25
+text = "X"
+
+[node name="menu" type="VBoxContainer" parent="mutliplayer/online"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -46.5
+offset_right = 100.0
+offset_bottom = 66.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="host" type="Button" parent="mutliplayer/online/menu"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_5fwau")
+theme_override_styles/hover = SubResource("StyleBoxFlat_47dv8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_5fwau")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_5fwau")
+theme_override_styles/focus = SubResource("StyleBoxFlat_5fwau")
+text = "HOST"
+
+[node name="separator" type="HSeparator" parent="mutliplayer/online/menu"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="address" type="LineEdit" parent="mutliplayer/online/menu"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+
+[node name="join" type="Button" parent="mutliplayer/online/menu"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_5fwau")
+theme_override_styles/hover = SubResource("StyleBoxFlat_47dv8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_5fwau")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_5fwau")
+theme_override_styles/focus = SubResource("StyleBoxFlat_5fwau")
+text = "JOIN"
+
+[node name="lan" type="Panel" parent="mutliplayer"]
+visible = false
+layout_mode = 0
+offset_left = 192.0
+offset_top = 128.0
+offset_right = 576.0
+offset_bottom = 304.0
+
+[node name="title" type="Label" parent="mutliplayer/lan"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -32.0
+offset_right = 32.0
+offset_bottom = 26.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 25
+text = "LAN"
+horizontal_alignment = 1
+
+[node name="back" type="Button" parent="mutliplayer/lan"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -20.0
+offset_bottom = 14.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 25
+text = "X"
+
+[node name="menu" type="VBoxContainer" parent="mutliplayer/lan"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -46.5
+offset_right = 100.0
+offset_bottom = 66.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="host" type="Button" parent="mutliplayer/lan/menu"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_5fwau")
+theme_override_styles/hover = SubResource("StyleBoxFlat_47dv8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_5fwau")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_5fwau")
+theme_override_styles/focus = SubResource("StyleBoxFlat_5fwau")
+text = "HOST"
+
+[node name="separator" type="HSeparator" parent="mutliplayer/lan/menu"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="address" type="LineEdit" parent="mutliplayer/lan/menu"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+
+[node name="join" type="Button" parent="mutliplayer/lan/menu"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_5fwau")
+theme_override_styles/hover = SubResource("StyleBoxFlat_47dv8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_5fwau")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_5fwau")
+theme_override_styles/focus = SubResource("StyleBoxFlat_5fwau")
+text = "JOIN"
 
 [node name="options" type="Control" parent="."]
 visible = false
@@ -158,6 +355,24 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="back" type="Button" parent="options/tab_menu"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -20.0
+offset_bottom = 26.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 25
+text = "X"
+
 [connection signal="pressed" from="main_menu/menu/singleplayer" to="." method="_on_singleplayer_pressed"]
-[connection signal="pressed" from="main_menu/menu/multiplayer (LAN)" to="." method="_on_multiplayer_lan_pressed"]
+[connection signal="pressed" from="main_menu/menu/multiplayer" to="." method="_on_multiplayer_pressed"]
 [connection signal="pressed" from="main_menu/menu/options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="main_menu/menu/exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="mutliplayer/multiplayer_menu/back" to="." method="_on_multiplayer_back_pressed"]
+[connection signal="pressed" from="mutliplayer/multiplayer_menu/menu/online" to="." method="_on_multiplayer_online_pressed"]
+[connection signal="pressed" from="mutliplayer/multiplayer_menu/menu/lan" to="." method="_on_multiplayer_lan_pressed"]
+[connection signal="pressed" from="mutliplayer/online/back" to="." method="_on_online_back_pressed"]
+[connection signal="pressed" from="mutliplayer/lan/back" to="." method="_on_lan_back_pressed"]
+[connection signal="pressed" from="options/tab_menu/back" to="." method="_on_options_back_pressed"]

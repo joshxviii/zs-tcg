@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://c0hhkrqkfloat"]
+
+[ext_resource type="Script" path="res://scripts/zs_database.gd" id="1_cxq5g"]
+
+[node name="zs_database" type="Node"]
+script = ExtResource("1_cxq5g")
+database_path = "res://assets/zs_cards.json"

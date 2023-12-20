@@ -110,7 +110,7 @@ func refresh_target_mode():
 		c.queue_free()
 	target_getter.monitoring = true
 	
-func create_target(body,disable:=false):
+func create_target(body,_disable:=false):
 	target_point = target_point_path.instantiate()
 	target_box.add_child(target_point)
 	target_point.space = body

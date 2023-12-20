@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://dvk7rgqfevgng"
+path="res://.godot/imported/card_layers.aseprite-4f6216573238d2db8dc403c48026532b.res"
+
+[deps]
+
+source_file="res://assets/textures/cards/card_layers/card_layers.aseprite"
+dest_files=["res://.godot/imported/card_layers.aseprite-4f6216573238d2db8dc403c48026532b.res"]
+
+[params]
+

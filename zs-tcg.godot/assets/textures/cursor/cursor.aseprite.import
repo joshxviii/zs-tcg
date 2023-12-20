@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://d1bfamqb1f7cm"
+path="res://.godot/imported/cursor.aseprite-f42c49f37ced621650c9336a7eadec68.res"
+
+[deps]
+
+source_file="res://assets/textures/cursor/cursor.aseprite"
+dest_files=["res://.godot/imported/cursor.aseprite-f42c49f37ced621650c9336a7eadec68.res"]
+
+[params]
+

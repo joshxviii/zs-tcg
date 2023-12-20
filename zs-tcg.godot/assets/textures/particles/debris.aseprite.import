@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://c30uqy014ol67"
+path="res://.godot/imported/debris.aseprite-dc24414bb2a2d36bfd4b448166d0a45c.res"
+
+[deps]
+
+source_file="res://assets/textures/particles/debris.aseprite"
+dest_files=["res://.godot/imported/debris.aseprite-dc24414bb2a2d36bfd4b448166d0a45c.res"]
+
+[params]
+

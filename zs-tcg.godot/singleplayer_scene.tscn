@@ -1,7 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://cpp0ggfrq60rh"]
+[gd_scene load_steps=10 format=3 uid="uid://cpp0ggfrq60rh"]
 
 [ext_resource type="PackedScene" uid="uid://f7waxa37afm5" path="res://objects/ui/gui.tscn" id="1_34s5l"]
-[ext_resource type="Script" path="res://scripts/zs_database.gd" id="2_7pd73"]
 [ext_resource type="Texture2D" uid="uid://djjqcpip47nvu" path="res://assets/textures/ui/settings/settings_0.png" id="2_lmdwm"]
 [ext_resource type="Texture2D" uid="uid://cmn0yg3ihe4kb" path="res://assets/textures/ui/settings/settings_1.png" id="3_6jxvu"]
 [ext_resource type="Texture2D" uid="uid://criakq8vjllb2" path="res://assets/textures/backgrounds/simulation_background.png" id="3_gw2of"]
@@ -26,10 +25,6 @@ stretch_mode = 3
 
 [node name="in-game_menu" parent="GUI" instance=ExtResource("4_64iyj")]
 visible = false
-
-[node name="zs_database" type="Node" parent="."]
-script = ExtResource("2_7pd73")
-database_path = "res://assets/zs_cards.json"
 
 [node name="background" type="Sprite2D" parent="."]
 z_index = -1

@@ -17,6 +17,7 @@ config/features=PackedStringArray("4.2", "GL Compatibility")
 boot_splash/show_image=false
 boot_splash/use_filter=false
 config/icon="res://icon.png"
+config/windows_native_icon="res://assets/icons/logo.ico"
 
 [autoload]
 
@@ -34,7 +35,15 @@ window/stretch/mode="viewport"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/castledb_handler/plugin.cfg")
+enabled=PackedStringArray("res://addons/AsepriteWizard/plugin.cfg", "res://addons/castledb_handler/plugin.cfg")
+
+[file_customization]
+
+folder_colors={
+"res://assets/": "yellow",
+"res://objects/": "blue",
+"res://scripts/": "teal"
+}
 
 [filesystem]
 

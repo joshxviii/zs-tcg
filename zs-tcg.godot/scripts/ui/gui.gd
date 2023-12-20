@@ -8,7 +8,6 @@ var ui_focused:=false
 
 func _ready():
 	Global.GUI = self
-	pass # Replace with function body.
 
 func create_move_info(card : Card2D):
 	var closer = create_focus_out()

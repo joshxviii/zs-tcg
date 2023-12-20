@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://bwydnexhh2s1p"
+path="res://.godot/imported/type_indicator.aseprite-ed569a5848d8095a112014ca1506082b.res"
+
+[deps]
+
+source_file="res://assets/textures/cards/type_indicator.aseprite"
+dest_files=["res://.godot/imported/type_indicator.aseprite-ed569a5848d8095a112014ca1506082b.res"]
+
+[params]
+

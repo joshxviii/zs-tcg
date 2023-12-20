@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://bge73o4socxy3"
+path="res://.godot/imported/simulation_background.aseprite-9650b9c4916ec98834a3dc0e2710d728.res"
+
+[deps]
+
+source_file="res://assets/textures/backgrounds/simulation_background.aseprite"
+dest_files=["res://.godot/imported/simulation_background.aseprite-9650b9c4916ec98834a3dc0e2710d728.res"]
+
+[params]
+
