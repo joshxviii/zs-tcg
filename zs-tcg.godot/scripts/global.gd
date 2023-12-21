@@ -50,6 +50,7 @@ enum {
 var PLAYER_HAND : CardHand2D
 var PLAYAREA
 var MAINMENU
+var DEBUG_WINDOW
 
 var db := DataBaseHandler.new()
 
@@ -71,3 +72,10 @@ func _ready():
 func image_load(path:String):
 	if ResourceLoader.load(path): return ResourceLoader.load(path)
 	else: return NULLIMAGE
+	
+func _input(event):
+	if Input.is_action_just_pressed("debug"):
+		if !DEBUG_WINDOW:
+			DEBUG_WINDOW = load("res://debugger.tscn").instantiate()
+			get_tree().root.add_child(DEBUG_WINDOW)
+		else: DEBUG_WINDOW.queue_free()

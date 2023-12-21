@@ -19,3 +19,9 @@ res://objects/ui/in_game_menu.tscn
 res://card_shop.tscn
 res://objects/ui/button_groups/pack_buttons.tres
 res://scripts/ui/3d_deck.gd
+res://scripts/zs_card.gd
+res://assets/zs_cards.json
+res://scripts/global.gd
+res://debugger.tscn
+res://scripts/ui/debugger.gd
+res://assets/themes/debugger.tres

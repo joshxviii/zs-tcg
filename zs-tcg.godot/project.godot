@@ -27,9 +27,9 @@ Global="*res://scripts/global.gd"
 
 window/size/viewport_width=768
 window/size/viewport_height=432
-window/size/always_on_top=true
 window/size/window_width_override=1200
 window/size/window_height_override=675
+window/subwindows/embed_subwindows=false
 window/stretch/mode="viewport"
 
 [editor_plugins]
@@ -52,6 +52,14 @@ import/fbx/enabled=false
 [gui]
 
 theme/custom="res://assets/themes/theme_1.tres"
+
+[input]
+
+debug={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":true,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":96,"key_label":0,"unicode":126,"echo":false,"script":null)
+]
+}
 
 [rendering]
 

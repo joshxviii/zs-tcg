@@ -117,6 +117,9 @@ func _on_id_changed():
 	
 
 func load_attributes():##Use id number to fill in all the attributes
+	
+	$card_ui/ID.text = str("%03d" % id)
+	
 	if attributes.has("name"): 
 		attributes = Global.db.retrive_attributes("cards",id)
 		name_text.text = attributes["name"]

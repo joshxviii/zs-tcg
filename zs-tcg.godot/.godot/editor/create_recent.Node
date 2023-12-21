@@ -1,5 +1,10 @@
-HBoxContainer
+VBoxContainer
+CheckBox
+ColorRect
 Control
+Window
+Label
+HBoxContainer
 TextureRect
 Node3D
 Node
@@ -8,8 +13,3 @@ CSGBox3D
 TextureButton
 Sprite2D
 Camera3D
-MeshInstance3D
-SubViewport
-Button
-Container
-TabContainer

@@ -1,0 +1,44 @@
+[gd_scene load_steps=3 format=3 uid="uid://bh0nx3wsmy12"]
+
+[ext_resource type="Theme" uid="uid://bsfb0jrc72amt" path="res://assets/themes/debugger.tres" id="1_nl07h"]
+[ext_resource type="Script" path="res://scripts/ui/debugger.gd" id="2_5a4o0"]
+
+[node name="window" type="Window"]
+title = "debugger"
+initial_position = 5
+size = Vector2i(300, 200)
+unresizable = true
+always_on_top = true
+min_size = Vector2i(100, 100)
+keep_title_visible = true
+theme = ExtResource("1_nl07h")
+script = ExtResource("2_5a4o0")
+
+[node name="debugger" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="bg" type="ColorRect" parent="debugger"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="vbox" type="VBoxContainer" parent="debugger"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="show_ids" type="CheckBox" parent="debugger/vbox"]
+layout_mode = 2
+text = "Show IDs"
+
+[connection signal="close_requested" from="." to="." method="_on_close_requested"]
+[connection signal="toggled" from="debugger/vbox/show_ids" to="." method="_on_show_ids_toggled"]

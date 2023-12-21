@@ -37,7 +37,7 @@ transform = Transform3D(1, 0, 0, 0, 0.973219, 0.22988, 0, -0.22988, 0.973219, 0,
 environment = SubResource("Environment_d2diy")
 
 [node name="zs_pack" type="Node3D" parent="pack_view"]
-transform = Transform3D(0.687518, 0, 0.726167, 0, 1, 0, -0.726167, 0, 0.687518, 0, 0, 0)
+transform = Transform3D(-0.119747, 0, 0.992804, 0, 1, 0, -0.992804, 0, -0.119747, 0, 0, 0)
 
 [node name="zs_pack" parent="pack_view/zs_pack" instance=ExtResource("3_p46ca")]
 
