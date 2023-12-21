@@ -1474,6 +1474,14 @@
 					"hp": 10
 				},
 				{
+					"name": "Silvro",
+					"type": 3,
+					"pack_id": 12,
+					"hp": 10,
+					"move_1": "impale",
+					"move_2": "block"
+				},
+				{
 					"name": "Reforged Steve",
 					"type": 0,
 					"pack_id": 12,
@@ -2326,20 +2334,18 @@
 				136,
 				152,
 				176,
-				193,
-				199,
-				216,
-				224,
-				229,
-				238,
-				243,
-				254,
-				258,
-				282
+				194,
+				200,
+				217,
+				225,
+				230,
+				239,
+				244,
+				255,
+				259,
+				283
 			],
-			"props": {
-				"displayColumn": "name"
-			}
+			"props": {}
 		},
 		{
 			"name": "moves",
@@ -2554,7 +2560,7 @@
 					"name": "Senzu Bean",
 					"type": 0,
 					"power": 0,
-					"target_mode": 2
+					"target_mode": 1
 				},
 				{
 					"id_name": "kaioken_rush",
@@ -2824,9 +2830,7 @@
 				}
 			],
 			"separators": [],
-			"props": {
-				"displayColumn": "name"
-			}
+			"props": {}
 		}
 	],
 	"customTypes": [],
