@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://drokfffdg3q8u"]
+
+[ext_resource type="ButtonGroup" uid="uid://cgyis0e4qda0d" path="res://objects/ui/button_groups/pack_buttons.tres" id="1_hlaj7"]
+[ext_resource type="Script" path="res://scripts/ui/3d_deck.gd" id="1_mjci0"]
+[ext_resource type="PackedScene" uid="uid://osequx4h6lcu" path="res://assets/models/zs_pack.gltf" id="3_p46ca"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_s0sq4"]
+viewport_path = NodePath("pack_view")
+
+[sub_resource type="Environment" id="Environment_d2diy"]
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+reflected_light_source = 2
+
+[node name="3d_pack_select" type="TextureButton"]
+custom_minimum_size = Vector2(80, 123)
+offset_left = -32.0
+offset_top = -48.0
+offset_right = 48.0
+offset_bottom = 75.0
+scale = Vector2(0.796875, 0.78125)
+toggle_mode = true
+button_group = ExtResource("1_hlaj7")
+texture_normal = SubResource("ViewportTexture_s0sq4")
+ignore_texture_size = true
+stretch_mode = 3
+script = ExtResource("1_mjci0")
+
+[node name="pack_view" type="SubViewport" parent="."]
+own_world_3d = true
+transparent_bg = true
+size = Vector2i(256, 256)
+size_2d_override_stretch = true
+
+[node name="camera" type="Camera3D" parent="pack_view"]
+transform = Transform3D(1, 0, 0, 0, 0.973219, 0.22988, 0, -0.22988, 0.973219, 0, 0.48398, 2.19199)
+environment = SubResource("Environment_d2diy")
+
+[node name="zs_pack" type="Node3D" parent="pack_view"]
+transform = Transform3D(0.687518, 0, 0.726167, 0, 1, 0, -0.726167, 0, 0.687518, 0, 0, 0)
+
+[node name="zs_pack" parent="pack_view/zs_pack" instance=ExtResource("3_p46ca")]
+
+[connection signal="toggled" from="." to="." method="_on_toggled"]

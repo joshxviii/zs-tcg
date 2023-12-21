@@ -1,0 +1,88 @@
+[gd_scene load_steps=10 format=3 uid="uid://bnbi7sn0xrsi5"]
+
+[ext_resource type="PackedScene" uid="uid://drokfffdg3q8u" path="res://objects/ui/3d_deck.tscn" id="1_hurb4"]
+[ext_resource type="Texture2D" uid="uid://b0kw633qcl75k" path="res://assets/textures/backgrounds/simulation_background_white.png" id="1_sbqgf"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_os12n"]
+viewport_path = NodePath("pack_view")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_u4ut7"]
+viewport_path = NodePath("pack_view")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_hgwlb"]
+viewport_path = NodePath("pack_view")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_jwmfn"]
+viewport_path = NodePath("pack_view")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_5ghvv"]
+viewport_path = NodePath("pack_view")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_l2txm"]
+viewport_path = NodePath("pack_view")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_socsh"]
+viewport_path = NodePath("pack_view")
+
+[node name="card_shop" type="Node2D"]
+
+[node name="bg" type="TextureRect" parent="."]
+modulate = Color(0.52549, 0.0431373, 0.317647, 1)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 768.0
+offset_bottom = 432.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_sbqgf")
+
+[node name="pack_select" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 768.0
+offset_bottom = 432.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="hbox" type="HBoxContainer" parent="pack_select"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -306.0
+offset_right = 306.0
+offset_bottom = 192.0
+grow_horizontal = 2
+theme_override_constants/separation = 25
+alignment = 1
+
+[node name="3d_pack_select" parent="pack_select/hbox" instance=ExtResource("1_hurb4")]
+layout_mode = 2
+texture_normal = SubResource("ViewportTexture_os12n")
+
+[node name="3d_pack_select2" parent="pack_select/hbox" instance=ExtResource("1_hurb4")]
+layout_mode = 2
+texture_normal = SubResource("ViewportTexture_u4ut7")
+
+[node name="3d_pack_select3" parent="pack_select/hbox" instance=ExtResource("1_hurb4")]
+layout_mode = 2
+texture_normal = SubResource("ViewportTexture_hgwlb")
+
+[node name="3d_pack_select4" parent="pack_select/hbox" instance=ExtResource("1_hurb4")]
+layout_mode = 2
+texture_normal = SubResource("ViewportTexture_jwmfn")
+
+[node name="3d_pack_select5" parent="pack_select/hbox" instance=ExtResource("1_hurb4")]
+layout_mode = 2
+texture_normal = SubResource("ViewportTexture_5ghvv")
+
+[node name="3d_pack_select6" parent="pack_select/hbox" instance=ExtResource("1_hurb4")]
+layout_mode = 2
+texture_normal = SubResource("ViewportTexture_l2txm")
+
+[node name="3d_pack_select7" parent="pack_select/hbox" instance=ExtResource("1_hurb4")]
+layout_mode = 2
+texture_normal = SubResource("ViewportTexture_socsh")
