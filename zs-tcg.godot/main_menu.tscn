@@ -113,9 +113,9 @@ color = Color(0, 0, 0, 0.235294)
 
 [node name="multiplayer_menu" type="Panel" parent="mutliplayer"]
 layout_mode = 0
-offset_left = 232.0
-offset_top = 160.0
-offset_right = 536.0
+offset_left = 192.0
+offset_top = 120.0
+offset_right = 576.0
 offset_bottom = 272.0
 
 [node name="back" type="Button" parent="mutliplayer/multiplayer_menu"]
@@ -136,12 +136,32 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -88.0
+offset_top = -47.0
+offset_right = 88.0
+offset_bottom = 47.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="hbox" type="HBoxContainer" parent="mutliplayer/multiplayer_menu/menu"]
+layout_mode = 2
+alignment = 1
+
+[node name="text" type="Label" parent="mutliplayer/multiplayer_menu/menu/hbox"]
+layout_mode = 2
+text = "Display Name:"
+
+[node name="display_name" type="LineEdit" parent="mutliplayer/multiplayer_menu/menu/hbox"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+placeholder_text = "Name"
+max_length = 10
+context_menu_enabled = false
+caret_blink = true
+caret_blink_interval = 0.4
+
+[node name="HSeparator" type="HSeparator" parent="mutliplayer/multiplayer_menu/menu"]
+layout_mode = 2
 
 [node name="online" type="Button" parent="mutliplayer/multiplayer_menu/menu"]
 layout_mode = 2
@@ -151,7 +171,7 @@ text = "Online"
 [node name="lan" type="Button" parent="mutliplayer/multiplayer_menu/menu"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
-text = "Lan"
+text = "LAN"
 
 [node name="online" type="Panel" parent="mutliplayer"]
 visible = false
@@ -218,6 +238,7 @@ theme_override_constants/separation = 15
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
+placeholder_text = "ADDRESS"
 
 [node name="join" type="Button" parent="mutliplayer/online/menu"]
 layout_mode = 2
@@ -294,6 +315,7 @@ theme_override_constants/separation = 15
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
+placeholder_text = "ADDRESS"
 
 [node name="join" type="Button" parent="mutliplayer/lan/menu"]
 layout_mode = 2
@@ -367,8 +389,12 @@ text = "X"
 [connection signal="pressed" from="main_menu/menu/options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="main_menu/menu/exit" to="." method="_on_exit_pressed"]
 [connection signal="pressed" from="mutliplayer/multiplayer_menu/back" to="." method="_on_multiplayer_back_pressed"]
+[connection signal="text_changed" from="mutliplayer/multiplayer_menu/menu/hbox/display_name" to="." method="_on_display_name_text_changed"]
 [connection signal="pressed" from="mutliplayer/multiplayer_menu/menu/online" to="." method="_on_multiplayer_online_pressed"]
 [connection signal="pressed" from="mutliplayer/multiplayer_menu/menu/lan" to="." method="_on_multiplayer_lan_pressed"]
 [connection signal="pressed" from="mutliplayer/online/back" to="." method="_on_online_back_pressed"]
+[connection signal="pressed" from="mutliplayer/online/menu/host" to="." method="_on_online_host_pressed"]
+[connection signal="text_changed" from="mutliplayer/online/menu/address" to="." method="_on_online_address_changed"]
+[connection signal="pressed" from="mutliplayer/online/menu/join" to="." method="_on_online_join_pressed"]
 [connection signal="pressed" from="mutliplayer/lan/back" to="." method="_on_lan_back_pressed"]
 [connection signal="pressed" from="options/back" to="." method="_on_options_back_pressed"]

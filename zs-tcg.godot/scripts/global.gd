@@ -47,24 +47,37 @@ enum {
 }
 #endregion
 
+var SaveData : Dictionary = {"display_name":"PLAYER","user_deck":[]}
+
+var BOARD
+var CURSOR = Cursor.new()
 var PLAYER_HAND : CardHand2D
 var PLAYAREA
 var MAINMENU
 var DEBUG_WINDOW
-
-var db := DataBaseHandler.new()
+var NETWORK
+var GUI 
+var DB := DataBaseHandler.new()
 
 var is_dragging := false
 var dragged_card : Card2D
+#endregion	
 
-@onready var cursor = Cursor.new()
-#endregion
-
-var GUI 
-
+func return_to_title():
+	stop_wait()
+	if PLAYAREA:
+		PLAYAREA.queue_free()
+		PLAYAREA=null
+	if NETWORK: 
+		NETWORK.queue_free()
+		NETWORK=null
+	MAINMENU.show()
+	
+@onready var loading_screen = load("res://loading_screen.tscn").instantiate()
 func _ready():
 	var title_version = "(" + VERSION + ")"
 	DisplayServer.window_set_title("ZS Trading Card Game " + title_version)
+	add_child(loading_screen)
 	#cursor.load_cursor()
 	pass
 
@@ -73,7 +86,12 @@ func image_load(path:String):
 	if ResourceLoader.load(path): return ResourceLoader.load(path)
 	else: return NULLIMAGE
 	
-func _input(event):
+func start_wait():
+	loading_screen.show()
+func stop_wait():
+	loading_screen.hide()
+	
+func _input(_event):
 	if Input.is_action_just_pressed("debug"):
 		if !DEBUG_WINDOW:
 			DEBUG_WINDOW = load("res://debugger.tscn").instantiate()

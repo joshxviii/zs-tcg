@@ -61,7 +61,7 @@ func generate_card():
 	check_deck()
 	
 func generate_random_card():
-	var max_id = Global.db.Database["cards"].size()
+	var max_id = Global.DB.Database["cards"].size()
 	deck.append(randi_range(0,max_id-1))
 	check_deck()
 

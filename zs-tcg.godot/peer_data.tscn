@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=3 uid="uid://dyfnk63oup05f"]
+
+[ext_resource type="Script" path="res://scripts/peer_functions.gd" id="1_h7824"]
+[ext_resource type="Theme" uid="uid://dxxt0em6v1rwd" path="res://assets/themes/main_menu.tres" id="2_8ce5y"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_cuhxd"]
+properties/0/path = NodePath("multiplayer_ui/you:text")
+properties/0/spawn = true
+properties/0/replication_mode = 2
+properties/1/path = NodePath(".:DISPLAY_NAME")
+properties/1/spawn = true
+properties/1/replication_mode = 2
+properties/2/path = NodePath(".:move")
+properties/2/spawn = true
+properties/2/replication_mode = 2
+
+[node name="peer_data" type="Node"]
+script = ExtResource("1_h7824")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_cuhxd")
+
+[node name="multiplayer_ui" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("2_8ce5y")
+
+[node name="you" type="Label" parent="multiplayer_ui"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -26.0
+offset_right = 40.0
+grow_vertical = 0
+text = "YOU"

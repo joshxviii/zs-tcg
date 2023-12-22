@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://casirxihi8ne0"
+path="res://.godot/imported/loading.aseprite-521a384c823ffee0bdc83b794e842296.res"
+
+[deps]
+
+source_file="res://assets/textures/ui/loading.aseprite"
+dest_files=["res://.godot/imported/loading.aseprite-521a384c823ffee0bdc83b794e842296.res"]
+
+[params]
+

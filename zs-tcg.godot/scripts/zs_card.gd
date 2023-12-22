@@ -12,7 +12,7 @@ signal id_changed
 			if get_parent() != null: id_changed.emit()
 
 ##Data for the card
-@onready var attributes : Dictionary = Global.db.retrive_attributes("cards",id)
+@onready var attributes : Dictionary = Global.DB.retrive_attributes("cards",id)
 @onready var m1_attributes : Dictionary = {}
 @onready var m2_attributes : Dictionary = {}
 var is_in_deck := false
@@ -121,7 +121,7 @@ func load_attributes():##Use id number to fill in all the attributes
 	$card_ui/ID.text = str("%03d" % id)
 	
 	if attributes.has("name"): 
-		attributes = Global.db.retrive_attributes("cards",id)
+		attributes = Global.DB.retrive_attributes("cards",id)
 		name_text.text = attributes["name"]
 		if name_text.text.length() > 11:
 			var size = clamp(13 - (name_text.text.length() - 10),9,13)
@@ -138,7 +138,7 @@ func load_attributes():##Use id number to fill in all the attributes
 		back_img.texture = Global.image_load("res://assets/textures/cards/card_layers/back_" + str(attributes["pack_id"]) + ".png")
 		
 	if attributes.has("move_1"):
-		m1_attributes = Global.db.retrive_attributes("moves",attributes["move_1"])
+		m1_attributes = Global.DB.retrive_attributes("moves",attributes["move_1"])
 		m1_text.text = m1_attributes["name"]
 		m1_indicator.frame = m1_attributes["type"]
 		m1_text.visible_characters = 13
@@ -148,7 +148,7 @@ func load_attributes():##Use id number to fill in all the attributes
 		m1_box.visible = false
 
 	if attributes.has("move_2"):
-		m2_attributes = Global.db.retrive_attributes("moves",attributes["move_2"])
+		m2_attributes = Global.DB.retrive_attributes("moves",attributes["move_2"])
 		m2_text.text = m2_attributes["name"]
 		m2_indicator.frame = m2_attributes["type"]
 		m2_text.visible_characters = 13

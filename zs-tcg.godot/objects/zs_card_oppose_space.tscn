@@ -12,6 +12,7 @@ modulate = Color(1, 0.262745, 0, 0.501961)
 collision_layer = 3
 collision_mask = 3
 script = ExtResource("2_l0fq7")
+MAX_CARDS = 0
 
 [node name="shape" parent="." index="0"]
 shape = SubResource("RectangleShape2D_160xg")

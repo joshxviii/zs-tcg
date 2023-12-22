@@ -4,7 +4,7 @@ func _ready():
 	$main_menu/version.text = Global.VERSION
 
 func _on_singleplayer_pressed():
-	var scene = load("res://singleplayer_scene.tscn").instantiate()
+	var scene = load("res://playarea_scene.tscn").instantiate()
 	get_tree().root.add_child(scene)
 	Global.PLAYAREA = scene
 	self.hide()
@@ -47,3 +47,23 @@ func _on_options_back_pressed():
 
 func _on_exit_pressed():
 	get_tree().quit()
+
+var display_name = ""
+func _on_display_name_text_changed(new_text):
+	display_name = new_text
+var online_address := ""
+func _on_online_address_changed(new_text):
+	online_address=new_text
+func _on_online_join_pressed():
+	if online_address!="": Network.new().join(online_address)
+	else: Network.new().join()
+	if display_name!="": Global.NETWORK.display_name = display_name
+
+func _on_online_host_pressed():
+	Network.new().host()
+	if display_name!="": Global.NETWORK.display_name = display_name
+
+
+
+
+

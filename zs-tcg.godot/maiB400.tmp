@@ -1,0 +1,379 @@
+[gd_scene load_steps=7 format=3 uid="uid://sjckyl6cd7o"]
+
+[ext_resource type="Theme" uid="uid://dxxt0em6v1rwd" path="res://assets/themes/main_menu.tres" id="1_fyxab"]
+[ext_resource type="Script" path="res://scripts/ui/main_menu.gd" id="1_txojc"]
+[ext_resource type="FontFile" uid="uid://3wrkvjx6bpvf" path="res://assets/fonts/pxlsupersmall.ttf" id="2_nsepl"]
+[ext_resource type="Texture2D" uid="uid://b0kw633qcl75k" path="res://assets/textures/backgrounds/simulation_background_white.png" id="3_guwkx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5fwau"]
+bg_color = Color(0.247059, 0.188235, 0.34902, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_47dv8"]
+bg_color = Color(0.317647, 0.243137, 0.45098, 1)
+
+[node name="title_screen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_fyxab")
+script = ExtResource("1_txojc")
+metadata/_edit_vertical_guides_ = [384.0]
+
+[node name="bg" type="TextureRect" parent="."]
+modulate = Color(0.0431373, 0.52549, 0.0745098, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_guwkx")
+
+[node name="main_menu" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="menu" type="VBoxContainer" parent="main_menu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -72.5
+offset_top = -43.0
+offset_right = 72.5
+offset_bottom = 43.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="singleplayer" type="Button" parent="main_menu/menu"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Singleplayer"
+
+[node name="multiplayer" type="Button" parent="main_menu/menu"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Multiplayer"
+
+[node name="options" type="Button" parent="main_menu/menu"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Options"
+
+[node name="exit" type="Button" parent="main_menu/menu"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Exit"
+
+[node name="version" type="Label" parent="main_menu"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -62.0
+offset_top = -11.0
+offset_right = -3.0
+offset_bottom = -3.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 0.6)
+theme_override_fonts/font = ExtResource("2_nsepl")
+theme_override_font_sizes/font_size = 8
+text = "version alpha."
+horizontal_alignment = 2
+
+[node name="mutliplayer" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="focus" type="ColorRect" parent="mutliplayer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.235294)
+
+[node name="multiplayer_menu" type="Panel" parent="mutliplayer"]
+layout_mode = 0
+offset_left = 232.0
+offset_top = 160.0
+offset_right = 536.0
+offset_bottom = 272.0
+
+[node name="back" type="Button" parent="mutliplayer/multiplayer_menu"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -20.0
+offset_bottom = 14.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 25
+text = "X"
+
+[node name="menu" type="VBoxContainer" parent="mutliplayer/multiplayer_menu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="online" type="Button" parent="mutliplayer/multiplayer_menu/menu"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Online"
+
+[node name="lan" type="Button" parent="mutliplayer/multiplayer_menu/menu"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Lan"
+
+[node name="online" type="Panel" parent="mutliplayer"]
+visible = false
+layout_mode = 0
+offset_left = 192.0
+offset_top = 128.0
+offset_right = 576.0
+offset_bottom = 304.0
+
+[node name="title" type="Label" parent="mutliplayer/online"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 14.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 25
+text = "ONLINE"
+horizontal_alignment = 1
+
+[node name="back" type="Button" parent="mutliplayer/online"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -20.0
+offset_bottom = 14.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 25
+text = "X"
+
+[node name="menu" type="VBoxContainer" parent="mutliplayer/online"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -46.5
+offset_right = 100.0
+offset_bottom = 66.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="host" type="Button" parent="mutliplayer/online/menu"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_5fwau")
+theme_override_styles/hover = SubResource("StyleBoxFlat_47dv8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_5fwau")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_5fwau")
+theme_override_styles/focus = SubResource("StyleBoxFlat_5fwau")
+text = "HOST"
+
+[node name="separator" type="HSeparator" parent="mutliplayer/online/menu"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="address" type="LineEdit" parent="mutliplayer/online/menu"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+placeholder_text = "ADDRESS"
+
+[node name="join" type="Button" parent="mutliplayer/online/menu"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_5fwau")
+theme_override_styles/hover = SubResource("StyleBoxFlat_47dv8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_5fwau")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_5fwau")
+theme_override_styles/focus = SubResource("StyleBoxFlat_5fwau")
+text = "JOIN"
+
+[node name="lan" type="Panel" parent="mutliplayer"]
+visible = false
+layout_mode = 0
+offset_left = 192.0
+offset_top = 128.0
+offset_right = 576.0
+offset_bottom = 304.0
+
+[node name="title" type="Label" parent="mutliplayer/lan"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -32.0
+offset_right = 32.0
+offset_bottom = 26.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 25
+text = "LAN"
+horizontal_alignment = 1
+
+[node name="back" type="Button" parent="mutliplayer/lan"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -20.0
+offset_bottom = 14.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 25
+text = "X"
+
+[node name="menu" type="VBoxContainer" parent="mutliplayer/lan"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -46.5
+offset_right = 100.0
+offset_bottom = 66.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="host" type="Button" parent="mutliplayer/lan/menu"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_5fwau")
+theme_override_styles/hover = SubResource("StyleBoxFlat_47dv8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_5fwau")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_5fwau")
+theme_override_styles/focus = SubResource("StyleBoxFlat_5fwau")
+text = "HOST"
+
+[node name="separator" type="HSeparator" parent="mutliplayer/lan/menu"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="address" type="LineEdit" parent="mutliplayer/lan/menu"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+placeholder_text = "ADDRESS"
+
+[node name="join" type="Button" parent="mutliplayer/lan/menu"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_5fwau")
+theme_override_styles/hover = SubResource("StyleBoxFlat_47dv8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_5fwau")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_5fwau")
+theme_override_styles/focus = SubResource("StyleBoxFlat_5fwau")
+text = "JOIN"
+
+[node name="options" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="focus" type="ColorRect" parent="options"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.235294)
+metadata/_edit_lock_ = true
+
+[node name="TabContainer" type="TabContainer" parent="options"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -288.0
+offset_top = -184.0
+offset_right = 288.0
+offset_bottom = 152.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Video" type="Control" parent="options/TabContainer"]
+layout_mode = 2
+
+[node name="Audio" type="Control" parent="options/TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Gameplay" type="Control" parent="options/TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="back" type="Button" parent="options"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -115.0
+offset_top = 68.0
+offset_right = -103.0
+offset_bottom = 94.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 25
+text = "X"
+
+[connection signal="pressed" from="main_menu/menu/singleplayer" to="." method="_on_singleplayer_pressed"]
+[connection signal="pressed" from="main_menu/menu/multiplayer" to="." method="_on_multiplayer_pressed"]
+[connection signal="pressed" from="main_menu/menu/options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="main_menu/menu/exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="mutliplayer/multiplayer_menu/back" to="." method="_on_multiplayer_back_pressed"]
+[connection signal="pressed" from="mutliplayer/multiplayer_menu/menu/online" to="." method="_on_multiplayer_online_pressed"]
+[connection signal="pressed" from="mutliplayer/multiplayer_menu/menu/lan" to="." method="_on_multiplayer_lan_pressed"]
+[connection signal="pressed" from="mutliplayer/online/back" to="." method="_on_online_back_pressed"]
+[connection signal="pressed" from="mutliplayer/online/menu/host" to="." method="_on_online_host_pressed"]
+[connection signal="text_changed" from="mutliplayer/online/menu/address" to="." method="_on_online_address_changed"]
+[connection signal="pressed" from="mutliplayer/online/menu/join" to="." method="_on_online_join_pressed"]
+[connection signal="pressed" from="mutliplayer/lan/back" to="." method="_on_lan_back_pressed"]
+[connection signal="pressed" from="options/back" to="." method="_on_options_back_pressed"]

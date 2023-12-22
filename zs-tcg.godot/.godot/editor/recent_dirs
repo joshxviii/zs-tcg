@@ -1,7 +1,10 @@
+res://scripts
 res://assets/themes
-res://assets/fonts
-res://scripts/ui
 res://
+res://assets/textures/ui
+res://assets/textures/particles
+res://scripts/ui
+res://assets/fonts
 E:/GameDev Projects/ZSTCG Project/zs-tcg.godot/exports
 res://assets/models
 res://assets/shaders
@@ -16,7 +19,4 @@ res://assets/textures/cards/profiles
 res://assets/textures/ui/type_indicators
 res://assets/textures/ui/target_selector
 res://assets/textures/ui/settings
-res://assets/textures/ui
 res://assets/textures/ui/target_arrow
-res://assets/particles
-res://assets/textures/particles

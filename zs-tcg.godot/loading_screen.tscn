@@ -1,0 +1,56 @@
+[gd_scene load_steps=6 format=3 uid="uid://cji2unkt7e18i"]
+
+[ext_resource type="Texture2D" uid="uid://d0kt3t8d5fdvv" path="res://assets/textures/ui/loading.png" id="1_j1rpo"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_kal34"]
+particles_animation = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = true
+
+[sub_resource type="Gradient" id="Gradient_r1nm6"]
+offsets = PackedFloat32Array(0, 0.242623, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_fbla6"]
+gradient = SubResource("Gradient_r1nm6")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ba5m1"]
+particle_flag_disable_z = true
+angle_max = 360.0
+direction = Vector3(0, 1, 0)
+spread = 0.0
+angular_velocity_min = 100.0
+angular_velocity_max = 100.0
+gravity = Vector3(0, 0, 0)
+color_ramp = SubResource("GradientTexture1D_fbla6")
+anim_speed_min = 5.0
+anim_speed_max = 5.0
+
+[node name="loading_screen" type="Control"]
+process_mode = 3
+visible = false
+z_index = 999
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.658824)
+
+[node name="particles" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_kal34")
+position = Vector2(384, 224)
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_ba5m1")
+texture = ExtResource("1_j1rpo")
+lifetime = 2.0
