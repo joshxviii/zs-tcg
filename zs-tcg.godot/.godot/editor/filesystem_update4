@@ -25,3 +25,5 @@ res://scripts/playarea_scene.gd
 res://scripts/platform.gd
 res://objects/board.tscn
 res://scripts/zs_card_oppose_space.gd
+res://objects/ui/button_groups/pack_buttons.tres
+res://assets/themes/debugger.tres
