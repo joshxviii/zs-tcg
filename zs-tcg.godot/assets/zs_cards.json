@@ -45,14 +45,14 @@
 					"move_1": "mind_control",
 					"move_2": "heal",
 					"type": 0,
-					"hp": 10
+					"hp": 7
 				},
 				{
 					"pack_id": 0,
 					"name": "Bubbles",
 					"move_1": "dodge",
 					"type": 4,
-					"hp": 10
+					"hp": 5
 				},
 				{
 					"pack_id": 0,
@@ -60,7 +60,7 @@
 					"type": 0,
 					"move_1": "charm",
 					"move_2": "gun",
-					"hp": 10
+					"hp": 7
 				},
 				{
 					"pack_id": 0,
@@ -68,7 +68,7 @@
 					"move_1": "absorb",
 					"move_2": "ki_wave",
 					"type": 4,
-					"hp": 10
+					"hp": 13
 				},
 				{
 					"pack_id": 0,
@@ -84,7 +84,7 @@
 					"move_1": "scold",
 					"move_2": "heal",
 					"type": 0,
-					"hp": 10
+					"hp": 7
 				},
 				{
 					"pack_id": 0,
@@ -108,21 +108,21 @@
 					"move_1": "heal",
 					"type": 1,
 					"move_2": "block",
-					"hp": 10
+					"hp": 7
 				},
 				{
 					"pack_id": 0,
 					"name": "Evil Buu",
 					"move_1": "candy_beam",
 					"type": 2,
-					"hp": 10
+					"hp": 8
 				},
 				{
 					"pack_id": 0,
 					"name": "Tien",
 					"move_1": "dodon_ray",
 					"type": 2,
-					"hp": 10
+					"hp": 8
 				},
 				{
 					"pack_id": 0,
@@ -130,21 +130,21 @@
 					"move_1": "candy_beam",
 					"move_2": "ki_explosion",
 					"type": 3,
-					"hp": 10
+					"hp": 12
 				},
 				{
 					"pack_id": 0,
 					"name": "Baba",
 					"move_1": "future_sight",
 					"type": 0,
-					"hp": 10
+					"hp": 5
 				},
 				{
 					"pack_id": 0,
 					"name": "Ghost Gohan",
 					"move_1": "block",
 					"type": 0,
-					"hp": 10
+					"hp": 7
 				},
 				{
 					"pack_id": 0,
@@ -159,7 +159,7 @@
 					"name": "Goz",
 					"type": 2,
 					"move_1": "meele",
-					"hp": 10
+					"hp": 7
 				},
 				{
 					"pack_id": 0,
@@ -167,21 +167,21 @@
 					"move_1": "block",
 					"move_2": "quick_kick",
 					"type": 0,
-					"hp": 10
+					"hp": 7
 				},
 				{
 					"pack_id": 0,
 					"name": "Gregory",
 					"move_1": "dodge",
 					"type": 0,
-					"hp": 10
+					"hp": 5
 				},
 				{
 					"pack_id": 0,
 					"name": "Hero Saga",
 					"type": 0,
 					"move_1": "bad_lore",
-					"hp": 10
+					"hp": 15
 				},
 				{
 					"pack_id": 0,
@@ -189,7 +189,7 @@
 					"type": 3,
 					"move_1": "angelic_light",
 					"move_2": "spirit_bomb",
-					"hp": 10
+					"hp": 20
 				},
 				{
 					"pack_id": 0,
@@ -204,14 +204,14 @@
 					"name": "Kid Buu",
 					"move_1": "ki_wave",
 					"type": 2,
-					"hp": 10
+					"hp": 12
 				},
 				{
 					"pack_id": 0,
 					"name": "Oozaru",
 					"move_1": "mouth_beam",
 					"type": 3,
-					"hp": 10
+					"hp": 11
 				},
 				{
 					"pack_id": 0,
@@ -233,7 +233,7 @@
 					"move_1": "senzu_bean",
 					"move_2": "quick_kick",
 					"type": 4,
-					"hp": 10
+					"hp": 7
 				},
 				{
 					"pack_id": 0,
@@ -248,7 +248,7 @@
 					"name": "Mez",
 					"type": 2,
 					"move_1": "meele",
-					"hp": 10
+					"hp": 7
 				},
 				{
 					"pack_id": 0,
@@ -256,7 +256,7 @@
 					"move_1": "big_bang",
 					"move_2": "ki_explosion",
 					"type": 1,
-					"hp": 10
+					"hp": 14
 				},
 				{
 					"pack_id": 0,
@@ -264,7 +264,7 @@
 					"move_1": "dragon_fist",
 					"move_2": "skamehameha",
 					"type": 1,
-					"hp": 10
+					"hp": 14
 				},
 				{
 					"pack_id": 0,
@@ -272,7 +272,7 @@
 					"move_1": "glactic_dount",
 					"move_2": "mouth_beam",
 					"type": 4,
-					"hp": 10
+					"hp": 15
 				},
 				{
 					"pack_id": 0,
@@ -280,7 +280,7 @@
 					"move_1": "dodge",
 					"move_2": "ki_wave",
 					"type": 1,
-					"hp": 10
+					"hp": 12
 				},
 				{
 					"pack_id": 0,
@@ -295,7 +295,7 @@
 					"name": "South Kai",
 					"type": 0,
 					"move_1": "meele",
-					"hp": 10
+					"hp": 7
 				},
 				{
 					"pack_id": 0,
@@ -311,7 +311,7 @@
 					"move_1": "impostor",
 					"type": 0,
 					"move_2": "gun",
-					"hp": 10
+					"hp": 12
 				},
 				{
 					"pack_id": 0,
@@ -319,14 +319,14 @@
 					"move_2": "quick_kick",
 					"move_1": "masenko",
 					"type": 4,
-					"hp": 10
+					"hp": 13
 				},
 				{
 					"pack_id": 0,
 					"name": "Unknown",
 					"move_1": "sword_slash",
 					"type": 2,
-					"hp": 10
+					"hp": 17
 				},
 				{
 					"pack_id": 0,
@@ -334,7 +334,7 @@
 					"move_2": "sword_slash",
 					"move_1": "senzu_bean",
 					"type": 3,
-					"hp": 10
+					"hp": 8
 				},
 				{
 					"pack_id": 0,
@@ -342,7 +342,7 @@
 					"move_1": "wold_fang_fist",
 					"move_2": "kamehameha",
 					"type": 4,
-					"hp": 10
+					"hp": 8
 				},
 				{
 					"pack_id": 0,
@@ -365,7 +365,7 @@
 					"pack_id": 0,
 					"move_1": "gun",
 					"move_2": "quick_kick",
-					"hp": 10
+					"hp": 6
 				},
 				{
 					"pack_id": 0,
@@ -381,7 +381,7 @@
 					"pack_id": 1,
 					"move_1": "meele",
 					"move_2": "scold",
-					"hp": 10
+					"hp": 12
 				},
 				{
 					"name": "Kid Goku",
@@ -389,14 +389,14 @@
 					"pack_id": 1,
 					"move_1": "power_pole",
 					"move_2": "kamehameha",
-					"hp": 10
+					"hp": 8
 				},
 				{
 					"name": "Kid Krillin",
 					"type": 0,
 					"pack_id": 1,
 					"move_1": "quick_kick",
-					"hp": 10
+					"hp": 7
 				},
 				{
 					"name": "Launch (Good)",
@@ -404,7 +404,7 @@
 					"pack_id": 1,
 					"move_1": "charm",
 					"move_2": "heal",
-					"hp": 10
+					"hp": 7
 				},
 				{
 					"name": "Launch (Bad)",
@@ -412,14 +412,14 @@
 					"pack_id": 1,
 					"move_1": "gun",
 					"move_2": "scold",
-					"hp": 10
+					"hp": 9
 				},
 				{
 					"name": "Roshi",
 					"type": 3,
 					"pack_id": 1,
 					"move_1": "scold",
-					"hp": 10
+					"hp": 7
 				},
 				{
 					"name": "Roshi (UI)",
@@ -427,7 +427,7 @@
 					"pack_id": 1,
 					"move_1": "counter",
 					"move_2": "dodge",
-					"hp": 10
+					"hp": 18
 				},
 				{
 					"name": "Copy Vegeta SSB",
@@ -435,7 +435,7 @@
 					"pack_id": 2,
 					"move_2": "quick_kick",
 					"move_1": "ki_wave",
-					"hp": 10
+					"hp": 12
 				},
 				{
 					"name": "Copy Vegeta",
@@ -451,7 +451,7 @@
 					"pack_id": 2,
 					"move_1": "block",
 					"move_2": "ki_wave",
-					"hp": 10
+					"hp": 14
 				},
 				{
 					"name": "Golden Frieza",
@@ -459,7 +459,7 @@
 					"pack_id": 2,
 					"move_1": "telekenisis",
 					"move_2": "death_beam",
-					"hp": 10
+					"hp": 13
 				},
 				{
 					"name": "Gohan SSJ",
@@ -474,7 +474,7 @@
 					"pack_id": 2,
 					"move_1": "block",
 					"move_2": "grapple",
-					"hp": 10
+					"hp": 8
 				},
 				{
 					"name": "Goku SSB",
@@ -497,7 +497,7 @@
 					"type": 0,
 					"pack_id": 2,
 					"move_1": "ki_blast",
-					"hp": 10
+					"hp": 8
 				},
 				{
 					"name": "Ghost Heithclif",
@@ -511,14 +511,14 @@
 					"type": 4,
 					"pack_id": 3,
 					"move_1": "scythe_cut",
-					"hp": 10
+					"hp": 9
 				},
 				{
 					"name": "Natherack Monster",
 					"type": 3,
 					"pack_id": 3,
 					"move_1": "meele",
-					"hp": 10
+					"hp": 7
 				},
 				{
 					"name": "Pheonix",
@@ -526,7 +526,7 @@
 					"pack_id": 3,
 					"move_1": "fire_magic",
 					"move_2": "heal",
-					"hp": 10
+					"hp": 7
 				},
 				{
 					"name": "Queen Yukiko",
@@ -541,7 +541,7 @@
 					"pack_id": 4,
 					"move_1": "fat_sheild",
 					"move_2": "grapple",
-					"hp": 10
+					"hp": 15
 				},
 				{
 					"name": "Janemba",
@@ -549,7 +549,7 @@
 					"pack_id": 4,
 					"move_1": "sword_slash",
 					"move_2": "rakshasas_claw",
-					"hp": 10
+					"hp": 17
 				},
 				{
 					"name": "Goku",
@@ -564,7 +564,7 @@
 					"type": 0,
 					"pack_id": 4,
 					"move_1": "quick_kick",
-					"hp": 10
+					"hp": 11
 				},
 				{
 					"name": "Goku SSJ3",
@@ -572,7 +572,7 @@
 					"pack_id": 4,
 					"move_1": "kamehameha",
 					"move_2": "quick_kick",
-					"hp": 10
+					"hp": 12
 				},
 				{
 					"name": "Goku SK",
@@ -580,7 +580,7 @@
 					"pack_id": 4,
 					"move_1": "kaioken_rush",
 					"move_2": "meele",
-					"hp": 10
+					"hp": 13
 				},
 				{
 					"name": "Grand Kai",
@@ -588,7 +588,7 @@
 					"pack_id": 4,
 					"move_1": "block",
 					"move_2": "charm",
-					"hp": 10
+					"hp": 7
 				},
 				{
 					"name": "Olibu",
@@ -596,7 +596,7 @@
 					"pack_id": 4,
 					"move_1": "block",
 					"move_2": "grapple",
-					"hp": 10
+					"hp": 6
 				},
 				{
 					"name": "Pikkon",
@@ -612,14 +612,14 @@
 					"pack_id": 4,
 					"move_1": "grapple",
 					"move_2": "ki_wave",
-					"hp": 10
+					"hp": 13
 				},
 				{
 					"name": "Broly",
 					"type": 0,
 					"pack_id": 5,
 					"move_1": "meele",
-					"hp": 10
+					"hp": 7
 				},
 				{
 					"name": "Enraged Broly SSJ",
@@ -627,7 +627,7 @@
 					"pack_id": 5,
 					"move_1": "meele",
 					"move_2": "slam",
-					"hp": 10
+					"hp": 8
 				},
 				{
 					"name": "Broly LSSJ",
@@ -643,7 +643,7 @@
 					"pack_id": 5,
 					"move_1": "mouth_beam",
 					"move_2": "explosion",
-					"hp": 10
+					"hp": 12
 				},
 				{
 					"name": "Broly Maximum",
@@ -651,7 +651,7 @@
 					"pack_id": 5,
 					"move_1": "ki_blast",
 					"move_2": "slam",
-					"hp": 10
+					"hp": 14
 				},
 				{
 					"name": "Broly Maximummer",
@@ -659,28 +659,28 @@
 					"pack_id": 5,
 					"move_1": "ki_explosion",
 					"move_2": "grapple",
-					"hp": 10
+					"hp": 18
 				},
 				{
 					"name": "Paragus",
 					"type": 0,
 					"pack_id": 5,
 					"move_1": "scold",
-					"hp": 10
+					"hp": 7
 				},
 				{
 					"name": "Punching Machine",
 					"type": 0,
 					"pack_id": 5,
 					"move_1": "block",
-					"hp": 10
+					"hp": 15
 				},
 				{
 					"name": "Scientist Burdock",
 					"type": 0,
 					"pack_id": 5,
 					"move_1": "ki_blast",
-					"hp": 10
+					"hp": 7
 				},
 				{
 					"name": "Broly SSJ",
@@ -688,7 +688,7 @@
 					"pack_id": 5,
 					"move_1": "ki_blast",
 					"move_2": "meele",
-					"hp": 10
+					"hp": 13
 				},
 				{
 					"name": "whisKEY BOIII",
@@ -696,7 +696,7 @@
 					"pack_id": 5,
 					"move_1": "impostor",
 					"move_2": "angelic_light",
-					"hp": 10
+					"hp": 12
 				},
 				{
 					"name": "beEEEERCAT",
@@ -704,7 +704,7 @@
 					"pack_id": 5,
 					"move_1": "impostor",
 					"move_2": "hakai",
-					"hp": 10
+					"hp": 12
 				},
 				{
 					"name": "Master Ninja",
@@ -712,35 +712,35 @@
 					"pack_id": 6,
 					"move_1": "quick_kick",
 					"move_2": "slam",
-					"hp": 10
+					"hp": 7
 				},
 				{
 					"name": "Novice Ninja",
 					"type": 2,
 					"pack_id": 6,
 					"move_1": "meele",
-					"hp": 10
+					"hp": 5
 				},
 				{
 					"name": "Trained Ninja",
 					"type": 3,
 					"pack_id": 6,
 					"move_1": "quick_kick",
-					"hp": 10
+					"hp": 9
 				},
 				{
 					"name": "Adv. Martial Artist",
 					"type": 2,
 					"pack_id": 7,
 					"move_1": "meele",
-					"hp": 10
+					"hp": 7
 				},
 				{
 					"name": "Martial Artist SSJ",
 					"type": 4,
 					"pack_id": 7,
 					"move_1": "quick_kick",
-					"hp": 10
+					"hp": 9
 				},
 				{
 					"name": "Mr. Po po",
@@ -748,21 +748,21 @@
 					"pack_id": 7,
 					"move_1": "scold",
 					"move_2": "quick_kick",
-					"hp": 10
+					"hp": 12
 				},
 				{
 					"name": "Naif",
 					"type": 0,
 					"pack_id": 7,
 					"move_1": "block",
-					"hp": 10
+					"hp": 6
 				},
 				{
 					"name": "Oswald",
 					"type": 0,
 					"pack_id": 7,
 					"move_1": "dodge",
-					"hp": 10
+					"hp": 6
 				},
 				{
 					"name": "Slammer",
@@ -770,7 +770,7 @@
 					"pack_id": 7,
 					"move_1": "slam",
 					"move_2": "error",
-					"hp": 10
+					"hp": 8
 				},
 				{
 					"name": "Suntext",
@@ -778,14 +778,14 @@
 					"pack_id": 7,
 					"move_1": "error",
 					"move_2": "fire_magic",
-					"hp": 10
+					"hp": 8
 				},
 				{
 					"name": "Trojan",
 					"type": 2,
 					"pack_id": 7,
 					"move_1": "error",
-					"hp": 10
+					"hp": 8
 				},
 				{
 					"name": "Shaggy UI",
@@ -793,7 +793,7 @@
 					"pack_id": 7,
 					"move_1": "dodge",
 					"move_2": "counter",
-					"hp": 10
+					"hp": 18
 				},
 				{
 					"name": "Alguemforce",
@@ -801,7 +801,7 @@
 					"pack_id": 7,
 					"move_1": "dodge",
 					"move_2": "br_bone",
-					"hp": 10
+					"hp": 21
 				},
 				{
 					"name": "BS Shenron",
@@ -816,14 +816,14 @@
 					"pack_id": 8,
 					"move_1": "grapple",
 					"move_2": "cold_magic",
-					"hp": 10
+					"hp": 12
 				},
 				{
 					"name": "Haze Shenron",
 					"type": 0,
 					"pack_id": 8,
 					"move_1": "mouth_beam",
-					"hp": 10
+					"hp": 8
 				},
 				{
 					"name": "Nauturon Shenron",
@@ -831,7 +831,7 @@
 					"pack_id": 8,
 					"move_1": "dodge",
 					"move_2": "mouth_beam",
-					"hp": 10
+					"hp": 12
 				},
 				{
 					"name": "Nuova Shenron",
@@ -839,7 +839,7 @@
 					"pack_id": 8,
 					"move_1": "slam",
 					"move_2": "fire_magic",
-					"hp": 10
+					"hp": 12
 				},
 				{
 					"name": "Oceanus Shenron",
@@ -847,21 +847,21 @@
 					"pack_id": 8,
 					"move_1": "ki_wave",
 					"move_2": "quick_kick",
-					"hp": 10
+					"hp": 12
 				},
 				{
 					"name": "Pan",
 					"type": 0,
 					"pack_id": 8,
 					"move_1": "meele",
-					"hp": 10
+					"hp": 7
 				},
 				{
 					"name": "Pilaf",
 					"type": 0,
 					"pack_id": 8,
 					"move_1": "dodge",
-					"hp": 10
+					"hp": 5
 				},
 				{
 					"name": "Rage Shenron",
@@ -877,7 +877,7 @@
 					"pack_id": 8,
 					"move_1": "quick_kick",
 					"move_2": "big_bang_Kamehameha",
-					"hp": 10
+					"hp": 18
 				},
 				{
 					"name": "Syn Shenron",
@@ -885,7 +885,7 @@
 					"pack_id": 8,
 					"move_1": "slam",
 					"move_2": "grapple",
-					"hp": 10
+					"hp": 18
 				},
 				{
 					"name": "Ampora",
@@ -893,14 +893,14 @@
 					"pack_id": 9,
 					"move_1": "gun",
 					"move_2": "dodge",
-					"hp": 10
+					"hp": 8
 				},
 				{
 					"name": "Nitram",
 					"type": 0,
 					"pack_id": 9,
 					"move_1": "instant_transmission",
-					"hp": 10
+					"hp": 8
 				},
 				{
 					"name": "Peixes",
@@ -908,7 +908,7 @@
 					"pack_id": 9,
 					"move_1": "impale",
 					"move_2": "block",
-					"hp": 10
+					"hp": 9
 				},
 				{
 					"name": "Bojack",
@@ -916,14 +916,14 @@
 					"pack_id": 9,
 					"move_1": "grapple",
 					"move_2": "ki_blast",
-					"hp": 10
+					"hp": 12
 				},
 				{
 					"name": "BR Agent",
 					"type": 2,
 					"pack_id": 9,
 					"move_1": "gun",
-					"hp": 10
+					"hp": 8
 				},
 				{
 					"name": "God Eater Moro",
@@ -931,14 +931,14 @@
 					"pack_id": 9,
 					"move_1": "fire_magic",
 					"move_2": "angelic_light",
-					"hp": 10
+					"hp": 19
 				},
 				{
 					"name": "Abo",
 					"type": 3,
 					"pack_id": 9,
 					"move_1": "block",
-					"hp": 10
+					"hp": 6
 				},
 				{
 					"name": "Abokado",
@@ -953,7 +953,7 @@
 					"type": 4,
 					"pack_id": 9,
 					"move_1": "meele",
-					"hp": 10
+					"hp": 6
 				},
 				{
 					"name": "Dore",
@@ -961,7 +961,7 @@
 					"pack_id": 9,
 					"move_1": "slam",
 					"move_2": "grapple",
-					"hp": 10
+					"hp": 12
 				},
 				{
 					"name": "Neiz",
@@ -969,7 +969,7 @@
 					"pack_id": 9,
 					"move_1": "dodge",
 					"move_2": "mouth_beam",
-					"hp": 10
+					"hp": 9
 				},
 				{
 					"name": "Salza",
@@ -985,14 +985,14 @@
 					"pack_id": 9,
 					"move_1": "quick_kick",
 					"move_2": "dodon_ray",
-					"hp": 10
+					"hp": 8
 				},
 				{
 					"name": "Jaco",
 					"type": 0,
 					"pack_id": 9,
 					"move_1": "gun",
-					"hp": 10
+					"hp": 8
 				},
 				{
 					"name": "Meerus",
@@ -1007,7 +1007,7 @@
 					"type": 1,
 					"pack_id": 9,
 					"move_1": "future_sight",
-					"hp": 10
+					"hp": 12
 				},
 				{
 					"name": "Moro",
@@ -1015,7 +1015,7 @@
 					"pack_id": 9,
 					"move_1": "fire_magic",
 					"move_2": "telekenisis",
-					"hp": 10
+					"hp": 14
 				},
 				{
 					"name": "Bojack PK",
@@ -1023,7 +1023,7 @@
 					"pack_id": 9,
 					"move_1": "grapple",
 					"move_2": "ki_wave",
-					"hp": 10
+					"hp": 17
 				},
 				{
 					"name": "Pyrope",
@@ -1031,7 +1031,7 @@
 					"pack_id": 9,
 					"move_1": "scythe_cut",
 					"move_2": "dodge",
-					"hp": 10
+					"hp": 12
 				},
 				{
 					"name": "Scalemate",
@@ -1039,7 +1039,7 @@
 					"pack_id": 9,
 					"move_1": "charm",
 					"move_2": "mind_control",
-					"hp": 10
+					"hp": 12
 				},
 				{
 					"name": "Sentinel",
@@ -1047,7 +1047,7 @@
 					"pack_id": 9,
 					"move_1": "block",
 					"move_2": "impale",
-					"hp": 10
+					"hp": 12
 				},
 				{
 					"name": "Serket",
@@ -1055,7 +1055,7 @@
 					"pack_id": 9,
 					"move_1": "sword_slash",
 					"move_2": "block",
-					"hp": 10
+					"hp": 12
 				},
 				{
 					"name": "7-3",
@@ -1063,7 +1063,7 @@
 					"pack_id": 9,
 					"move_1": "android_barrier",
 					"move_2": "error",
-					"hp": 10
+					"hp": 14
 				},
 				{
 					"name": "Zangya",
@@ -1071,28 +1071,28 @@
 					"pack_id": 9,
 					"move_1": "ki_blast",
 					"move_2": "meele",
-					"hp": 10
+					"hp": 11
 				},
 				{
 					"name": "BlazeDer",
 					"type": 1,
 					"pack_id": 10,
 					"move_1": "fire_magic",
-					"hp": 10
+					"hp": 8
 				},
 				{
 					"name": "Catquid",
 					"type": 4,
 					"pack_id": 10,
 					"move_1": "grapple",
-					"hp": 10
+					"hp": 12
 				},
 				{
 					"name": "CreeperMan",
 					"type": 0,
 					"pack_id": 10,
 					"move_1": "ki_explosion",
-					"hp": 10
+					"hp": 8
 				},
 				{
 					"name": "HeadMaster",
@@ -1107,7 +1107,7 @@
 					"pack_id": 10,
 					"move_1": "bad_lore",
 					"move_2": "slam",
-					"hp": 10
+					"hp": 12
 				},
 				{
 					"name": "Kefla & Caule",
@@ -1115,14 +1115,14 @@
 					"pack_id": 10,
 					"move_1": "ki_blast",
 					"move_2": "fusion_combo",
-					"hp": 10
+					"hp": 14
 				},
 				{
 					"name": "Kijo",
 					"type": 4,
 					"pack_id": 10,
 					"move_1": "block",
-					"hp": 10
+					"hp": 8
 				},
 				{
 					"name": "MagmaMan",
@@ -1130,7 +1130,7 @@
 					"pack_id": 10,
 					"move_1": "fire_magic",
 					"move_2": "meele",
-					"hp": 10
+					"hp": 8
 				},
 				{
 					"name": "Prillin",
@@ -1145,28 +1145,28 @@
 					"type": 0,
 					"pack_id": 10,
 					"move_1": "impale",
-					"hp": 10
+					"hp": 6
 				},
 				{
 					"name": "Show",
 					"type": 0,
 					"pack_id": 10,
 					"move_1": "slam",
-					"hp": 10
+					"hp": 7
 				},
 				{
 					"name": "Shun",
 					"type": 0,
 					"pack_id": 10,
 					"move_1": "quick_kick",
-					"hp": 10
+					"hp": 7
 				},
 				{
 					"name": "Slime Golem",
 					"type": 3,
 					"pack_id": 10,
 					"move_1": "slam",
-					"hp": 10
+					"hp": 12
 				},
 				{
 					"name": "Sorona",
@@ -1174,7 +1174,7 @@
 					"pack_id": 10,
 					"move_1": "quick_kick",
 					"move_2": "dodge",
-					"hp": 10
+					"hp": 7
 				},
 				{
 					"name": "Spimbi",
@@ -1182,7 +1182,7 @@
 					"pack_id": 10,
 					"move_1": "quick_kick",
 					"move_2": "bind",
-					"hp": 10
+					"hp": 8
 				},
 				{
 					"name": "Squidimbie",
@@ -1197,7 +1197,7 @@
 					"type": 0,
 					"pack_id": 11,
 					"move_1": "ki_blast",
-					"hp": 10
+					"hp": 7
 				},
 				{
 					"name": "Cell Jr.",
@@ -1213,35 +1213,35 @@
 					"pack_id": 11,
 					"move_1": "future_sight",
 					"move_2": "bind",
-					"hp": 10
+					"hp": 13
 				},
 				{
 					"name": "Dr. Hedo",
 					"type": 3,
 					"pack_id": 11,
 					"move_1": "gun",
-					"hp": 10
+					"hp": 9
 				},
 				{
 					"name": "Mai Future",
 					"type": 0,
 					"pack_id": 11,
 					"move_1": "gun",
-					"hp": 10
+					"hp": 8
 				},
 				{
 					"name": "Kenith Future",
 					"type": 0,
 					"pack_id": 11,
 					"move_1": "sword_slash",
-					"hp": 10
+					"hp": 8
 				},
 				{
 					"name": "Future Raider",
 					"type": 0,
 					"pack_id": 11,
 					"move_1": "gun",
-					"hp": 10
+					"hp": 5
 				},
 				{
 					"name": "Goku Black",
@@ -1249,7 +1249,7 @@
 					"pack_id": 11,
 					"move_1": "ki_blade",
 					"move_2": "ki_blast",
-					"hp": 10
+					"hp": 12
 				},
 				{
 					"name": "Mira",
@@ -1257,28 +1257,28 @@
 					"pack_id": 11,
 					"move_1": "slam",
 					"move_2": "meele",
-					"hp": 10
+					"hp": 12
 				},
 				{
 					"name": "Mr. Cuddles",
 					"type": 0,
 					"pack_id": 11,
 					"move_1": "charm",
-					"hp": 10
+					"hp": 14
 				},
 				{
 					"name": "Rogue Wrath",
 					"type": 3,
 					"pack_id": 11,
 					"move_1": "bind",
-					"hp": 10
+					"hp": 15
 				},
 				{
 					"name": "Rogue Flesh",
 					"type": 3,
 					"pack_id": 11,
 					"move_1": "slam",
-					"hp": 10
+					"hp": 12
 				},
 				{
 					"name": "Rogue Zombie",
@@ -1292,7 +1292,7 @@
 					"type": 0,
 					"pack_id": 11,
 					"move_1": "gun",
-					"hp": 10
+					"hp": 6
 				},
 				{
 					"name": "Trunks SSG",
@@ -1300,7 +1300,7 @@
 					"pack_id": 11,
 					"move_1": "sword_slash",
 					"move_2": "burning_attack",
-					"hp": 10
+					"hp": 12
 				},
 				{
 					"name": "Goku Black SSJ",
@@ -1308,7 +1308,7 @@
 					"pack_id": 11,
 					"move_1": "ki_blast",
 					"move_2": "quick_kick",
-					"hp": 10
+					"hp": 14
 				},
 				{
 					"name": "Trunks SSJ",
@@ -1324,7 +1324,7 @@
 					"pack_id": 11,
 					"move_1": "sword_slash",
 					"move_2": "masenko",
-					"hp": 10
+					"hp": 12
 				},
 				{
 					"name": "Goku Black SSR",
@@ -1332,7 +1332,7 @@
 					"pack_id": 11,
 					"move_1": "ki_wave",
 					"move_2": "ki_blade",
-					"hp": 10
+					"hp": 16
 				},
 				{
 					"name": "Towa",
@@ -1340,7 +1340,7 @@
 					"pack_id": 11,
 					"move_1": "impale",
 					"move_2": "charm",
-					"hp": 10
+					"hp": 16
 				},
 				{
 					"name": "Trunks",
@@ -1355,7 +1355,7 @@
 					"pack_id": 11,
 					"move_1": "ki_blast",
 					"move_2": "block",
-					"hp": 10
+					"hp": 16
 				},
 				{
 					"name": "Zamasu Fused",
@@ -1363,7 +1363,7 @@
 					"pack_id": 11,
 					"move_1": "angelic_light",
 					"move_2": "ki_blade",
-					"hp": 10
+					"hp": 20
 				},
 				{
 					"name": "Zamasu Corrupt",
@@ -1371,7 +1371,7 @@
 					"pack_id": 11,
 					"move_1": "slam",
 					"move_2": "ki_blast",
-					"hp": 10
+					"hp": 19
 				},
 				{
 					"name": "Akara",
@@ -1379,13 +1379,13 @@
 					"pack_id": 12,
 					"move_1": "fire_magic",
 					"move_2": "quick_kick",
-					"hp": 10
+					"hp": 12
 				},
 				{
 					"name": "Annoying Ender Child",
 					"type": 0,
 					"pack_id": 12,
-					"hp": 10
+					"hp": 5
 				},
 				{
 					"name": "Blao",
@@ -1393,14 +1393,14 @@
 					"pack_id": 12,
 					"move_1": "cold_magic",
 					"move_2": "meele",
-					"hp": 10
+					"hp": 12
 				},
 				{
 					"name": "Demon Flarbo",
 					"type": 2,
 					"pack_id": 12,
 					"move_1": "impale",
-					"hp": 10
+					"hp": 16
 				},
 				{
 					"name": "Dragon Akara",
@@ -1408,7 +1408,7 @@
 					"pack_id": 12,
 					"move_1": "fire_magic",
 					"move_2": "dragon_wrath",
-					"hp": 10
+					"hp": 15
 				},
 				{
 					"name": "Dragon Balo",
@@ -1416,7 +1416,7 @@
 					"pack_id": 12,
 					"move_1": "cold_magic",
 					"move_2": "dragon_wrath",
-					"hp": 10
+					"hp": 15
 				},
 				{
 					"name": "Dragon God Zidane",
@@ -1424,7 +1424,7 @@
 					"pack_id": 12,
 					"move_1": "dragon_wrath",
 					"move_2": "ki_explosion",
-					"hp": 10
+					"hp": 18
 				},
 				{
 					"name": "Dragon Gredori",
@@ -1432,7 +1432,7 @@
 					"pack_id": 12,
 					"move_1": "fat_sheild",
 					"move_2": "dragon_wrath",
-					"hp": 10
+					"hp": 16
 				},
 				{
 					"name": "Dragon Silvro",
@@ -1440,7 +1440,7 @@
 					"pack_id": 12,
 					"move_1": "impale",
 					"move_2": "dragon_wrath",
-					"hp": 10
+					"hp": 16
 				},
 				{
 					"name": "Dragon Yakair",
@@ -1448,7 +1448,7 @@
 					"pack_id": 12,
 					"move_1": "slam",
 					"move_2": "dragon_wrath",
-					"hp": 10
+					"hp": 17
 				},
 				{
 					"name": "Dumpling",
@@ -1456,7 +1456,7 @@
 					"pack_id": 12,
 					"move_1": "block",
 					"move_2": "meele",
-					"hp": 10
+					"hp": 8
 				},
 				{
 					"name": "Gredori",
@@ -1464,7 +1464,7 @@
 					"pack_id": 12,
 					"move_1": "grapple",
 					"move_2": "heal",
-					"hp": 10
+					"hp": 12
 				},
 				{
 					"name": "Kenith",
@@ -1477,7 +1477,7 @@
 					"name": "Silvro",
 					"type": 3,
 					"pack_id": 12,
-					"hp": 10,
+					"hp": 12,
 					"move_1": "impale",
 					"move_2": "block"
 				},
@@ -1487,7 +1487,7 @@
 					"pack_id": 12,
 					"move_1": "sword_slash",
 					"move_2": "impale",
-					"hp": 10
+					"hp": 13
 				},
 				{
 					"name": "Yakair",
@@ -1495,14 +1495,14 @@
 					"pack_id": 12,
 					"move_1": "slam",
 					"move_2": "block",
-					"hp": 10
+					"hp": 12
 				},
 				{
 					"name": "Zidane",
 					"type": 0,
 					"pack_id": 12,
 					"move_1": "dragon_wrath",
-					"hp": 10
+					"hp": 14
 				},
 				{
 					"name": "Steve",
@@ -1564,7 +1564,7 @@
 					"pack_id": 14,
 					"move_1": "bind",
 					"move_2": "ki_wave",
-					"hp": 10
+					"hp": 12
 				},
 				{
 					"name": "Goku",
@@ -1579,7 +1579,7 @@
 					"pack_id": 14,
 					"move_1": "skamehameha",
 					"move_2": "meele",
-					"hp": 10
+					"hp": 11
 				},
 				{
 					"name": "Goku SSBKK",
@@ -1587,7 +1587,7 @@
 					"pack_id": 14,
 					"move_1": "instant_transmission_kamehameha",
 					"move_2": "kaioken_rush",
-					"hp": 10
+					"hp": 14
 				},
 				{
 					"name": "Goku SSJ",
@@ -1610,7 +1610,7 @@
 					"pack_id": 14,
 					"move_1": "skamehameha",
 					"move_2": "instant_transmission",
-					"hp": 10
+					"hp": 11
 				},
 				{
 					"name": "Sleepy Beerus",
@@ -1633,7 +1633,7 @@
 					"pack_id": 14,
 					"move_1": "gallic_gun",
 					"move_2": "quick_kick",
-					"hp": 10
+					"hp": 12
 				},
 				{
 					"name": "Vegeta SSG",
@@ -1641,7 +1641,7 @@
 					"pack_id": 14,
 					"move_1": "ki_blast",
 					"move_2": "dodge",
-					"hp": 10
+					"hp": 11
 				},
 				{
 					"name": "Vegeta SSJ",
@@ -1664,21 +1664,21 @@
 					"pack_id": 14,
 					"move_1": "angelic_light",
 					"move_2": "dodge",
-					"hp": 10
+					"hp": 14
 				},
 				{
 					"name": "Whis Staff",
 					"type": 3,
 					"pack_id": 14,
 					"move_1": "error",
-					"hp": 10
+					"hp": 8
 				},
 				{
 					"name": "Oracle Fish",
 					"type": 3,
 					"pack_id": 14,
 					"move_1": "heal",
-					"hp": 10
+					"hp": 6
 				},
 				{
 					"name": "Sheep in a Tux",
@@ -1686,7 +1686,7 @@
 					"pack_id": 14,
 					"move_1": "charm",
 					"move_2": "gun",
-					"hp": 10
+					"hp": 7
 				},
 				{
 					"name": "Vegeta Enraged",
@@ -1694,14 +1694,14 @@
 					"pack_id": 15,
 					"move_1": "ki_volley",
 					"move_2": "slam",
-					"hp": 10
+					"hp": 12
 				},
 				{
 					"name": "Beerus Blast",
 					"type": 1,
 					"pack_id": 15,
 					"move_1": "ki_explosion",
-					"hp": 10
+					"hp": 14
 				},
 				{
 					"name": "Beerus",
@@ -1709,14 +1709,14 @@
 					"pack_id": 15,
 					"move_1": "hakai",
 					"move_2": "quick_kick",
-					"hp": 10
+					"hp": 12
 				},
 				{
 					"name": "God Ritual",
 					"type": 0,
 					"pack_id": 15,
 					"move_1": "heal",
-					"hp": 10
+					"hp": 5
 				},
 				{
 					"name": "Goku SSG",
@@ -1724,21 +1724,21 @@
 					"pack_id": 15,
 					"move_1": "ki_blast",
 					"move_2": "dodge",
-					"hp": 10
+					"hp": 11
 				},
 				{
 					"name": "Goku SSJ",
 					"type": 2,
 					"pack_id": 15,
 					"move_1": "meele",
-					"hp": 10
+					"hp": 12
 				},
 				{
 					"name": "Vegeta (Dancing)",
 					"type": 3,
 					"pack_id": 15,
 					"move_1": "charm",
-					"hp": 10
+					"hp": 7
 				},
 				{
 					"name": "Whis",
@@ -1746,14 +1746,14 @@
 					"pack_id": 15,
 					"move_1": "dodge",
 					"move_2": "scold",
-					"hp": 10
+					"hp": 12
 				},
 				{
 					"name": "Yukkiko",
 					"type": 2,
 					"pack_id": 16,
 					"move_1": "scythe_cut",
-					"hp": 10
+					"hp": 12
 				},
 				{
 					"name": "Death Reaper",
@@ -1768,21 +1768,21 @@
 					"pack_id": 16,
 					"move_1": "scythe_cut",
 					"move_2": "impale",
-					"hp": 10
+					"hp": 12
 				},
 				{
 					"name": "Mylene",
 					"type": 4,
 					"pack_id": 16,
 					"move_1": "charm",
-					"hp": 10
+					"hp": 8
 				},
 				{
 					"name": "Saya",
 					"type": 0,
 					"pack_id": 16,
 					"move_1": "meele",
-					"hp": 10
+					"hp": 8
 				},
 				{
 					"name": "Botamo",
@@ -1790,7 +1790,7 @@
 					"pack_id": 17,
 					"move_1": "fat_sheild",
 					"move_2": "mouth_beam",
-					"hp": 10
+					"hp": 16
 				},
 				{
 					"name": "Cabba",
@@ -1805,7 +1805,7 @@
 					"type": 1,
 					"pack_id": 17,
 					"move_1": "hakai",
-					"hp": 10
+					"hp": 13
 				},
 				{
 					"name": "Frost",
@@ -1821,7 +1821,7 @@
 					"pack_id": 17,
 					"move_1": "future_sight",
 					"move_2": "slam",
-					"hp": 10
+					"hp": 12
 				},
 				{
 					"name": "Magetta",
@@ -1829,14 +1829,14 @@
 					"pack_id": 17,
 					"move_1": "fire_magic",
 					"move_2": "slam",
-					"hp": 10
+					"hp": 15
 				},
 				{
 					"name": "Goku SSBKK",
 					"type": 4,
 					"pack_id": 17,
 					"move_1": "kaioken_rush",
-					"hp": 10
+					"hp": 15
 				},
 				{
 					"name": "Cabba SSJ",
@@ -1844,7 +1844,7 @@
 					"pack_id": 17,
 					"move_1": "ki_volley",
 					"move_2": "slam",
-					"hp": 10
+					"hp": 12
 				},
 				{
 					"name": "Vados",
@@ -1860,7 +1860,7 @@
 					"pack_id": 18,
 					"move_1": "quick_kick",
 					"move_2": "kaioken_rush",
-					"hp": 10
+					"hp": 8
 				},
 				{
 					"name": "Goku SK",
@@ -1876,7 +1876,7 @@
 					"pack_id": 18,
 					"move_1": "kaioken_rush",
 					"move_2": "dodge",
-					"hp": 10
+					"hp": 12
 				},
 				{
 					"name": "Vegito SBKK",
@@ -1884,7 +1884,7 @@
 					"pack_id": 18,
 					"move_1": "kaioken_rush",
 					"move_2": "final_kamehameha",
-					"hp": 10
+					"hp": 16
 				},
 				{
 					"name": "Vegito EX",
@@ -1892,7 +1892,7 @@
 					"pack_id": 18,
 					"move_1": "final_kamehameha",
 					"move_2": "counter",
-					"hp": 10
+					"hp": 18
 				},
 				{
 					"name": "Adult Reaper",
@@ -1907,28 +1907,28 @@
 					"type": 2,
 					"pack_id": 19,
 					"move_1": "slam",
-					"hp": 10
+					"hp": 8
 				},
 				{
 					"name": "Dark Wizard",
 					"type": 1,
 					"pack_id": 19,
 					"move_1": "cold_magic",
-					"hp": 10
+					"hp": 5
 				},
 				{
 					"name": "David",
 					"type": 3,
 					"pack_id": 19,
 					"move_1": "dodge",
-					"hp": 10
+					"hp": 6
 				},
 				{
 					"name": "Crimzon",
 					"type": 0,
 					"pack_id": 19,
 					"move_1": "gun",
-					"hp": 10
+					"hp": 6
 				},
 				{
 					"name": "Pheonix",
@@ -1936,7 +1936,7 @@
 					"pack_id": 19,
 					"move_1": "heal",
 					"move_2": "fire_magic",
-					"hp": 10
+					"hp": 8
 				},
 				{
 					"name": "Gakih",
@@ -1950,7 +1950,7 @@
 					"type": 0,
 					"pack_id": 19,
 					"move_1": "dodge",
-					"hp": 10
+					"hp": 7
 				},
 				{
 					"name": "Lisa",
@@ -1978,7 +1978,7 @@
 					"type": 3,
 					"pack_id": 20,
 					"move_1": "slam",
-					"hp": 10
+					"hp": 12
 				},
 				{
 					"name": "Giga Chad",
@@ -1986,7 +1986,7 @@
 					"pack_id": 20,
 					"move_1": "ki_blast",
 					"move_2": "meele",
-					"hp": 10
+					"hp": 18
 				},
 				{
 					"name": "Kool Aid Man",
@@ -1994,7 +1994,7 @@
 					"pack_id": 20,
 					"move_1": "fruit_punch",
 					"move_2": "ki_wave",
-					"hp": 10
+					"hp": 20
 				},
 				{
 					"name": "The Lorax",
@@ -2002,14 +2002,14 @@
 					"pack_id": 20,
 					"move_1": "charm",
 					"move_2": "gun",
-					"hp": 10
+					"hp": 16
 				},
 				{
 					"name": "Megido",
 					"type": 0,
 					"pack_id": 21,
 					"move_1": "future_sight",
-					"hp": 10
+					"hp": 12
 				},
 				{
 					"name": "Chronoa",
@@ -2017,7 +2017,7 @@
 					"pack_id": 21,
 					"move_1": "future_sight",
 					"move_2": "quick_kick",
-					"hp": 10
+					"hp": 15
 				},
 				{
 					"name": "Xeno Goku",
@@ -2025,7 +2025,7 @@
 					"pack_id": 21,
 					"move_1": "power_pole",
 					"move_2": "quick_kick",
-					"hp": 10
+					"hp": 14
 				},
 				{
 					"name": "Xeno Vegeta",
@@ -2033,7 +2033,7 @@
 					"pack_id": 21,
 					"move_1": "big_bang",
 					"move_2": "ki_volley",
-					"hp": 10
+					"hp": 18
 				},
 				{
 					"name": "Xeno Goku SSJ4",
@@ -2041,7 +2041,7 @@
 					"pack_id": 21,
 					"move_1": "dragon_fist",
 					"move_2": "instant_transmission_kamehameha",
-					"hp": 10
+					"hp": 18
 				},
 				{
 					"name": "Xeno Vegeta SSJ4",
@@ -2049,7 +2049,7 @@
 					"pack_id": 21,
 					"move_1": "final_flash",
 					"move_2": "ki_explosion",
-					"hp": 10
+					"hp": 15
 				},
 				{
 					"name": "Trunks SSG",
@@ -2057,7 +2057,7 @@
 					"pack_id": 21,
 					"move_1": "heal",
 					"move_2": "sword_slash",
-					"hp": 10
+					"hp": 15
 				},
 				{
 					"name": "Towa",
@@ -2065,7 +2065,7 @@
 					"pack_id": 21,
 					"move_1": "impale",
 					"move_2": "mind_control",
-					"hp": 10
+					"hp": 15
 				},
 				{
 					"name": "Mira",
@@ -2073,7 +2073,7 @@
 					"pack_id": 21,
 					"move_1": "block",
 					"move_2": "slam",
-					"hp": 10
+					"hp": 18
 				},
 				{
 					"name": "Diakion G5",
@@ -2081,7 +2081,7 @@
 					"pack_id": 21,
 					"move_1": "dodge",
 					"move_2": "liberation",
-					"hp": 10
+					"hp": 14
 				},
 				{
 					"name": "Cooler EX",
@@ -2089,7 +2089,7 @@
 					"pack_id": 21,
 					"move_1": "grapple",
 					"move_2": "ki_wave",
-					"hp": 10
+					"hp": 14
 				},
 				{
 					"name": "Cell EX",
@@ -2097,7 +2097,7 @@
 					"pack_id": 21,
 					"move_1": "instant_transmission_kamehameha",
 					"move_2": "sbeam_cannon",
-					"hp": 10
+					"hp": 12
 				},
 				{
 					"name": "Yukiko EX",
@@ -2105,7 +2105,7 @@
 					"pack_id": 21,
 					"move_1": "scythe_cut",
 					"move_2": "dodge",
-					"hp": 10
+					"hp": 16
 				},
 				{
 					"name": "Demon Yukiko",
@@ -2113,7 +2113,7 @@
 					"pack_id": 21,
 					"move_1": "charm",
 					"move_2": "slam",
-					"hp": 10
+					"hp": 12
 				},
 				{
 					"name": "Frieza EX",
@@ -2145,7 +2145,7 @@
 					"pack_id": 21,
 					"move_1": "ki_wave",
 					"move_2": "slam",
-					"hp": 10
+					"hp": 16
 				},
 				{
 					"name": "Dabura EX",
@@ -2153,7 +2153,7 @@
 					"pack_id": 21,
 					"move_1": "spit",
 					"move_2": "ki_wave",
-					"hp": 10
+					"hp": 12
 				},
 				{
 					"name": "Pheonix EX",
@@ -2161,7 +2161,7 @@
 					"pack_id": 21,
 					"move_1": "impale",
 					"move_2": "meele",
-					"hp": 10
+					"hp": 12
 				},
 				{
 					"name": "Reaper EX",
@@ -2169,7 +2169,7 @@
 					"pack_id": 21,
 					"move_1": "scythe_cut",
 					"move_2": "fire_magic",
-					"hp": 10
+					"hp": 12
 				},
 				{
 					"name": "Pikkon EX",
@@ -2177,7 +2177,7 @@
 					"pack_id": 21,
 					"move_1": "ki_wave",
 					"move_2": "dodge",
-					"hp": 10
+					"hp": 13
 				},
 				{
 					"name": "Demigra",
@@ -2185,7 +2185,7 @@
 					"pack_id": 21,
 					"move_1": "future_sight",
 					"move_2": "telekenisis",
-					"hp": 10
+					"hp": 18
 				},
 				{
 					"name": "Phantom EX",
@@ -2193,7 +2193,7 @@
 					"pack_id": 21,
 					"move_1": "ki_wave",
 					"move_2": "mind_control",
-					"hp": 10
+					"hp": 15
 				},
 				{
 					"name": "Dr.Lychee",
@@ -2208,7 +2208,7 @@
 					"type": 1,
 					"pack_id": 22,
 					"move_1": "instant_transmission",
-					"hp": 10
+					"hp": 6
 				},
 				{
 					"name": "Spirit Saint",
@@ -2216,7 +2216,7 @@
 					"pack_id": 22,
 					"move_1": "instant_transmission",
 					"move_2": "telekenisis",
-					"hp": 10
+					"hp": 17
 				},
 				{
 					"name": "Elec",
@@ -2224,7 +2224,7 @@
 					"pack_id": 22,
 					"move_1": "charm",
 					"move_2": "slam",
-					"hp": 10
+					"hp": 11
 				},
 				{
 					"name": "Gas",
@@ -2232,7 +2232,7 @@
 					"pack_id": 22,
 					"move_1": "ki_blast",
 					"move_2": "quick_kick",
-					"hp": 10
+					"hp": 12
 				},
 				{
 					"name": "Granolah",
@@ -2240,7 +2240,7 @@
 					"pack_id": 22,
 					"move_1": "ki_wave",
 					"move_2": "bind",
-					"hp": 10
+					"hp": 13
 				},
 				{
 					"name": "Hatchiyack",
@@ -2248,7 +2248,7 @@
 					"pack_id": 22,
 					"move_1": "mouth_beam",
 					"move_2": "block",
-					"hp": 10
+					"hp": 13
 				},
 				{
 					"name": "Lord Slug",
@@ -2272,7 +2272,7 @@
 					"pack_id": 22,
 					"move_1": "fat_sheild",
 					"move_2": "bind",
-					"hp": 10
+					"hp": 16
 				},
 				{
 					"name": "Lord Slug Orange",
@@ -2280,7 +2280,7 @@
 					"pack_id": 22,
 					"move_1": "ki_wave",
 					"move_2": "slam",
-					"hp": 10
+					"hp": 14
 				},
 				{
 					"name": "Turles",
@@ -2295,7 +2295,7 @@
 					"pack_id": 22,
 					"move_1": "mouth_beam",
 					"move_2": "slam",
-					"hp": 10
+					"hp": 12
 				},
 				{
 					"name": "Vegeta",
@@ -2303,7 +2303,7 @@
 					"pack_id": 22,
 					"move_1": "instant_transmission",
 					"move_2": "gallic_gun",
-					"hp": 10
+					"hp": 12
 				},
 				{
 					"name": "Yardratian",
@@ -2318,7 +2318,23 @@
 					"type": 1,
 					"pack_id": 22,
 					"move_1": "block",
-					"hp": 10
+					"hp": 7
+				},
+				{
+					"name": "Goku",
+					"type": 3,
+					"pack_id": 22,
+					"hp": 12,
+					"move_1": "instant_transmission",
+					"move_2": "quick_kick"
+				},
+				{
+					"name": "Broly",
+					"type": 4,
+					"pack_id": 22,
+					"hp": 14,
+					"move_1": "grapple",
+					"move_2": "mouth_beam"
 				}
 			],
 			"separators": [
@@ -2375,21 +2391,21 @@
 			"lines": [
 				{
 					"type": 0,
-					"power": 0,
+					"power": 3,
 					"id_name": "meele",
 					"name": "Meele",
 					"target_mode": 1
 				},
 				{
 					"type": 4,
-					"power": 0,
+					"power": 2,
 					"id_name": "quick_kick",
 					"name": "Quick Kick",
 					"target_mode": 1
 				},
 				{
 					"type": 1,
-					"power": 0,
+					"power": 4,
 					"id_name": "ki_wave",
 					"name": "Ki Wave",
 					"target_mode": 1
@@ -2398,33 +2414,33 @@
 					"id_name": "block",
 					"name": "Block",
 					"type": 3,
-					"power": 0,
+					"power": 4,
 					"target_mode": 0
 				},
 				{
 					"type": 1,
-					"power": 0,
+					"power": 5,
 					"id_name": "kamehameha",
 					"name": "Kamehameha",
 					"target_mode": 1
 				},
 				{
 					"type": 1,
-					"power": 0,
+					"power": 5,
 					"id_name": "destructo_disc",
 					"name": "Destructo Disc",
 					"target_mode": 1
 				},
 				{
 					"type": 1,
-					"power": 0,
+					"power": 4,
 					"id_name": "dodon_ray",
 					"name": "Dodon Ray",
 					"target_mode": 1
 				},
 				{
 					"type": 1,
-					"power": 0,
+					"power": 17,
 					"id_name": "ki_explosion",
 					"name": "Ki Explosion",
 					"target_mode": 5
@@ -2438,14 +2454,14 @@
 				},
 				{
 					"type": 4,
-					"power": 0,
+					"power": 3,
 					"id_name": "sword_slash",
 					"name": "Sword Slash",
 					"target_mode": 1
 				},
 				{
 					"type": 1,
-					"power": 0,
+					"power": 7,
 					"id_name": "skamehameha",
 					"name": "S.Kamehameha",
 					"target_mode": 1
@@ -2454,63 +2470,63 @@
 					"id_name": "spirit_bomb",
 					"name": "Spirit Bomb",
 					"type": 1,
-					"power": 0,
+					"power": 14,
 					"target_mode": 3
 				},
 				{
 					"id_name": "big_bang",
 					"name": "Big Bang",
 					"type": 1,
-					"power": 0,
+					"power": 5,
 					"target_mode": 1
 				},
 				{
 					"id_name": "wold_fang_fist",
 					"name": "Wold Fang Fist",
 					"type": 4,
-					"power": 0,
+					"power": 5,
 					"target_mode": 1
 				},
 				{
 					"id_name": "mouth_beam",
 					"name": "Mouth Beam",
 					"type": 1,
-					"power": 0,
+					"power": 4,
 					"target_mode": 1
 				},
 				{
 					"id_name": "candy_beam",
 					"name": "Candy Beam",
 					"type": 0,
-					"power": 0,
+					"power": 3,
 					"target_mode": 1
 				},
 				{
 					"id_name": "future_sight",
 					"name": "Future Sight",
 					"type": 4,
-					"power": 0,
+					"power": 5,
 					"target_mode": 2
 				},
 				{
 					"id_name": "scold",
 					"name": "Scold",
 					"type": 2,
-					"power": 0,
+					"power": 3,
 					"target_mode": 1
 				},
 				{
 					"id_name": "sbeam_cannon",
 					"name": "SBeam Cannon",
 					"type": 1,
-					"power": 0,
+					"power": 6,
 					"target_mode": 1
 				},
 				{
 					"id_name": "android_barrier",
 					"name": "Android Barrier",
 					"type": 3,
-					"power": 0,
+					"power": 6,
 					"target_mode": 0
 				},
 				{
@@ -2531,56 +2547,56 @@
 					"id_name": "masenko",
 					"name": "Masenko",
 					"type": 1,
-					"power": 0,
+					"power": 5,
 					"target_mode": 1
 				},
 				{
 					"id_name": "dragon_fist",
 					"name": "Dragon Fist",
 					"type": 2,
-					"power": 0,
+					"power": 7,
 					"target_mode": 1
 				},
 				{
 					"id_name": "glactic_dount",
 					"name": "Glactic Dount",
 					"type": 1,
-					"power": 0,
+					"power": 3,
 					"target_mode": 1
 				},
 				{
 					"id_name": "impostor",
 					"name": "Impostor",
 					"type": 2,
-					"power": 0,
+					"power": 7,
 					"target_mode": 0
 				},
 				{
 					"id_name": "senzu_bean",
 					"name": "Senzu Bean",
 					"type": 0,
-					"power": 0,
+					"power": 7,
 					"target_mode": 1
 				},
 				{
 					"id_name": "kaioken_rush",
 					"name": "KK.Rush",
 					"type": 4,
-					"power": 0,
+					"power": 5,
 					"target_mode": 1
 				},
 				{
 					"id_name": "final_kamehameha",
 					"name": "F.Kamehameha",
 					"type": 1,
-					"power": 0,
+					"power": 7,
 					"target_mode": 1
 				},
 				{
 					"id_name": "gun",
 					"name": "Gun",
 					"type": 0,
-					"power": 0,
+					"power": 4,
 					"target_mode": 1
 				},
 				{
@@ -2594,217 +2610,217 @@
 					"id_name": "gallic_gun",
 					"name": "Gallic Gun",
 					"type": 1,
-					"power": 0,
+					"power": 5,
 					"target_mode": 1
 				},
 				{
 					"id_name": "telekenisis",
 					"name": "Telekenisis",
 					"type": 0,
-					"power": 0,
+					"power": 4,
 					"target_mode": 1
 				},
 				{
 					"id_name": "death_beam",
 					"name": "Death Beam",
 					"type": 1,
-					"power": 0,
+					"power": 4,
 					"target_mode": 1
 				},
 				{
 					"id_name": "ki_blast",
 					"name": "Ki Blast",
 					"type": 1,
-					"power": 0,
+					"power": 2,
 					"target_mode": 1
 				},
 				{
 					"id_name": "instant_transmission",
 					"name": "Instant Transmission",
 					"type": 4,
-					"power": 0,
+					"power": 3,
 					"target_mode": 1
 				},
 				{
 					"id_name": "instant_transmission_kamehameha",
 					"name": "IT.Kamehameha",
 					"type": 1,
-					"power": 0,
+					"power": 6,
 					"target_mode": 1
 				},
 				{
 					"id_name": "grapple",
 					"name": "Grapple",
 					"type": 3,
-					"power": 0,
+					"power": 4,
 					"target_mode": 1
 				},
 				{
 					"id_name": "scythe_cut",
 					"name": "Scythe Cut",
 					"type": 0,
-					"power": 0,
+					"power": 3,
 					"target_mode": 1
 				},
 				{
 					"id_name": "bad_lore",
 					"name": "Bad Lore",
 					"type": 0,
-					"power": 0,
+					"power": 1,
 					"target_mode": 5
 				},
 				{
 					"id_name": "fire_magic",
 					"name": "Fire Magic",
 					"type": 1,
-					"power": 0,
+					"power": 5,
 					"target_mode": 1
 				},
 				{
 					"id_name": "fat_sheild",
 					"name": "Fat Sheild",
 					"type": 3,
-					"power": 0,
+					"power": 6,
 					"target_mode": 0
 				},
 				{
 					"id_name": "rakshasas_claw",
 					"name": "Rakshasa's Claw",
 					"type": 1,
-					"power": 0,
+					"power": 5,
 					"target_mode": 1
 				},
 				{
 					"id_name": "error",
 					"name": "Error",
 					"type": 0,
-					"power": 0,
+					"power": 2,
 					"target_mode": 5
 				},
 				{
 					"id_name": "slam",
 					"name": "Slam",
 					"type": 2,
-					"power": 0,
+					"power": 5,
 					"target_mode": 1
 				},
 				{
 					"id_name": "br_bone",
 					"name": "BR Bone",
 					"type": 2,
-					"power": 0,
+					"power": 8,
 					"target_mode": 1
 				},
 				{
 					"id_name": "cold_magic",
 					"name": "Cold Magic",
 					"type": 1,
-					"power": 0,
+					"power": 3,
 					"target_mode": 1
 				},
 				{
 					"id_name": "big_bang_Kamehameha",
 					"name": "BB Kamehameha",
 					"type": 1,
-					"power": 0,
+					"power": 6,
 					"target_mode": 1
 				},
 				{
 					"id_name": "impale",
 					"name": "Impale",
 					"type": 4,
-					"power": 0,
+					"power": 5,
 					"target_mode": 1
 				},
 				{
 					"id_name": "angelic_light",
 					"name": "Angelic Light",
 					"type": 1,
-					"power": 0,
+					"power": 9,
 					"target_mode": 3
 				},
 				{
 					"id_name": "ki_blade",
 					"name": "Ki Blade",
 					"type": 4,
-					"power": 0,
+					"power": 4,
 					"target_mode": 1
 				},
 				{
 					"id_name": "bind",
 					"name": "Bind",
 					"type": 3,
-					"power": 0,
+					"power": 4,
 					"target_mode": 1
 				},
 				{
 					"id_name": "fusion_combo",
 					"name": "Fuse Combo",
 					"type": 0,
-					"power": 0,
+					"power": 6,
 					"target_mode": 1
 				},
 				{
 					"id_name": "burning_attack",
 					"name": "Burning Attack",
 					"type": 1,
-					"power": 0,
+					"power": 4,
 					"target_mode": 1
 				},
 				{
 					"id_name": "dragon_wrath",
 					"name": "Dragon Wrath",
 					"type": 0,
-					"power": 0,
+					"power": 6,
 					"target_mode": 1
 				},
 				{
 					"id_name": "heal",
 					"name": "Heal",
 					"type": 1,
-					"power": 0,
+					"power": 5,
 					"target_mode": 2
 				},
 				{
 					"id_name": "hakai",
 					"name": "Hakai",
 					"type": 1,
-					"power": 0,
+					"power": 7,
 					"target_mode": 1
 				},
 				{
 					"id_name": "final_flash",
 					"name": "Final Flash",
 					"type": 1,
-					"power": 0,
+					"power": 6,
 					"target_mode": 3
 				},
 				{
 					"id_name": "ki_volley",
 					"name": "Key Volley",
 					"type": 4,
-					"power": 0,
+					"power": 3,
 					"target_mode": 1
 				},
 				{
 					"id_name": "fruit_punch",
 					"name": "Fruit Punch",
 					"type": 2,
-					"power": 0,
+					"power": 8,
 					"target_mode": 1
 				},
 				{
 					"id_name": "power_pole",
 					"name": "Power Pole",
 					"type": 2,
-					"power": 0,
+					"power": 3,
 					"target_mode": 1
 				},
 				{
 					"id_name": "liberation",
 					"name": "Liberation",
 					"type": 0,
-					"power": 0,
+					"power": 7,
 					"target_mode": 4
 				},
 				{
@@ -2818,14 +2834,14 @@
 					"id_name": "counter",
 					"name": "Counter",
 					"type": 3,
-					"power": 0,
+					"power": 3,
 					"target_mode": 0
 				},
 				{
 					"id_name": "explosion",
 					"name": "Explosion",
 					"type": 0,
-					"power": 0,
+					"power": 15,
 					"target_mode": 5
 				}
 			],
