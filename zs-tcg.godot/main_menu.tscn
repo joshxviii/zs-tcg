@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://sjckyl6cd7o"]
+[gd_scene load_steps=10 format=3 uid="uid://sjckyl6cd7o"]
 
 [ext_resource type="Theme" uid="uid://dxxt0em6v1rwd" path="res://assets/themes/main_menu.tres" id="1_fyxab"]
 [ext_resource type="Script" path="res://scripts/ui/main_menu.gd" id="1_txojc"]
 [ext_resource type="FontFile" uid="uid://3wrkvjx6bpvf" path="res://assets/fonts/pxlsupersmall.ttf" id="2_nsepl"]
 [ext_resource type="Texture2D" uid="uid://b0kw633qcl75k" path="res://assets/textures/backgrounds/simulation_background_white.png" id="3_guwkx"]
+[ext_resource type="Texture2D" uid="uid://oxt7xwnnouht" path="res://assets/textures/backgrounds/title_screen.png" id="4_wu632"]
+[ext_resource type="Texture2D" uid="uid://ctrrk3ujuvtgd" path="res://assets/textures/ui/start_button_box.png" id="5_4r44e"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5fwau"]
 bg_color = Color(0.247059, 0.188235, 0.34902, 1)
@@ -11,7 +13,11 @@ bg_color = Color(0.247059, 0.188235, 0.34902, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_47dv8"]
 bg_color = Color(0.317647, 0.243137, 0.45098, 1)
 
-[node name="title_screen" type="Control"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_agcef"]
+texture = ExtResource("5_4r44e")
+region_rect = Rect2(0, 0, 220, 32)
+
+[node name="main_menu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -383,6 +389,68 @@ offset_bottom = 94.0
 grow_horizontal = 0
 theme_override_font_sizes/font_size = 25
 text = "X"
+
+[node name="title_screen" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="title_screen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_wu632")
+
+[node name="text_banner" type="Control" parent="title_screen"]
+anchors_preset = 0
+anchor_top = 0.768519
+anchor_right = 1.0
+anchor_bottom = 0.861111
+metadata/_edit_use_anchors_ = true
+
+[node name="bg" type="ColorRect" parent="title_screen/text_banner"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.223529, 1, 1, 1)
+
+[node name="text_panel" type="PanelContainer" parent="title_screen/text_banner"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.393229
+anchor_top = 0.175
+anchor_right = 0.606771
+anchor_bottom = 0.825
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_agcef")
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="title_screen/text_banner/text_panel"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "press any button"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="fader" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 1, 1, 0)
 
 [connection signal="pressed" from="main_menu/menu/singleplayer" to="." method="_on_singleplayer_pressed"]
 [connection signal="pressed" from="main_menu/menu/multiplayer" to="." method="_on_multiplayer_pressed"]

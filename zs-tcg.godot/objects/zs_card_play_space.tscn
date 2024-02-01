@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cf470kj0215b8"]
+[gd_scene load_steps=7 format=3 uid="uid://cf470kj0215b8"]
 
 [ext_resource type="PackedScene" uid="uid://b28nji74vp1ow" path="res://objects/zs_card_space.tscn" id="1_0618v"]
 [ext_resource type="Script" path="res://scripts/zs_card_play_space.gd" id="1_fs835"]
+[ext_resource type="Texture2D" uid="uid://7tkaanmgah5h" path="res://assets/textures/cards/lock.png" id="3_g348x"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7qbtt"]
 resource_local_to_scene = true
@@ -9,7 +10,11 @@ size = Vector2(12, 17)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rwtpi"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a5vsx"]
+size = Vector2(256, 256)
+
 [node name="zs_card_space" groups=["play_space"] instance=ExtResource("1_0618v")]
+modulate = Color(1, 1, 1, 1)
 script = ExtResource("1_fs835")
 lock_space = false
 face_down_space = false
@@ -18,15 +23,47 @@ can_swap = true
 [node name="shape" parent="." index="0"]
 shape = SubResource("RectangleShape2D_7qbtt")
 
-[node name="opposing_space_getter" type="Area2D" parent="." index="2"]
+[node name="target_getter" type="Area2D" parent="." index="2"]
 position = Vector2(0, -144)
-collision_layer = 2
-collision_mask = 2
+collision_layer = 0
+collision_mask = 3
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="opposing_space_getter" index="0"]
+[node name="single_opponent" type="CollisionShape2D" parent="target_getter" index="0"]
 shape = SubResource("RectangleShape2D_rwtpi")
+
+[node name="big_area" type="CollisionShape2D" parent="target_getter" index="1"]
+position = Vector2(0, 144)
+shape = SubResource("RectangleShape2D_a5vsx")
+
+[node name="targetting_nodes" type="Node2D" parent="target_getter" index="2"]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="target_getter" index="3"]
+visible = false
+offset_left = -120.0
+offset_top = 24.0
+offset_right = 120.0
+offset_bottom = 264.0
+color = Color(1, 1, 1, 0.52549)
+
+[node name="lock" type="TextureRect" parent="." index="3"]
+visible = false
+modulate = Color(1, 1, 1, 0.690196)
+z_index = 2
+offset_left = -32.0
+offset_top = -48.0
+offset_right = 31.0
+offset_bottom = 48.0
+mouse_filter = 2
+texture = ExtResource("3_g348x")
+stretch_mode = 4
+
+[node name="target_arrows" type="Node2D" parent="." index="4"]
 
 [connection signal="card_added" from="." to="." method="_on_card_added"]
 [connection signal="card_removed" from="." to="." method="_on_card_removed"]
 [connection signal="card_returned" from="." to="." method="_on_card_returned"]
-[connection signal="body_entered" from="opposing_space_getter" to="." method="_on_opposing_space_getter_body_entered"]
+[connection signal="mouse_shape_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_shape_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="target_mode_changed" from="." to="." method="_on_target_mode_changed"]
+[connection signal="body_shape_entered" from="target_getter" to="." method="_on_target_getter_body_shape_entered"]

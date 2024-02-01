@@ -52,6 +52,7 @@ var SaveData : Dictionary = {"display_name":"PLAYER","user_deck":[]}
 var BOARD
 var CURSOR = Cursor.new()
 var PLAYER_HAND : CardHand2D
+var PLAYER_DECK : CardDeck2D
 var PLAYAREA
 var MAINMENU
 var DEBUG_WINDOW
@@ -59,8 +60,14 @@ var NETWORK
 var GUI 
 var DB := DataBaseHandler.new()
 
-var is_dragging := false
+var can_drag := true
+var is_dragging := false:
+	set(value):
+		if value:
+			if Global.GUI: Global.GUI.close_move_info()
+		is_dragging=value
 var dragged_card : Card2D
+
 #endregion	
 
 func return_to_title():

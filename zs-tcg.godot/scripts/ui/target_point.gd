@@ -11,23 +11,13 @@ func _ready():
 	var tween = create_tween()
 	tween.tween_property(self,"modulate",Color(1,1,1,1),.1)
 
-func _on_texture_button_pressed():
-
-	pass # Replace with function body.
-
-
 func _on_texture_button_toggled(button_pressed):
 	if button_pressed:
-		if get_parent().get_parent() and !target_arrow:
-			get_parent().get_parent().target_space = space
-			#get_parent().get_parent().update_targets()
-			target_arrow = target_arrow_path.instantiate()
-			add_child(target_arrow)
-			target_arrow.global_position = get_parent().get_parent().card.global_position
-			target_arrow.add_point(Vector2(0.0,0.0),0)
-			target_arrow.add_point(global_position-target_arrow.global_position,1)
-			
+		get_parent().get_parent().get_parent().targets.erase(space)
+		get_parent().get_parent().get_parent().default_target = space
+		get_parent().get_parent().get_parent().targets.append(space)
 	else:
-		if target_arrow: target_arrow.queue_free()
-		pass
-	pass # Replace with function body.
+		get_parent().get_parent().get_parent().targets.erase(space)
+	get_parent().get_parent().get_parent().update_target_arrows()
+
+

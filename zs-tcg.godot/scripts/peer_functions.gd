@@ -21,11 +21,14 @@ func _ready():
 		$multiplayer_ui/you.text = DISPLAY_NAME
 		Global.PLAYAREA.visible=true
 		Global.NETWORK.timeout_timer.stop()
+		Global.NETWORK.USER = self
 		Global.MAINMENU.hide()
 		if Global.NETWORK.connection_type==Network.JOIN:
 			Global.stop_wait()
 			print("Success! Joining: %s" % Global.NETWORK.address)
+			rpc("start_game")
 	elif !is_multiplayer_authority():
+		Global.NETWORK.OPPONENT = self
 		op_id = name.to_int()
 		$multiplayer_ui/you.position = Vector2(0,0)
 		pass
@@ -34,10 +37,20 @@ func _ready():
 @rpc("any_peer","call_remote","reliable")
 func send_move_data(id,move_data):
 	if !is_multiplayer_authority():
-		Global.PLAYAREA.update_opponenet_cards(move_data)
+		Global.PLAYAREA.update_opponent_cards(move_data)
+
+@rpc("any_peer","call_local","reliable")
+func start_game():
+	Global.PLAYAREA.game_state=Global.PLAYAREA.STARTING
+
+@rpc("any_peer","call_local","reliable")
+func switch_game_state(state):
+	if is_multiplayer_authority():
+		Global.PLAYAREA.game_state=state
 
 func on_board_changed(space_index, card, added):
 	if is_multiplayer_authority():
+		#print(str(added)) #TODO Fix the ghost cards when in mutliplayer
 		move["space_index"] = space_index
 		move["card_inst"] = card.get_instance_id()
 		move["card_id"] = card.id

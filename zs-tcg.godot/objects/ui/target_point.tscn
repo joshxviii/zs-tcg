@@ -1,15 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://bv85leflamv0r"]
+[gd_scene load_steps=7 format=3 uid="uid://bv85leflamv0r"]
 
 [ext_resource type="Script" path="res://scripts/ui/target_point.gd" id="1_rq64h"]
 [ext_resource type="ButtonGroup" uid="uid://dqqhgckr0vtiv" path="res://objects/ui/button_groups/target_selector.tres" id="2_n4d2x"]
 [ext_resource type="Texture2D" uid="uid://caib66gguguok" path="res://assets/textures/ui/target_selector/target_selector_0.png" id="3_gydce"]
 [ext_resource type="Texture2D" uid="uid://dej0h21cneal7" path="res://assets/textures/ui/target_selector/target_selector_1.png" id="4_wj506"]
 [ext_resource type="Texture2D" uid="uid://c2kwf74k0c4r3" path="res://assets/textures/ui/target_selector/target_selector_2.png" id="5_arrfr"]
+[ext_resource type="Texture2D" uid="uid://bdynn3y0glu3p" path="res://assets/textures/ui/target_selector/target_selector_3.png" id="5_t1o10"]
 
-[node name="target_space" type="Marker2D"]
+[node name="target_selector" type="Marker2D"]
 script = ExtResource("1_rq64h")
 
 [node name="target_selector" type="TextureButton" parent="."]
+z_index = 2
 custom_minimum_size = Vector2(72, 102)
 anchors_preset = 8
 anchor_left = 0.5
@@ -30,6 +32,7 @@ action_mode = 0
 button_group = ExtResource("2_n4d2x")
 texture_normal = ExtResource("3_gydce")
 texture_pressed = ExtResource("4_wj506")
+texture_hover = ExtResource("5_t1o10")
 texture_disabled = ExtResource("5_arrfr")
 stretch_mode = 4
 

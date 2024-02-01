@@ -30,7 +30,8 @@ anim_speed_max = 5.0
 [node name="loading_screen" type="Control"]
 process_mode = 3
 visible = false
-z_index = 999
+top_level = true
+z_index = 6
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

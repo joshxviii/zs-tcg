@@ -13,6 +13,10 @@ enum {
 	HOST,
 	JOIN
 }
+
+var OPPONENT
+var USER
+
 var connection_type := -1
 var timeout_timer := Timer.new()
 var multiplayer_spawner := MultiplayerSpawner.new()
@@ -27,15 +31,20 @@ func _init():
 	add_child(multiplayer_spawner)
 	var scene = load("res://playarea_scene.tscn").instantiate()
 	scene.visible=false
-	Global.get_tree().root.add_child(scene)
+	scene.gamemode=1
 	Global.PLAYAREA = scene
-	
+	Global.get_tree().root.add_child(scene)
 
 func playarea_create(id):
 	print(id)
 	var scene = load("res://peer_data.tscn").instantiate()
 	scene.name=str(id)
 	return scene
+
+@rpc("any_peer","call_remote","reliable")
+func flip_coin() -> int:
+	var result = randi_range(0,1)
+	return result
 
 #region Setup Connections
 func _ready():
@@ -79,7 +88,7 @@ func connect_player(id=1):#when anyone connects to host
 
 func disconnect_player(id):#when opponent leaves
 	rpc("_disconnect_player", id)
-@rpc("any_peer", "call_local") func _disconnect_player(id):
+@rpc("any_peer", "call_local") func _disconnect_player(_id):
 	printerr("Opponnent Left!")
 	Global.return_to_title()
 	

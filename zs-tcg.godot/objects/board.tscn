@@ -36,25 +36,19 @@ input_pickable = false
 
 [node name="player_space_1" parent="." instance=ExtResource("3_n7e2f")]
 position = Vector2(-192, 72)
-input_pickable = false
 
 [node name="player_space_2" parent="." instance=ExtResource("3_n7e2f")]
 position = Vector2(-96, 72)
-input_pickable = false
 
 [node name="player_space_3" parent="." instance=ExtResource("3_n7e2f")]
 position = Vector2(0, 72)
-input_pickable = false
 
 [node name="player_space_4" parent="." instance=ExtResource("3_n7e2f")]
 position = Vector2(96, 72)
-input_pickable = false
 
 [node name="player_space_5" parent="." instance=ExtResource("3_n7e2f")]
 position = Vector2(192, 72)
-input_pickable = false
 
-[connection signal="board_changed" from="." to="." method="_on_board_changed"]
 [connection signal="card_added" from="opponent_space_1" to="." method="_on_opponent_space_1_card_added"]
 [connection signal="card_removed" from="opponent_space_1" to="." method="_on_opponent_space_1_card_removed"]
 [connection signal="card_added" from="opponent_space_2" to="." method="_on_opponent_space_2_card_added"]

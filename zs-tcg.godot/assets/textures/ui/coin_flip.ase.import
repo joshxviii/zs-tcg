@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://c2n04a27w8ch6"
+path="res://.godot/imported/coin_flip.ase-ecaab3d8229281feec5119b6b82507a7.res"
+
+[deps]
+
+source_file="res://assets/textures/ui/coin_flip.ase"
+dest_files=["res://.godot/imported/coin_flip.ase-ecaab3d8229281feec5119b6b82507a7.res"]
+
+[params]
+

@@ -1,10 +1,14 @@
 E:/GameDev Projects/ZSTCG Project/zs-tcg.godot/exports
-res://scripts
+res://assets/textures/ui/target_selector
+res://objects
+res://scripts/ui
+res://assets/textures/cards
 res://assets/themes
 res://
 res://assets/textures/ui
+res://assets/textures/backgrounds
+res://scripts
 res://assets/textures/particles
-res://scripts/ui
 res://assets/fonts
 res://assets/models
 res://assets/shaders
@@ -12,11 +16,7 @@ res://objects/ui/button_groups
 res://objects/ui
 res://assets/icons
 E:/!Programs
-res://assets/textures/backgrounds
 res://assets/textures
-res://objects
 res://assets/textures/cards/profiles
 res://assets/textures/ui/type_indicators
-res://assets/textures/ui/target_selector
 res://assets/textures/ui/settings
-res://assets/textures/ui/target_arrow

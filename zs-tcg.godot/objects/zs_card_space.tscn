@@ -13,6 +13,7 @@ input_pickable = true
 script = ExtResource("1_bhbkn")
 
 [node name="shape" type="CollisionShape2D" parent="."]
+visible = false
 scale = Vector2(6, 6)
 shape = SubResource("RectangleShape2D_ys5c6")
 

@@ -19,6 +19,7 @@ var top:Card2D
 const DECK_SPERATION := 5
 
 func _ready():
+	Global.PLAYER_DECK = self
 	check_deck()
 		
 func check_deck():
@@ -80,6 +81,10 @@ func _on_card_removed(_card):
 	check_deck()
 	pass # Replace with function body.
 
+func auto_add_to_hand(amount):
+	for i in amount:
+		await get_tree().create_timer(0.1).timeout
+		Global.PLAYER_HAND.add(cards[0])
 
 func _on_input_event(_viewport, e, _shape_idx):
 	if e is InputEventMouseButton and e.pressed and e.button_mask==1 and !e.double_click:

@@ -1,12 +1,18 @@
 extends Control
 
-func _ready(): 
+var titlescreen := true
+
+func _ready():
+	$fader.color = Color.WHITE
+	var tween = create_tween()
+	tween.tween_property($fader,"color",Color($fader.color,0),1.0).set_ease(Tween.EASE_IN_OUT)
 	$main_menu/version.text = Global.VERSION
 
 func _on_singleplayer_pressed():
 	var scene = load("res://playarea_scene.tscn").instantiate()
-	get_tree().root.add_child(scene)
+	scene.gamemode=0
 	Global.PLAYAREA = scene
+	get_tree().root.add_child(scene)
 	self.hide()
 	pass
 
@@ -67,3 +73,13 @@ func _on_online_host_pressed():
 
 
 
+func _input(e):
+	if titlescreen:
+		if e is InputEventMouseButton || e is InputEventKey and e.pressed:
+			titlescreen = false
+			var tween = create_tween()
+			tween.tween_property($fader,"color",Color.BLACK,0.3).set_ease(Tween.EASE_IN_OUT)
+			await tween.finished
+			$title_screen.hide()
+			tween = create_tween()
+			tween.tween_property($fader,"color",Color($fader.color,0),0.7).set_ease(Tween.EASE_IN_OUT)

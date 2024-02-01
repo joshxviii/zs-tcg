@@ -64,7 +64,7 @@ var selected_spaces : Array[CardSpace2D]
 var selected_space : CardSpace2D
 var owner_space : CardSpace2D
 var prev_owner_space : CardSpace2D
-var targeted_space : CardSpace2D
+#var targeted_space : CardSpace2D
 @onready var DEFAULT_SCALE = scale
 var offset := -16
 @onready var target_pos := position
@@ -188,31 +188,41 @@ func _process(_delta):
 					selected_space = space
 			selected_space.selected = true
 func _on_input_event(_viewport, e, _shape_idx):
-	if e is InputEventMouseButton and e.pressed and !e.double_click:##Press mouse button
-		match e.button_mask:
-			1:
-				if !Global.is_dragging && draggable:
-					dragging = true
-					var tween = get_tree().create_tween()
-					tween.parallel().tween_property(shadow,"position",Vector2(14,23),0.06).set_ease(Tween.EASE_IN)
-					tween.parallel().tween_property(self,"global_position",( Vector2(get_global_mouse_position().x+90, get_global_mouse_position().y)),0.12).set_ease(Tween.EASE_IN)
-					tween.parallel().tween_property(self,"rotation",( 1 ) ,0.12).set_ease(Tween.EASE_IN)
-					if owner_space:
-						if owner_space.is_in_group("card_deck"):
+	if Global.can_drag:
+		if e is InputEventMouseMotion and e.pressure>=1.0 and e.button_mask==1 and e.velocity.length()>10.0:
+			if !Global.is_dragging && draggable:
+				dragging = true
+				var tween = get_tree().create_tween()
+				tween.parallel().tween_property(shadow,"position",Vector2(14,23),0.06).set_ease(Tween.EASE_IN)
+				tween.parallel().tween_property(self,"global_position",( Vector2(get_global_mouse_position().x+90, get_global_mouse_position().y)),0.12).set_ease(Tween.EASE_IN)
+				tween.parallel().tween_property(self,"rotation",( 1 ) ,0.12).set_ease(Tween.EASE_IN)
+		if e is InputEventMouseButton and e.pressed and !e.double_click and e.button_mask==1:
+			if !Global.is_dragging && draggable:
+				if owner_space:
+					if owner_space.is_in_group("card_deck"):
+						dragging = true
+						if Global.PLAYAREA.turn_points>0:
 							if Global.PLAYER_HAND.has_open_space:
 								Global.PLAYER_HAND.add(self)
+								Global.PLAYAREA.turn_points -= 1
 								facing_direction = 0
 							else:
 								Global.GUI.create_float_text(get_global_mouse_position(),"FULL HAND!")
 								release()
-			2:
-				if owner_space && Global.GUI:
-					if owner_space.is_in_group("play_space"):
-						Global.GUI.create_move_info(self)
+						else:
+							release()
+		if e is InputEventMouseButton and e.pressed and !e.double_click and e.button_mask==2:
+			if owner_space && Global.GUI:
+				if owner_space.is_in_group("play_space"):
+					if Global.GUI.move_info:
+						if Global.GUI.move_info.card==self: Global.GUI.close_move_info()
+						else:Global.GUI.create_move_info(self)
+					else:Global.GUI.create_move_info(self)
 
 func _input(e):
-	if e is InputEventMouseButton and !e.pressed:##Release mouse button
-		if dragging: release()
+	if Global.can_drag:
+		if e is InputEventMouseButton and !e.pressed || e is InputEventMouseMotion and e.pressure==0.0:##Release mouse button
+			if dragging: release()
 
 func release():
 	draggable=false
