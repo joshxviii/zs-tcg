@@ -2,7 +2,6 @@ class_name Network extends Node
 
 const PORT = 60084
 var address:="localhost"
-var display_name:="PLAYER"
 
 var peer_data_path = "res://peer_data.tscn"
 
@@ -41,10 +40,10 @@ func playarea_create(id):
 	scene.name=str(id)
 	return scene
 
-@rpc("any_peer","call_remote","reliable")
-func flip_coin() -> int:
-	var result = randi_range(0,1)
-	return result
+#@rpc("any_peer","call_remote","reliable")
+#func flip_coin() -> int:
+	#var result = randi_range(0,1)
+	#return result
 
 #region Setup Connections
 func _ready():

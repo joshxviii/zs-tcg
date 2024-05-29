@@ -1,5 +1,6 @@
 @icon("res://assets/icons/card2D.svg")
 class_name Card2D extends Area2D
+func _get_class(): return "Card2D"
 
 #region Variables
 signal id_changed
@@ -59,9 +60,18 @@ var dragging:=false:
 		Global.dragged_card = self
 		Global.is_dragging = value
 		dragging = value
+var started_interaction = false #When the mouse is first pressed while hovering over card set this to true.
 ##Whether the card is currently been moved or not
 var selected_spaces : Array[CardSpace2D]
-var selected_space : CardSpace2D
+var selected_space : CardSpace2D:
+	set(value):
+		if value:
+			value.selected = true
+			if value.is_in_group("card_hand"):
+				selected_spaces.clear()
+				add_to_hand(value)
+		selected_space=value
+		
 var owner_space : CardSpace2D
 var prev_owner_space : CardSpace2D
 #var targeted_space : CardSpace2D
@@ -114,7 +124,6 @@ func _ready():
 
 func _on_id_changed():
 	load_attributes()
-	
 
 func load_attributes():##Use id number to fill in all the attributes
 	
@@ -134,8 +143,8 @@ func load_attributes():##Use id number to fill in all the attributes
 		
 		profile.texture = Global.image_load("res://assets/textures/cards/profiles/" + str(id) + ".png")
 		border.texture = Global.image_load("res://assets/textures/cards/card_layers/border_" + str(attributes["pack_id"]) + ".png")
-		border_back.texture = Global.image_load("res://assets/textures/cards/card_layers/border_background_" + str(attributes["pack_id"]) + ".png")
-		back_img.texture = Global.image_load("res://assets/textures/cards/card_layers/back_" + str(attributes["pack_id"]) + ".png")
+		border_back.texture = Global.image_load("res://assets/textures/cards/card_layers/border_background_" + "0" + ".png")
+		back_img.texture = Global.image_load("res://assets/textures/cards/card_layers/back_" + "0" + ".png")
 		
 	if attributes.has("move_1"):
 		m1_attributes = Global.DB.retrive_attributes("moves",attributes["move_1"])
@@ -158,10 +167,92 @@ func load_attributes():##Use id number to fill in all the attributes
 #endregion
 
 #region Dragging/Moving Card
-func move_to(pos:Vector2,rot:=0,z_layer:=target_z_layer,wait:=true,time:=.2):
+
+func _process(_delta):
+	if dragging: process_drag()
+
+func _on_input_event(_viewport, e, _shape_idx):
+	if Global.can_drag:
+		#pressed Left Mouse Button
+		if e is InputEventMouseButton and e.button_mask==1 and !e.double_click and e.button_index==1:
+			started_interaction = true
+		#moved Mouse
+		if e is InputEventMouseMotion and e.pressure>=1.0 and e.button_mask==1 and e.velocity.length()>8.0:
+			if !Global.is_dragging && draggable && started_interaction:
+				dragging = true
+				started_interaction = false
+				var tween = get_tree().create_tween()
+				tween.parallel().tween_property(shadow,"position",Vector2(14,23),0.06).set_ease(Tween.EASE_IN)
+				tween.parallel().tween_property(self,"global_position",( Vector2(get_global_mouse_position().x+90, get_global_mouse_position().y)),0.12).set_ease(Tween.EASE_IN)
+				tween.parallel().tween_property(self,"rotation",( 1 ) ,0.12).set_ease(Tween.EASE_IN)
+				#shadow.position=Vector2(14,23)
+				#global_position=( Vector2(get_global_mouse_position().x+90, get_global_mouse_position().y))
+				#rotation=1
+				
+		#realeased Left Mouse Button
+		if e is InputEventMouseButton and e.button_mask==0 and !e.double_click and e.button_index==1:
+			if !Global.is_dragging && draggable && started_interaction:
+				if owner_space:
+					if owner_space.is_in_group("play_space") && Global.GUI:
+						if Global.GUI.move_info:
+							if Global.GUI.move_info.card==self: Global.GUI.close_move_info()
+							else:Global.GUI.create_move_info(self)
+						else:Global.GUI.create_move_info(self)
+					#elif owner_space.is_in_group("card_deck"):
+						#dragging = true
+						#add_to_hand()
+
+		#if e is InputEventMouseButton and e.pressed and !e.double_click and e.button_mask==2:
+			#if owner_space && Global.GUI:
+				#if owner_space.is_in_group("play_space"):
+					#if Global.GUI.move_info:
+						#if Global.GUI.move_info.card==self: Global.GUI.close_move_info()
+						#else:Global.GUI.create_move_info(self)
+					#else:Global.GUI.create_move_info(self)
+			
+func _input(e):
+	if Global.can_drag:
+		if e is InputEventMouseButton and !e.pressed || e is InputEventMouseMotion and e.pressure==0.0:##Release mouse button
+			if dragging: release()
+
+func release():
+	selected_spaces.clear()
+	
+	dragging = false
+	
+	await get_tree().create_timer(0.05).timeout # release buffer
+	
+	started_interaction = false
+	draggable=false
+	
+	var tween = get_tree().create_tween()
+	tween.tween_property(shadow,"position",Vector2(3,2),0.06).set_ease(Tween.EASE_IN)
+	#shadow.position = Vector2(3,2)
+	
+	#if owner_space: owner_space.input_pickable=true
+	if selected_space && selected_space!=owner_space:
+		if selected_space.is_in_group("play_space"): play_on_space(selected_space)
+	elif owner_space: owner_space.card_return(self)
+	else:
+		tween.tween_property(self,"rotation",0,0.3).set_ease(Tween.EASE_IN)
+		#rotation=0
+		
+		await tween.finished
+		draggable=true
+
+
+func _on_facing_changed():
+	if get_parent() != null:
+		if is_facing_down: animator.play("front_to_back")
+		else: animator.play("back_to_front")
+
+func move_to(pos:Vector2,rot:=0,z_layer:=target_z_layer,wait:=true,time:=.15):
 	var tween = create_tween()
-	tween.parallel().tween_property(self,"position",pos,time).set_ease(Tween.EASE_IN)
-	tween.parallel().tween_property(self,"rotation",rot,time).set_ease(Tween.EASE_IN)
+	tween.parallel().tween_property(self,"position",pos,time).set_ease(Tween.EASE_IN_OUT)
+	tween.parallel().tween_property(self,"rotation",rot,time).set_ease(Tween.EASE_IN_OUT)
+	#position=pos
+	#rotation=rot
+	
 	if wait:
 		await tween.finished
 		z_index = z_layer
@@ -169,89 +260,67 @@ func move_to(pos:Vector2,rot:=0,z_layer:=target_z_layer,wait:=true,time:=.2):
 		z_index = z_layer
 		pass
 
-func _on_facing_changed():
-	if get_parent() != null:
-		if is_facing_down: animator.play("front_to_back")
-		else: animator.play("back_to_front")
-
-func _process(_delta):
-	if dragging:
-		z_index = target_z_layer+100
-		var tween = get_tree().create_tween()
-		tween.parallel().tween_property(self,"global_position",( Vector2(get_global_mouse_position().x, get_global_mouse_position().y - offset)),0.12).set_ease(Tween.EASE_IN)
-		tween.parallel().tween_property(self,"rotation",( (get_global_mouse_position().x - position.x)/360 ) ,0.12).set_ease(Tween.EASE_IN)
-		if selected_spaces.size() > 0:
-			selected_space = selected_spaces[0]
-			for space in selected_spaces:
-				space.selected = false
-				if space.position.distance_to(position) < selected_space.position.distance_to(position):
-					selected_space = space
-			selected_space.selected = true
-func _on_input_event(_viewport, e, _shape_idx):
-	if Global.can_drag:
-		if e is InputEventMouseMotion and e.pressure>=1.0 and e.button_mask==1 and e.velocity.length()>10.0:
-			if !Global.is_dragging && draggable:
-				dragging = true
-				var tween = get_tree().create_tween()
-				tween.parallel().tween_property(shadow,"position",Vector2(14,23),0.06).set_ease(Tween.EASE_IN)
-				tween.parallel().tween_property(self,"global_position",( Vector2(get_global_mouse_position().x+90, get_global_mouse_position().y)),0.12).set_ease(Tween.EASE_IN)
-				tween.parallel().tween_property(self,"rotation",( 1 ) ,0.12).set_ease(Tween.EASE_IN)
-		if e is InputEventMouseButton and e.pressed and !e.double_click and e.button_mask==1:
-			if !Global.is_dragging && draggable:
-				if owner_space:
-					if owner_space.is_in_group("card_deck"):
-						dragging = true
-						if Global.PLAYAREA.turn_points>0:
-							if Global.PLAYER_HAND.has_open_space:
-								Global.PLAYER_HAND.add(self)
-								Global.PLAYAREA.turn_points -= 1
-								facing_direction = 0
-							else:
-								Global.GUI.create_float_text(get_global_mouse_position(),"FULL HAND!")
-								release()
-						else:
-							release()
-		if e is InputEventMouseButton and e.pressed and !e.double_click and e.button_mask==2:
-			if owner_space && Global.GUI:
-				if owner_space.is_in_group("play_space"):
-					if Global.GUI.move_info:
-						if Global.GUI.move_info.card==self: Global.GUI.close_move_info()
-						else:Global.GUI.create_move_info(self)
-					else:Global.GUI.create_move_info(self)
-
-func _input(e):
-	if Global.can_drag:
-		if e is InputEventMouseButton and !e.pressed || e is InputEventMouseMotion and e.pressure==0.0:##Release mouse button
-			if dragging: release()
-
-func release():
-	draggable=false
-	dragging = false
+func process_drag():
+	z_index = target_z_layer+100
 	var tween = get_tree().create_tween()
-	tween.tween_property(shadow,"position",Vector2(3,2),0.06).set_ease(Tween.EASE_IN)
-	#shadow.position = Vector2(3,2)
-	#if owner_space: owner_space.input_pickable=true
-	if selected_space && selected_space!=owner_space:
-		selected_space.add(self)
-	elif owner_space:
-		owner_space.card_return(self)
-	else:
-		tween.tween_property(self,"rotation",0,0.3).set_ease(Tween.EASE_IN)
-		await tween.finished
-		draggable=true
+	tween.parallel().tween_property(self,"global_position",( Vector2(get_global_mouse_position().x, get_global_mouse_position().y - offset)),0.12).set_ease(Tween.EASE_IN)
+	tween.parallel().tween_property(self,"rotation",( (get_global_mouse_position().x - position.x)/360 ) ,0.12).set_ease(Tween.EASE_IN)
+	#global_position=get_global_mouse_position()
+	
+	if selected_spaces.size() > 0:
+		var temp = selected_spaces[0]
+		for space in selected_spaces:
+			space.selected = false
+			if space.global_position.distance_to(get_global_mouse_position()) < temp.global_position.distance_to(get_global_mouse_position()):
+				temp = space
+		selected_space=temp
 
-func _on_body_entered(space):
+func _on_body_entered(space): # added spaces to a list of selected spaces
 	if space != owner_space:
-		if space.is_in_group("play_space") && !space.has_open_space && space.cards.size()>0:
-			if space.can_swap && space.cards[0].draggable:
-				selected_spaces.append(space)
-		elif space.is_in_group("card_deck"):
+		if space.is_in_group("card_deck"):
 			if space.can_add_to: selected_spaces.append(space)
-		#elif space.is_in_group("card_hand"): pass
-		elif space.has_open_space: selected_spaces.append(space)
+		elif space.has_open_space:
+			selected_spaces.append(space)
+		elif space.is_in_group("play_space") && space.cards.size()>0:
+			if space.can_swap && space.cards[0].draggable: selected_spaces.append(space)
+		
+		#if space.is_in_group("play_space") && !space.has_open_space && space.cards.size()>0:
+			#if space.can_swap && space.cards[0].draggable:
+				#selected_spaces.append(space)
+		#elif space.is_in_group("card_deck"):
+			#if space.can_add_to: selected_spaces.append(space)
+		##elif space.is_in_group("card_hand"): pass
+		#elif space.is_in_group("card_hand"):
+			#if space selected_spaces.append(space)
+		#elif space.has_open_space:
+			#selected_spaces.append(space)
 
 func _on_body_exited(space):
 	selected_spaces.erase(space)
 	space.selected = false
 	selected_space = null
 #endregion
+
+func play_on_space(space : CardPlaySpace2D):
+	if owner_space.is_in_group("play_space"): space.add(self)
+	elif !space.has_open_space && space.can_swap: space.add(self)
+	elif Global.PLAYAREA.try_take_turn(): space.add(self)
+	elif owner_space: owner_space.card_return(self)
+
+func add_to_hand(hand : CardHand2D) -> bool:
+	if hand.has_open_space:
+		if owner_space.is_in_group("card_deck") and Global.PLAYAREA.try_take_turn():
+			hand.add(self)
+			facing_direction = 0
+			return true
+		elif owner_space.is_in_group("play_space"):
+			Global.PLAYAREA.turn_points+=1
+			hand.add(self)
+			return true
+		else:
+			release()
+			return false
+	else:
+		Global.GUI.create_float_text(get_global_mouse_position(),"FULL HAND!")
+		release()
+		return false

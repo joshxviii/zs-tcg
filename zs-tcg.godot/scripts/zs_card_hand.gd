@@ -1,5 +1,6 @@
 @icon("res://assets/icons/card_hand2D.svg")
 class_name CardHand2D extends CardSpace2D
+func _get_class(): return "CardHand2D"
 
 const SEPERATION_SCALE = 300.0
 
@@ -64,6 +65,7 @@ func _process(_delta):
 		if selected_card:
 			var tween = get_tree().create_tween()
 			tween.tween_property(selected_card,"rotation",( (get_global_mouse_position().x - selected_card.position.x)/-360 ) ,0.12).set_ease(Tween.EASE_IN)
+			#selected_card.rotation=( (get_global_mouse_position().x - selected_card.position.x)/-360 )
 		if hovered && cards.size() > 0:
 			var select_pos = get_global_mouse_position()-Vector2(cards.size()/2.0,0)
 			if !Global.is_dragging:
@@ -73,27 +75,59 @@ func _process(_delta):
 						if card.target_pos.distance_to(select_pos) < test_card.target_pos.distance_to(select_pos):
 							test_card = card
 					selected_card = test_card
-					#selection_changed.emit(selected_card,prev_selected_card)
-					#var tween = get_tree().create_tween()
-					#tween.tween_property(selected_card,"rotation",( (get_global_mouse_position().x - position.x)/360 ) ,0.12).set_ease(Tween.EASE_IN)
-			elif Global.is_dragging:
-				var dragged_card = swap_card
-				swap_card = cards[0]
-				for card in cards:
-					if card.target_pos.distance_to(get_global_mouse_position()) < swap_card.target_pos.distance_to(get_global_mouse_position()):
-						swap_card = card
-				if Global.dragged_card != swap_card:
-					if cards.has(swap_card) && cards.has(Global.dragged_card):
-						cards = swap(swap_card,Global.dragged_card,cards)
-						update_hand()
+					selection_changed.emit(selected_card,prev_selected_card)
+					var tween = get_tree().create_tween()
+					tween.tween_property(selected_card,"rotation",( (get_global_mouse_position().x - position.x)/360 ) ,0.12).set_ease(Tween.EASE_IN)
+		if Global.is_dragging && cards.has(Global.dragged_card):
+			var dragged_card = swap_card
+			swap_card = cards[0]
+			for card in cards:
+				if card.target_pos.distance_to(get_global_mouse_position()) < swap_card.target_pos.distance_to(get_global_mouse_position()):
+					swap_card = card
+			if Global.dragged_card != swap_card:
+				if cards.has(swap_card):
+					
+					insert(Global.dragged_card,swap_card,cards)
+					update_hand()
+						
+						#swap(Global.dragged_card,swap_card,cards)
+						#update_hand()
 
-func swap(c1:Card2D,c2:Card2D,a:Array[Card2D]) -> Array[Card2D]:
+func swap(c1:Card2D,c2:Card2D,a:Array[Card2D]):
 	var i = a.find(c1)
-	a[a.find(c2)] = c1
+	var j = a.find(c2)
 	a[i] = c2
-	return a
+	a[j] = c1
+	
+func insert(c1:Card2D,c2:Card2D,a:Array[Card2D]):
+	var i = a.find(c1)
+	var j = a.find(c2)
+	a.remove_at(i)
+	a.insert(j,c1)
+	
+	#if get_global_mouse_position().x-c2.position.x>0:
+		#a.remove_at(i)
+		#a.insert(j,c1)
+	#else:
+		#a.remove_at(i)
+		#a.insert(j,c1)
+
 	
 	
+
+	
+
+	
+	pass
+	#var i = a.find(c1)
+	#var j = a.find(c2)
+	#
+	#if j==a.size()-1:
+		#a.append(c1)
+	#else:
+		#a.insert(j,c1)
+	#a.remove_at(i)
+
 	
 func _on_mouse_entered():
 	hovered=true
@@ -103,9 +137,10 @@ func _on_mouse_exited():
 		selected_card=null
 
 
-func _on_selection_changed(current, previous):
-	print(current)
-	print(previous)
+func _on_selection_changed(_current, _previous):
+	#print(current)
+	#print(previous)
+	pass
 
 
 func _on_card_returned(card):

@@ -1,5 +1,6 @@
 @icon("res://assets/icons/card_play_space2D.svg")
 class_name CardPlaySpace2D extends CardSpace2D
+func _get_class(): return "CardPlaySpace2D"
 
 const target_arrow_path = preload("res://objects/ui/target_arrow.tscn")
 const target_selector_path = preload("res://objects/ui/target_point.tscn")
@@ -64,7 +65,6 @@ func _on_card_added(card):
 func _on_card_removed(_card):
 	target_mode = -1
 	refresh_target_selectors()
-	Global.PLAYAREA.turn_points += 1
 	if cards.size()<=0: locked=false
 	pass # Replace with function body.
 
@@ -104,7 +104,7 @@ func update_target_arrows():
 		target_arrow.add_point(Vector2(0.0,0.0),0)
 		target_arrow.add_point(space.global_position-global_position,1)
 
-func _on_target_getter_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
+func _on_target_getter_body_shape_entered(_body_rid, body, _body_shape_index, local_shape_index):
 	match local_shape_index:
 		0: #get default target
 			if target_mode == Global.FOE || target_mode == Global.FOE_ALL || target_mode == Global.ALL:
@@ -138,7 +138,7 @@ func _on_target_getter_body_shape_entered(body_rid, body, body_shape_index, loca
 					pass 
 	pass
 
-func _on_target_mode_changed(mode):
+func _on_target_mode_changed(_mode):
 	if target_mode == Global.FOE || target_mode == Global.FOE_ALL || target_mode == Global.ALL:
 		targets.append(default_target)
 	else:
@@ -172,9 +172,12 @@ func _on_mouse_exited(_shape_idx:int):
 func highlight_arrows(b:bool):
 	if b:
 		for i in target_arrows_box.get_children():
-			var tween = create_tween()
-			tween.tween_property(i,"modulate",Color(i.modulate,0.8),.3)
+			#var tween = create_tween()
+			#tween.tween_property(i,"modulate",Color(i.modulate,0.8),.3)
+			i.modulate=Color(i.modulate,0.8)
+			
 	else:
 		for i in target_arrows_box.get_children():
-			var tween = create_tween()
-			tween.tween_property(i,"modulate",Color(i.modulate,i.ALPHA),.3)
+			#var tween = create_tween()
+			#tween.tween_property(i,"modulate",Color(i.modulate,i.ALPHA),.3)
+			i.modulate=Color(i.modulate,i.ALPHA)

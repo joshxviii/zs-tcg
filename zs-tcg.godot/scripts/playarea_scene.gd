@@ -1,4 +1,4 @@
-extends Node2D
+class_name PlayArea extends Node2D
 
 var card_path = "res://objects/zs_card.tscn"
 var op_cards : Dictionary = {}
@@ -6,21 +6,26 @@ var op_cards : Dictionary = {}
 @onready var opponenent_pos = $opponenet_hand.position
 
 const PLAYERHEALTH := 100.0
-const TURN_TIME := 600.0
-const ENDTURN_TIME := 2.0
+const TURN_TIME := 300.0
+const ENDTURN_TIME := 1.0
 const TURN_POINTS := 3
 
-var user_health := PLAYERHEALTH
-var opponent_health := PLAYERHEALTH
 var turn_points := TURN_POINTS:
 	set(value):
 		turn_points = value
+		var temp = turn_points
+		for i in $status/turn_indicator/hbox.get_children().size():
+			if temp>0: $status/turn_indicator/hbox.get_child(i).visible = true
+			else: $status/turn_indicator/hbox.get_child(i).visible = false
+			temp-=1
+			
 		$status/turn_points.text = str(turn_points)
-		if turn_points == 0: Global.GUI.create_float_text(get_global_mouse_position(),"OUT OF MOVES!")
+		
+		
+		if turn_points < 0: turn_points = 0
 		#if turn_points <= 0: Global.can_drag = false
 	get:
 		return turn_points
-
 enum {
 	USER_TURN,
 	OPPONENT_TURN
@@ -54,38 +59,37 @@ func update_game_state():
 	state_tween = create_tween()
 	match game_state:
 		WAITING:
+			Global.GUI.create_screen_text("WAITING...")
 			print("wait")
 			pass
 		STARTING:
+			Global.GUI.create_screen_text("STARTING!",1.0)
 			print("start")
-
 			await get_tree().create_timer(1.0).timeout
-			
 			Global.PLAYER_DECK.auto_add_to_hand(3)
-			
-			if gamemode==SINGLEPLAYER:
-				current_turn=USER_TURN#TODO remove
-				#current_turn = randi_range(USER_TURN,OPPONENT_TURN)
-				if current_turn==USER_TURN:
-					game_state=USER_PLAYING
-				elif current_turn==OPPONENT_TURN:
-					game_state=OPPONENT_PLAYING
-			elif Global.NETWORK.connection_type == Network.HOST:
-				current_turn = Global.NETWORK.flip_coin()
-				if current_turn==USER_TURN:
-					Global.NETWORK.USER.rpc("switch_game_state",USER_PLAYING)
-				elif current_turn==OPPONENT_TURN:
-					Global.NETWORK.OPPONENT.rpc("switch_game_state",USER_PLAYING)
-			pass
-		USER_ATTACKING:
-			print("user attack")
-			if gamemode==MULTIPLAYER:
-				Global.NETWORK.OPPONENT.rpc("switch_game_state",OPPONENT_ATTACKING)
-			await get_tree().create_timer(1).timeout
-			game_state = USER_PLAYING
+			match gamemode:
+				SINGLEPLAYER:
+					current_turn=flip_coin()
+					await Global.GUI.create_coin_flip(current_turn).finish_flip
+					
+					if current_turn==USER_TURN:
+						game_state=USER_PLAYING
+					elif current_turn==OPPONENT_TURN:
+						game_state=OPPONENT_PLAYING
+				MULTIPLAYER:
+					if Global.NETWORK.connection_type == Network.HOST:
+						current_turn = flip_coin()
+						await Global.GUI.create_coin_flip(current_turn).finish_flip
+						
+						if current_turn==USER_TURN:
+							Global.NETWORK.USER.rpc("switch_game_state",USER_PLAYING)
+						elif current_turn==OPPONENT_TURN:
+							Global.NETWORK.OPPONENT.rpc("switch_game_state",USER_PLAYING)
+					else: Global.GUI.create_coin_flip(!current_turn)
 			pass
 		USER_PLAYING:
-			print("user play")
+			Global.GUI.create_screen_text(Global.USERDATA.display_name + "'S TURN!",1.5)
+			print("user playing")
 			if gamemode==MULTIPLAYER:
 				Global.NETWORK.OPPONENT.rpc("switch_game_state",OPPONENT_PLAYING)
 			Global.can_drag = true
@@ -93,41 +97,72 @@ func update_game_state():
 			$status/vbox/end_turn.disabled=false
 			state_tween.tween_property($status/vbox/timer,"value",0,TURN_TIME)
 			await state_tween.finished
+			end_turn()
+			pass
+		USER_ATTACKING:
+			print("user attacking")
+			if gamemode==MULTIPLAYER:
+				Global.NETWORK.OPPONENT.rpc("switch_game_state",OPPONENT_ATTACKING)
+			await get_tree().create_timer(1).timeout
 			game_state = USER_ENDTURN
 			pass
 		USER_ENDTURN:
-			print("end turn")
+			print("user end turn")
 			if gamemode==MULTIPLAYER:
 				Global.NETWORK.OPPONENT.rpc("switch_game_state",OPPONENT_ENDTURN)
-			Global.can_drag = false
-			Global.BOARD.lock_spaces()
-			Global.GUI.close_move_info()
-			if Global.is_dragging: Global.dragged_card.release()
-			$status/vbox/end_turn.disabled=true
-			$status/vbox/timer.value = 100.0
 			await get_tree().create_timer(ENDTURN_TIME).timeout
 			if turn_points<TURN_POINTS: turn_points+=1
-			if gamemode==MULTIPLAYER:
-				Global.NETWORK.OPPONENT.rpc("switch_game_state",USER_ATTACKING)
+			match gamemode:
+				SINGLEPLAYER:game_state = OPPONENT_PLAYING
+				MULTIPLAYER:Global.NETWORK.OPPONENT.rpc("switch_game_state",USER_PLAYING)
+		OPPONENT_PLAYING:
+			Global.GUI.create_screen_text("OPPONENT'S TURN!",1.5)
+			print("opponent playing")
+			match gamemode:
+				SINGLEPLAYER:
+					await get_tree().create_timer(1).timeout
+					game_state = OPPONENT_ATTACKING
+				MULTIPLAYER:pass
+			pass
 		OPPONENT_ATTACKING:
 			print("opponent attacking")
-			pass
-		OPPONENT_PLAYING:
-			print("opponent playing")
+			match gamemode:
+				SINGLEPLAYER:
+					await get_tree().create_timer(1).timeout
+					game_state = OPPONENT_ENDTURN
+				MULTIPLAYER:pass
 			pass
 		OPPONENT_ENDTURN:
 			print("opponent end turn")
 			Global.BOARD.flip_opponent_cards()
+			match gamemode:
+				SINGLEPLAYER:
+					await get_tree().create_timer(1).timeout
+					game_state = USER_PLAYING
+				MULTIPLAYER:pass
 			pass
 		ENDING:
+			print("end")
 			pass
+
 func _on_end_turn_pressed():
-	game_state = USER_ENDTURN
+	end_turn()
 	
 func _ready():
 	Global.can_drag = false
-	if gamemode==SINGLEPLAYER: game_state=STARTING
-	else: game_state=WAITING
+	if gamemode==SINGLEPLAYER:
+		game_state=STARTING
+	elif Global.NETWORK:
+		game_state=WAITING
+
+func end_turn():
+	Global.can_drag = false
+	Global.BOARD.lock_spaces()
+	Global.GUI.close_move_info()
+	if Global.is_dragging: Global.dragged_card.release()
+	$status/vbox/end_turn.disabled=true
+	$status/vbox/timer.value = 100.0
+	game_state = USER_ATTACKING
 
 ##Add or remove new cards onto the board as opponent moves
 func update_opponent_cards(move_data:Dictionary):
@@ -145,20 +180,22 @@ func update_opponent_cards(move_data:Dictionary):
 			new_card.facing_direction=1
 			add_child(new_card)
 			op_cards[card_inst] = new_card
+			Global.BOARD.op_spaces[space_index-1].add(new_card)
 			
-			match space_index:
-				1:
-					Global.BOARD.space_1.add(new_card)
-				2:
-					Global.BOARD.space_2.add(new_card)
-				3:
-					Global.BOARD.space_3.add(new_card)
-				4:
-					Global.BOARD.space_4.add(new_card)
-				5:
-					Global.BOARD.space_5.add(new_card)
-				_:
-					pass
+			
+			#match space_index:
+				#1:
+					#Global.BOARD.space_1.add(new_card)
+				#2:
+					#Global.BOARD.space_2.add(new_card)
+				#3:
+					#Global.BOARD.space_3.add(new_card)
+				#4:
+					#Global.BOARD.space_4.add(new_card)
+				#5:
+					#Global.BOARD.space_5.add(new_card)
+				#_:
+					#pass
 			#new_card.move_to
 	else:
 		if op_cards.has(card_inst):
@@ -168,15 +205,29 @@ func update_opponent_cards(move_data:Dictionary):
 
 	#space.add(new_card)
 
-func damage_user(damage:float):
-	user_health -= damage
-	$status/opponent_health.text = str(user_health)
-	pass
-func damage_opponent(damage:float):
-	opponent_health -= damage
-	$status/user_health.text = str(opponent_health)
-	pass
+
+func retrieve_board_state():
+	var board : Board = Global.BOARD
 	
 
 
+func damage_user(_damage:float):
+	#p1.health -= damage
+	#$status/opponent_health.text = str(p1.health)
+	pass
+func damage_opponent(_damage:float):
+	#p2.health -= damage
+	#$status/user_health.text = str(p2.health)
+	pass
+	
+func flip_coin() -> int:
+	var result = randi_range(0,1)
+	return result
 
+func try_take_turn() -> bool:
+	if turn_points > 0:
+		turn_points-=1
+		return true
+	else:
+		Global.GUI.create_float_text(get_global_mouse_position(),"OUT OF MOVES!")
+		return false

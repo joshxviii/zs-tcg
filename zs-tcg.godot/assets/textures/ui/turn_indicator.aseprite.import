@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://c2rtsjakkxms5"
+path="res://.godot/imported/turn_indicator.aseprite-e474705ad35e7ffb25e43707613e6154.res"
+
+[deps]
+
+source_file="res://assets/textures/ui/turn_indicator.aseprite"
+dest_files=["res://.godot/imported/turn_indicator.aseprite-e474705ad35e7ffb25e43707613e6154.res"]
+
+[params]
+

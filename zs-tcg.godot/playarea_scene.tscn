@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cpp0ggfrq60rh"]
+[gd_scene load_steps=14 format=3 uid="uid://cpp0ggfrq60rh"]
 
 [ext_resource type="Script" path="res://scripts/playarea_scene.gd" id="1_50slw"]
 [ext_resource type="PackedScene" uid="uid://f7waxa37afm5" path="res://objects/ui/gui.tscn" id="1_p8jrk"]
@@ -11,6 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://pogu7wgnj60w" path="res://objects/zs_card_deck.tscn" id="7_tl6p3"]
 [ext_resource type="PackedScene" uid="uid://beliecqhfu21d" path="res://objects/zs_card_hand.tscn" id="8_vl5x2"]
 [ext_resource type="PackedScene" uid="uid://dln4gn1dgacmu" path="res://objects/board.tscn" id="9_1ppyr"]
+[ext_resource type="Texture2D" uid="uid://c77ia7nv7qkqq" path="res://assets/textures/ui/turn_indicator.png" id="12_5ouo0"]
+[ext_resource type="Texture2D" uid="uid://dr8ilua1qrnrj" path="res://assets/textures/ui/indicator_light.png" id="13_o0c6f"]
 
 [node name="playarea" type="Node2D"]
 script = ExtResource("1_50slw")
@@ -47,11 +49,10 @@ input_pickable = false
 
 [node name="zs_card_deck" parent="." instance=ExtResource("7_tl6p3")]
 position = Vector2(720, 368)
-randomized = true
 MAX_CARDS = 5
 
 [node name="zs_card_hand" parent="." instance=ExtResource("8_vl5x2")]
-position = Vector2(384, 416)
+position = Vector2(384, 408)
 
 [node name="platform" parent="." instance=ExtResource("9_1ppyr")]
 position = Vector2(384, 184)
@@ -124,11 +125,41 @@ layout_mode = 2
 disabled = true
 text = "END"
 
-[node name="turn_points" type="Label" parent="status"]
+[node name="turn_indicator" type="TextureRect" parent="status"]
 layout_mode = 0
-offset_left = 640.0
+offset_left = 568.0
+offset_top = 338.0
+offset_right = 588.0
+offset_bottom = 345.0
+scale = Vector2(4, 4)
+texture = ExtResource("12_5ouo0")
+
+[node name="hbox" type="HBoxContainer" parent="status/turn_indicator"]
+layout_mode = 0
+offset_left = 2.75
+offset_top = 1.0
+offset_right = 16.75
+offset_bottom = 5.0
+theme_override_constants/separation = 1
+
+[node name="indicator_light1" type="TextureRect" parent="status/turn_indicator/hbox"]
+layout_mode = 2
+texture = ExtResource("13_o0c6f")
+
+[node name="indicator_light2" type="TextureRect" parent="status/turn_indicator/hbox"]
+layout_mode = 2
+texture = ExtResource("13_o0c6f")
+
+[node name="indicator_light3" type="TextureRect" parent="status/turn_indicator/hbox"]
+layout_mode = 2
+texture = ExtResource("13_o0c6f")
+
+[node name="turn_points" type="Label" parent="status"]
+visible = false
+layout_mode = 0
+offset_left = 636.0
 offset_top = 336.0
-offset_right = 650.0
+offset_right = 646.0
 offset_bottom = 362.0
 text = "3"
 horizontal_alignment = 1

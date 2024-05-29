@@ -2,9 +2,8 @@ extends Control
 
 var color : Color = Color.WHITE
 var text : String = "HELLO"
-var time := 0.5
 
-func start():
+func start(time:=0.5):
 	$text.text = text
 	modulate = color
 	var tween = create_tween()

@@ -7,6 +7,7 @@ func _ready():
 	var tween = create_tween()
 	tween.tween_property($fader,"color",Color($fader.color,0),1.0).set_ease(Tween.EASE_IN_OUT)
 	$main_menu/version.text = Global.VERSION
+	$mutliplayer/multiplayer_menu/menu/hbox/display_name.text = Global.USERDATA.display_name
 
 func _on_singleplayer_pressed():
 	var scene = load("res://playarea_scene.tscn").instantiate()
@@ -54,7 +55,7 @@ func _on_options_back_pressed():
 func _on_exit_pressed():
 	get_tree().quit()
 
-var display_name = ""
+var display_name = Global.USERDATA.display_name
 func _on_display_name_text_changed(new_text):
 	display_name = new_text
 var online_address := ""
@@ -63,11 +64,13 @@ func _on_online_address_changed(new_text):
 func _on_online_join_pressed():
 	if online_address!="": Network.new().join(online_address)
 	else: Network.new().join()
-	if display_name!="": Global.NETWORK.display_name = display_name
+	if display_name!="": Global.USERDATA.display_name = display_name
+	Global.save_userdata()
 
 func _on_online_host_pressed():
 	Network.new().host()
-	if display_name!="": Global.NETWORK.display_name = display_name
+	if display_name!="": Global.USERDATA.display_name = display_name
+	Global.save_userdata()
 
 
 

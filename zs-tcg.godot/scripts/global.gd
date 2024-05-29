@@ -3,6 +3,8 @@ extends Node
 var VERSION = ProjectSettings.get_setting_with_override("application/config/version")
 var NULLIMAGE = ResourceLoader.load("res://assets/textures/missing.png")
 
+var userdata_path = "user://userdata.save"
+
 #region Variables
 
 #region Constants
@@ -47,16 +49,44 @@ enum {
 }
 #endregion
 
-var SaveData : Dictionary = {"display_name":"PLAYER","user_deck":[]}
 
-var BOARD
+
+var SaveData : Dictionary = {"display_name":"PLAYER","user_deck":[]}#TODO add save data
+var USERDATA := Player.new()
+
+func _init() -> void:
+	load_userdata()
+
+func load_userdata():
+	if FileAccess.file_exists(userdata_path):
+		print("loading userdata")
+		var file = FileAccess.open(userdata_path, FileAccess.READ)
+		var data = file.get_var(true)
+		USERDATA.display_name = data["display_name"]
+		USERDATA.deck = data["deck"]
+		file.close()
+	else:
+		print("file not found, creating user data")
+		save_userdata()
+
+func save_userdata():
+	print("saving userdata")
+	var file = FileAccess.open(userdata_path, FileAccess.WRITE)
+	var data := {"display_name":USERDATA.display_name,"deck":USERDATA.deck}
+	file.store_var(data, true)
+	file.close()
+
+func _exit_tree() -> void:
+	save_userdata()
+
+var BOARD : Board
 var CURSOR = Cursor.new()
 var PLAYER_HAND : CardHand2D
 var PLAYER_DECK : CardDeck2D
-var PLAYAREA
+var PLAYAREA : PlayArea
 var MAINMENU
 var DEBUG_WINDOW
-var NETWORK
+var NETWORK : Network
 var GUI 
 var DB := DataBaseHandler.new()
 
@@ -68,7 +98,7 @@ var is_dragging := false:
 		is_dragging=value
 var dragged_card : Card2D
 
-#endregion	
+#endregion
 
 func return_to_title():
 	stop_wait()

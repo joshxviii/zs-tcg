@@ -3,6 +3,9 @@ extends CanvasLayer
 const move_info_path = preload("res://objects/ui/move_info.tscn")
 const focus_out_path = preload("res://objects/ui/focus_out.tscn")
 const float_text_path = preload("res://objects/ui/float_text.tscn")
+const screen_text_path = preload("res://objects/ui/screen_text.tscn")
+const coin_flip_path = preload("res://objects/ui/coin_flip.tscn")
+
 
 var ui_focused:=false
 
@@ -31,6 +34,18 @@ func create_float_text(pos:Vector2,text:String,color:=Color.WHITE):
 	float_text.color = color
 	float_text.start()
 	
+func create_screen_text(text:String,time:=2.0,color:=Color.WHITE):
+	var screen_text = screen_text_path.instantiate()
+	add_child(screen_text)
+	screen_text.text = text
+	screen_text.color = color
+	screen_text.start(time)
+
+func create_coin_flip(outcome:int):
+	var coin = coin_flip_path.instantiate()
+	add_child(coin)
+	coin.start(outcome)
+	return coin
 
 func create_focus_out(parent=self) -> Control:
 	focus_out = focus_out_path.instantiate()

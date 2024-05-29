@@ -13,7 +13,7 @@ script = ExtResource("1_qcf5u")
 can_add_to = false
 straight_to_hand = false
 randomized = false
-deck = Array[int]([])
+deck = []
 MAX_CARDS = 3
 
 [node name="shape" parent="." index="0"]

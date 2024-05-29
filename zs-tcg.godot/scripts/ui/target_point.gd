@@ -10,6 +10,9 @@ func _ready():
 	modulate = Color(1,1,1,0)
 	var tween = create_tween()
 	tween.tween_property(self,"modulate",Color(1,1,1,1),.1)
+	
+	
+	
 
 func _on_texture_button_toggled(button_pressed):
 	if button_pressed:

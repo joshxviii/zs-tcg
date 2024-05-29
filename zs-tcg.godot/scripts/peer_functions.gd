@@ -8,7 +8,7 @@ var op_id=0
 	set(value):
 		if value!=move:
 			move=value
-			#print(DISPLAY_NAME + ": " + str(move["card_id"]) + " - " + str(move["space_index"]) )
+			print(DISPLAY_NAME + ": I" + str(move["card_id"]) + ", S" + str(move["space_index"]) +", A" + str(move["added"]) )
 
 func _enter_tree():
 	set_multiplayer_authority(name.to_int())
@@ -17,7 +17,7 @@ func _ready():
 	if is_multiplayer_authority():
 		Global.BOARD.board_changed.connect(on_board_changed)
 		USERBOARD=Global.PLAYAREA
-		DISPLAY_NAME = Global.NETWORK.display_name
+		DISPLAY_NAME = Global.USERDATA.display_name
 		$multiplayer_ui/you.text = DISPLAY_NAME
 		Global.PLAYAREA.visible=true
 		Global.NETWORK.timeout_timer.stop()
@@ -29,13 +29,14 @@ func _ready():
 			rpc("start_game")
 	elif !is_multiplayer_authority():
 		Global.NETWORK.OPPONENT = self
+		DISPLAY_NAME = Global.USERDATA.display_name
 		op_id = name.to_int()
 		$multiplayer_ui/you.position = Vector2(0,0)
 		pass
 	
 
 @rpc("any_peer","call_remote","reliable")
-func send_move_data(id,move_data):
+func send_move_data(_id,move_data):
 	if !is_multiplayer_authority():
 		Global.PLAYAREA.update_opponent_cards(move_data)
 
