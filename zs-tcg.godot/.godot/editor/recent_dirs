@@ -1,15 +1,15 @@
 E:/GameDev Projects/ZSTCG Project/zs-tcg.godot/exports
+res://assets/textures/ui
+res://scripts/ui
+res://assets/fonts
 res://assets/textures/ui/target_selector
 res://objects
-res://scripts/ui
 res://assets/textures/cards
 res://assets/themes
 res://
-res://assets/textures/ui
 res://assets/textures/backgrounds
 res://scripts
 res://assets/textures/particles
-res://assets/fonts
 res://assets/models
 res://assets/shaders
 res://objects/ui/button_groups
