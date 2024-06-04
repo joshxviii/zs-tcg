@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://ka73xd436oku"
+path="res://.godot/imported/kiblast.aseprite-abd05d846a8dc6f72c7257160b258656.res"
+
+[deps]
+
+source_file="res://assets/textures/particles/kiblast.aseprite"
+dest_files=["res://.godot/imported/kiblast.aseprite-abd05d846a8dc6f72c7257160b258656.res"]
+
+[params]
+

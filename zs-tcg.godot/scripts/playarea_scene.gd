@@ -1,14 +1,17 @@
 class_name PlayArea extends Node2D
 
 var card_path = "res://objects/zs_card.tscn"
-var op_cards : Dictionary = {}
+var all_cards : Dictionary = {}
 
 @onready var opponenent_pos = $opponenet_hand.position
+@onready var turn_time_text = $status/vbox/timer/time
 
 const PLAYERHEALTH := 100.0
-const TURN_TIME := 300.0
+const TURN_TIME := 30.0 # turn time in seconds
+var turn_timer := SecondTimer.new()
 const ENDTURN_TIME := 1.0
 const TURN_POINTS := 3
+
 
 var turn_points := TURN_POINTS:
 	set(value):
@@ -41,27 +44,26 @@ var gamemode:=-1
 enum {
 	WAITING,
 	STARTING,
+	USER_START,
+	OPPONENT_START,
 	USER_PLAYING,
-	USER_ENDTURN,
 	USER_ATTACKING,
+	USER_ENDTURN,
 	OPPONENT_PLAYING,
-	OPPONENT_ENDTURN,
 	OPPONENT_ATTACKING,
+	OPPONENT_ENDTURN,
 	ENDING
 }
-var state_tween
+
 var game_state:
 	set(value):
 		game_state = value
 		update_game_state()
-func update_game_state():
-	if state_tween: state_tween.kill()
-	state_tween = create_tween()
+func update_game_state(): #state machine for game state changes
 	match game_state:
 		WAITING:
 			Global.GUI.create_screen_text("WAITING...")
 			print("wait")
-			pass
 		STARTING:
 			Global.GUI.create_screen_text("STARTING!",1.0)
 			print("start")
@@ -70,146 +72,145 @@ func update_game_state():
 			match gamemode:
 				SINGLEPLAYER:
 					current_turn=flip_coin()
-					await Global.GUI.create_coin_flip(current_turn).finish_flip
-					
 					if current_turn==USER_TURN:
-						game_state=USER_PLAYING
+						game_state=USER_START
 					elif current_turn==OPPONENT_TURN:
-						game_state=OPPONENT_PLAYING
+						game_state=OPPONENT_START
 				MULTIPLAYER:
 					if Global.NETWORK.connection_type == Network.HOST:
 						current_turn = flip_coin()
-						await Global.GUI.create_coin_flip(current_turn).finish_flip
-						
-						if current_turn==USER_TURN:
-							Global.NETWORK.USER.rpc("switch_game_state",USER_PLAYING)
-						elif current_turn==OPPONENT_TURN:
-							Global.NETWORK.OPPONENT.rpc("switch_game_state",USER_PLAYING)
-					else: Global.GUI.create_coin_flip(!current_turn)
-			pass
+						if current_turn==USER_TURN:switch_state(USER_START)
+						elif current_turn==OPPONENT_TURN:Global.NETWORK.OPPONENT.rpc("switch_game_state",USER_START)
+		
+		USER_START:
+			if gamemode==MULTIPLAYER:Global.NETWORK.OPPONENT.rpc("switch_game_state",OPPONENT_START)
+			await Global.GUI.create_coin_flip(USER_TURN).finish_flip
+			switch_state(USER_PLAYING)
 		USER_PLAYING:
+			if gamemode==MULTIPLAYER: Global.NETWORK.OPPONENT.rpc("switch_game_state",OPPONENT_PLAYING)
 			Global.GUI.create_screen_text(Global.USERDATA.display_name + "'S TURN!",1.5)
 			print("user playing")
-			if gamemode==MULTIPLAYER:
-				Global.NETWORK.OPPONENT.rpc("switch_game_state",OPPONENT_PLAYING)
 			Global.can_drag = true
 			$status.mouse_filter = 2
 			$status/vbox/end_turn.disabled=false
-			state_tween.tween_property($status/vbox/timer,"value",0,TURN_TIME)
-			await state_tween.finished
+			
+			turn_timer.start(TURN_TIME)
+			#var tween = create_tween()
+			#tween.tween_property($status/vbox/timer,"value",0,TURN_TIME)
+			await turn_timer.timeout
 			end_turn()
-			pass
 		USER_ATTACKING:
+			if gamemode==MULTIPLAYER:Global.NETWORK.OPPONENT.rpc("switch_game_state",OPPONENT_ATTACKING)
 			print("user attacking")
-			if gamemode==MULTIPLAYER:
-				Global.NETWORK.OPPONENT.rpc("switch_game_state",OPPONENT_ATTACKING)
-			await get_tree().create_timer(1).timeout
-			game_state = USER_ENDTURN
-			pass
+			
+			await Global.BOARD.user_attack()
+
+			switch_state(USER_ENDTURN)
 		USER_ENDTURN:
+			if gamemode==MULTIPLAYER:Global.NETWORK.OPPONENT.rpc("switch_game_state",OPPONENT_ENDTURN)
 			print("user end turn")
-			if gamemode==MULTIPLAYER:
-				Global.NETWORK.OPPONENT.rpc("switch_game_state",OPPONENT_ENDTURN)
 			await get_tree().create_timer(ENDTURN_TIME).timeout
 			if turn_points<TURN_POINTS: turn_points+=1
 			match gamemode:
-				SINGLEPLAYER:game_state = OPPONENT_PLAYING
+				SINGLEPLAYER:switch_state(OPPONENT_PLAYING)
 				MULTIPLAYER:Global.NETWORK.OPPONENT.rpc("switch_game_state",USER_PLAYING)
+		
+		OPPONENT_START:
+			await Global.GUI.create_coin_flip(OPPONENT_TURN).finish_flip
+			match gamemode:
+				SINGLEPLAYER:switch_state(OPPONENT_PLAYING)
+				MULTIPLAYER:pass
 		OPPONENT_PLAYING:
 			Global.GUI.create_screen_text("OPPONENT'S TURN!",1.5)
 			print("opponent playing")
 			match gamemode:
 				SINGLEPLAYER:
 					await get_tree().create_timer(1).timeout
-					game_state = OPPONENT_ATTACKING
+					switch_state(OPPONENT_ATTACKING)
 				MULTIPLAYER:pass
-			pass
 		OPPONENT_ATTACKING:
 			print("opponent attacking")
 			match gamemode:
 				SINGLEPLAYER:
 					await get_tree().create_timer(1).timeout
-					game_state = OPPONENT_ENDTURN
+					switch_state(OPPONENT_ENDTURN)
 				MULTIPLAYER:pass
-			pass
 		OPPONENT_ENDTURN:
 			print("opponent end turn")
-			Global.BOARD.flip_opponent_cards()
 			match gamemode:
 				SINGLEPLAYER:
 					await get_tree().create_timer(1).timeout
-					game_state = USER_PLAYING
+					switch_state(USER_PLAYING)
 				MULTIPLAYER:pass
-			pass
+		
 		ENDING:
 			print("end")
-			pass
+func switch_state(state:int):
+	game_state=state
 
 func _on_end_turn_pressed():
 	end_turn()
-	
-func _ready():
-	Global.can_drag = false
-	if gamemode==SINGLEPLAYER:
-		game_state=STARTING
-	elif Global.NETWORK:
-		game_state=WAITING
 
 func end_turn():
+	turn_timer.stop()
 	Global.can_drag = false
 	Global.BOARD.lock_spaces()
 	Global.GUI.close_move_info()
 	if Global.is_dragging: Global.dragged_card.release()
 	$status/vbox/end_turn.disabled=true
 	$status/vbox/timer.value = 100.0
-	game_state = USER_ATTACKING
+	match gamemode:
+		SINGLEPLAYER:pass
+		MULTIPLAYER:Global.NETWORK.OPPONENT.rpc("filp_cards")
+	await get_tree().create_timer(1).timeout
+	switch_state(USER_ATTACKING)
+
+func _ready():
+	Global.can_drag = false
+	turn_timer.connect("time_changed",update_turn_time)
+	
+	match gamemode:
+		SINGLEPLAYER:
+			game_state=STARTING
+			turn_timer.process_mode=Node.PROCESS_MODE_PAUSABLE
+		MULTIPLAYER:
+			game_state=WAITING
+			turn_timer.process_mode=Node.PROCESS_MODE_ALWAYS
 
 ##Add or remove new cards onto the board as opponent moves
 func update_opponent_cards(move_data:Dictionary):
-	var is_added = move_data["added"]
+	var event = move_data["event"]
 	var card_id = move_data["card_id"]
 	var space_index = move_data["space_index"]
 	var card_inst = move_data["card_inst"]
 	
-	if is_added:
-		if !op_cards.has(card_inst):#ife move data has a instance id
-			var new_card : Card2D = load(card_path).instantiate()
-			new_card.id = card_id
-			new_card.draggable=false
-			new_card.position = opponenent_pos
-			new_card.facing_direction=1
-			add_child(new_card)
-			op_cards[card_inst] = new_card
-			Global.BOARD.op_spaces[space_index-1].add(new_card)
-			
-			
-			#match space_index:
-				#1:
-					#Global.BOARD.space_1.add(new_card)
-				#2:
-					#Global.BOARD.space_2.add(new_card)
-				#3:
-					#Global.BOARD.space_3.add(new_card)
-				#4:
-					#Global.BOARD.space_4.add(new_card)
-				#5:
-					#Global.BOARD.space_5.add(new_card)
-				#_:
-					#pass
-			#new_card.move_to
-	else:
-		if op_cards.has(card_inst):
-			op_cards[card_inst].owner_space.remove(op_cards[card_inst])
-			op_cards[card_inst].queue_free()
-			op_cards.erase(card_inst)
-
-	#space.add(new_card)
-
+	match event:
+		CardSpace2D.ADDED:
+			if !all_cards.has(card_inst):#if move data has a instance id
+				var new_card : Card2D = load(card_path).instantiate()
+				new_card.id = card_id
+				new_card.inst_id = card_inst
+				new_card.draggable=false
+				new_card.position = opponenent_pos
+				new_card.facing_direction=1
+				add_child(new_card)
+				all_cards[card_inst] = new_card
+				Global.BOARD.op_spaces[space_index-1].add(new_card)
+		CardSpace2D.REMOVED:
+			if all_cards.has(card_inst):
+				all_cards[card_inst].owner_space.remove(all_cards[card_inst])
+				all_cards[card_inst].move_to(opponenent_pos,0)
+				all_cards.erase(all_cards[card_inst].inst_id)
+		CardSpace2D.KILLED:
+			pass
 
 func retrieve_board_state():
-	var board : Board = Global.BOARD
-	
+	var _board : Board = Global.BOARD
 
+func update_turn_time():
+	turn_time_text.text = (str(int(turn_timer.time_left/60)) + ":" + str(int(turn_timer.time_left/10)%6) + str(int(turn_timer.time_left)%10))
+	if (turn_timer.time_left < 6.0):
+		Global.GUI.create_screen_text(str(floor(turn_timer.time_left)),0.9,Color.TOMATO)
 
 func damage_user(_damage:float):
 	#p1.health -= damage

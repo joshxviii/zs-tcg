@@ -34,6 +34,8 @@ func _ready():
 	pass
 
 func _on_card_added(card):
+	Global.PLAYAREA.all_cards[card.inst_id] = card
+	
 	if cards.size()>MAX_CARDS:
 		if can_swap:
 			if cards[0].draggable: swap()
@@ -62,7 +64,9 @@ func _on_card_added(card):
 	refresh_target_selectors()
 	highlight_arrows(true)
 
-func _on_card_removed(_card):
+func _on_card_removed(card):
+	Global.PLAYAREA.all_cards.erase(card.inst_id)
+	
 	target_mode = -1
 	refresh_target_selectors()
 	if cards.size()<=0: locked=false

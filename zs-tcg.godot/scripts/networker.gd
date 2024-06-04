@@ -130,5 +130,8 @@ func timeout():#when no address is found
 	printerr("Connection Timed out!")
 	
 func _exit_tree():#disconnect when leaving game
+	for peer in multiplayer.get_peers(): 
+		multiplayer.multiplayer_peer.disconnect_peer(peer)
 	multiplayer.multiplayer_peer.close()
+	
 #endregion

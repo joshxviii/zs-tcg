@@ -53,12 +53,8 @@ func update_hand():
 	await get_tree().create_timer(.4).timeout
 	can_select=true
 
-
 func _on_input_event(_viewport, _e, _shape_idx):##Select card hovered over
 	pass
-#			else:
-#				print("newly added card. make swap function.")
-#				print(swap_card)
 
 func _process(_delta):
 	if Global.can_drag:
@@ -92,6 +88,7 @@ func _process(_delta):
 						
 						#swap(Global.dragged_card,swap_card,cards)
 						#update_hand()
+	else:selected_card=null
 
 func swap(c1:Card2D,c2:Card2D,a:Array[Card2D]):
 	var i = a.find(c1)

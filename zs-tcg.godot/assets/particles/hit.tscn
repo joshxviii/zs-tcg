@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://b6a6exnxo2abt"]
+
+[ext_resource type="Texture2D" uid="uid://b4ramya213jy8" path="res://assets/textures/particles/hit.png" id="1_f81dc"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_apxr5"]
+particles_animation = true
+particles_anim_h_frames = 5
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_oiifw"]
+particle_flag_disable_z = true
+angle_max = 180.0
+gravity = Vector3(0, 0, 0)
+scale_min = 3.0
+scale_max = 3.0
+anim_speed_min = 4.0
+anim_speed_max = 4.0
+
+[node name="particle" type="GPUParticles2D"]
+material = SubResource("CanvasItemMaterial_apxr5")
+emitting = false
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_oiifw")
+texture = ExtResource("1_f81dc")
+one_shot = true
+local_coords = true

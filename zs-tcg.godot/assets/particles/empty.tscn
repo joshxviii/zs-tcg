@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://cbe660iv61ju5"]
+[gd_scene load_steps=2 format=3 uid="uid://8bewulqsccs6"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_oiifw"]
 particle_flag_disable_z = true

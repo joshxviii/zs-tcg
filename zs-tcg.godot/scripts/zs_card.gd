@@ -12,6 +12,8 @@ signal id_changed
 			else: id=new_id
 			if get_parent() != null: id_changed.emit()
 
+var inst_id := get_instance_id()
+
 ##Data for the card
 @onready var attributes : Dictionary = Global.DB.retrive_attributes("cards",id)
 @onready var m1_attributes : Dictionary = {}
@@ -80,40 +82,48 @@ var offset := -16
 @onready var target_pos := position
 var target_z_layer := 0
 
-@onready var ui = $card_ui
-@onready var front = $card_ui/front
-@onready var back = $card_ui/back
-@onready var profile = $card_ui/front/profile
-@onready var border = $card_ui/front/border
-@onready var border_back = $card_ui/front/background
-@onready var back_img = $card_ui/back/texture
-@onready var shadow = $card_ui/shadow
+@onready var ui = $animation_rot/card_ui
+@onready var front = $animation_rot/card_ui/front
+@onready var back = $animation_rot/card_ui/back
+@onready var profile = $animation_rot/card_ui/front/profile
+@onready var border = $animation_rot/card_ui/front/border
+@onready var border_back = $animation_rot/card_ui/front/background
+@onready var back_img = $animation_rot/card_ui/back/texture
+@onready var shadow = $animation_rot/card_ui/shadow
 
-@onready var name_text = $card_ui/front/name
-@onready var type_icon = $card_ui/front/type_icon
-@onready var m1_box = $card_ui/front/vbox/m1_box
-@onready var m2_box = $card_ui/front/vbox/m2_box
-@onready var m1_indicator = $card_ui/front/vbox/m1_box/type_icon
-@onready var m2_indicator = $card_ui/front/vbox/m2_box/type_icon
-@onready var m1_star = $card_ui/front/vbox/m1_box/select_star
-@onready var m2_star = $card_ui/front/vbox/m2_box/select_star
-@onready var m1_text = $card_ui/front/vbox/m1_box/move
-@onready var m2_text = $card_ui/front/vbox/m2_box/move
-@onready var hp_text = $card_ui/front/hp
+@onready var name_text = $animation_rot/card_ui/front/name
+@onready var type_icon = $animation_rot/card_ui/front/type_icon
+@onready var m1_box = $animation_rot/card_ui/front/vbox/m1_box
+@onready var m2_box = $animation_rot/card_ui/front/vbox/m2_box
+@onready var m1_indicator = $animation_rot/card_ui/front/vbox/m1_box/type_icon
+@onready var m2_indicator = $animation_rot/card_ui/front/vbox/m2_box/type_icon
+@onready var m1_star = $animation_rot/card_ui/front/vbox/m1_box/select_star
+@onready var m2_star = $animation_rot/card_ui/front/vbox/m2_box/select_star
+@onready var m1_text = $animation_rot/card_ui/front/vbox/m1_box/move
+@onready var m2_text = $animation_rot/card_ui/front/vbox/m2_box/move
+@onready var hp_text = $animation_rot/card_ui/front/hp
 
-@onready var animator = $card_ui/animation_player
+@onready var animator = $animation_rot/card_ui/animation_player
+
+@onready var atk_animator : AnimationPlayer = $attack_animations
 
 ##Health variables
 var max_health : int = 0
 @onready var current_health : int:
 	set(value):
-		if value < 0:
-			current_health = 0
-		elif value > max_health:
+		
+		if value<current_health:
+			atk_animator.play("effect/hit")
+		
+		if value > max_health:
 			current_health = max_health
+		elif value <= 0:
+			current_health = 0
+			die()
 		else:
 			current_health = value
 		hp_text.text = str(current_health)
+		
 #endregion
 
 #region Load Card
@@ -127,7 +137,7 @@ func _on_id_changed():
 
 func load_attributes():##Use id number to fill in all the attributes
 	
-	$card_ui/ID.text = str("%03d" % id)
+	$animation_rot/card_ui/ID.text = str("%03d" % id)
 	
 	if attributes.has("name"): 
 		attributes = Global.DB.retrive_attributes("cards",id)
@@ -191,7 +201,7 @@ func _on_input_event(_viewport, e, _shape_idx):
 				
 		#realeased Left Mouse Button
 		if e is InputEventMouseButton and e.button_mask==0 and !e.double_click and e.button_index==1:
-			if !Global.is_dragging && draggable && started_interaction:
+			if !Global.is_dragging && Global.can_drag && started_interaction:
 				if owner_space:
 					if owner_space.is_in_group("play_space") && Global.GUI:
 						if Global.GUI.move_info:
@@ -240,16 +250,17 @@ func release():
 		await tween.finished
 		draggable=true
 
-
 func _on_facing_changed():
 	if get_parent() != null:
 		if is_facing_down: animator.play("front_to_back")
 		else: animator.play("back_to_front")
 
-func move_to(pos:Vector2,rot:=0,z_layer:=target_z_layer,wait:=true,time:=.15):
+func move_to(pos:Vector2,rot:=0,z_layer:=target_z_layer,wait:=true,time:=.3):
 	var tween = create_tween()
-	tween.parallel().tween_property(self,"position",pos,time).set_ease(Tween.EASE_IN_OUT)
-	tween.parallel().tween_property(self,"rotation",rot,time).set_ease(Tween.EASE_IN_OUT)
+	tween.set_trans(Tween.TRANS_BACK)
+	tween.parallel().tween_property(self,"position",pos,time).set_ease(Tween.EASE_OUT)
+	tween.parallel().tween_property(self,"rotation",rot,time).set_ease(Tween.EASE_OUT)
+	
 	#position=pos
 	#rotation=rot
 	
@@ -324,3 +335,49 @@ func add_to_hand(hand : CardHand2D) -> bool:
 		Global.GUI.create_float_text(get_global_mouse_position(),"FULL HAND!")
 		release()
 		return false
+
+func attack_anim(target_pos:Vector2,anim:String):
+	atk_animator.target_position = target_pos
+	atk_animator.play(anim)
+	await atk_animator.animation_finished
+
+func attack_directly():pass
+
+func attack():
+	
+	var anim = "attack/default"
+	
+	await attack_anim(Vector2.UP,anim)
+	
+	#damage all the cards
+	for target : CardSpace2D in owner_space.targets:
+		if target.cards.size()>0:
+			for card in target.cards:
+				card.current_health-=current_move_info["power"]
+				Global.card_updated.emit(card)
+		else:
+			attack_directly()
+	
+	#Global.card_attacked.emit(self,owner_space,current_move_info["power"],anim)
+	
+	#if target.is_in_group("opposing_space"):
+		#if target.cards.size()<1:
+			#pass#attack directly
+		#else:
+			#target_card = target.cards[0]
+			#card.attack(target_card)
+			#target_card.current_health-=card.current_move_info["power"]
+	#elif target.is_in_group("play_space"):
+		#if target.cards.size()<1:continue
+		#target_card = target.cards[0]
+
+func die(death_animation:="death_1"):
+	if  Global.PLAYAREA.all_cards.has(inst_id): Global.PLAYAREA.all_cards.erase(inst_id)
+	if owner_space: owner_space.remove(self)
+	
+	draggable=false
+	
+	animator.play(death_animation)
+	await animator.animation_finished
+	
+	queue_free()

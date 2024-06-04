@@ -8,7 +8,7 @@ var op_id=0
 	set(value):
 		if value!=move:
 			move=value
-			print(DISPLAY_NAME + ": I" + str(move["card_id"]) + ", S" + str(move["space_index"]) +", A" + str(move["added"]) )
+			#print(DISPLAY_NAME + ": I" + str(move["card_id"]) + ", S" + str(move["space_index"]) +", A" + str(move["added"]) )
 
 func _enter_tree():
 	set_multiplayer_authority(name.to_int())
@@ -16,6 +16,8 @@ func _enter_tree():
 func _ready():
 	if is_multiplayer_authority():
 		Global.BOARD.board_changed.connect(on_board_changed)
+		Global.card_attacked.connect(on_card_attacked)
+		Global.card_updated.connect(on_card_update)
 		USERBOARD=Global.PLAYAREA
 		DISPLAY_NAME = Global.USERDATA.display_name
 		$multiplayer_ui/you.text = DISPLAY_NAME
@@ -40,6 +42,19 @@ func send_move_data(_id,move_data):
 	if !is_multiplayer_authority():
 		Global.PLAYAREA.update_opponent_cards(move_data)
 
+@rpc("any_peer","call_remote","reliable")
+func send_attack_info(inst_id, space_index:int, damage:int, anim:String):
+	if !is_multiplayer_authority():
+		print("AAAAAAAAAAAAA")
+
+@rpc("any_peer","call_local","reliable")
+func update_card(inst_id,health:int):
+	if !is_multiplayer_authority():
+		print(Global.PLAYAREA.all_cards)
+		if Global.PLAYAREA.all_cards.has(inst_id):
+			Global.PLAYAREA.all_cards[inst_id].current_health=health
+
+
 @rpc("any_peer","call_local","reliable")
 func start_game():
 	Global.PLAYAREA.game_state=Global.PLAYAREA.STARTING
@@ -49,11 +64,24 @@ func switch_game_state(state):
 	if is_multiplayer_authority():
 		Global.PLAYAREA.game_state=state
 
-func on_board_changed(space_index, card, added):
+@rpc("any_peer","call_local","reliable")
+func filp_cards():
 	if is_multiplayer_authority():
-		#print(str(added)) #TODO Fix the ghost cards when in mutliplayer
+		Global.BOARD.flip_opponent_cards()
+
+func on_board_changed(space_index, card, event):
+	if is_multiplayer_authority():
 		move["space_index"] = space_index
-		move["card_inst"] = card.get_instance_id()
+		move["card_inst"] = card.inst_id
 		move["card_id"] = card.id
-		move["added"] = added
+		move["event"] = event
 		rpc("send_move_data", Global.NETWORK.op_id, move)
+
+func on_card_update(card:Card2D):
+	if is_multiplayer_authority():
+		rpc("update_card", card.inst_id, card.current_health)
+
+func on_card_attacked(card:Card2D, target:CardSpace2D, damage:int, anim:String):
+	if is_multiplayer_authority():
+		rpc("send_attack_info", card.inst_id, target.space_index, damage, anim)
+		print(str(card)+" "+str(target)+" "+str(damage))

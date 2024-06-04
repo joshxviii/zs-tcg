@@ -1,0 +1,56 @@
+[gd_scene load_steps=10 format=3 uid="uid://xmirjtb8gvxa"]
+
+[ext_resource type="Texture2D" uid="uid://csdrydjviacdk" path="res://assets/textures/particles/kiblast.png" id="1_4ysxs"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_apxr5"]
+resource_local_to_scene = true
+particles_animation = true
+particles_anim_h_frames = 4
+particles_anim_v_frames = 1
+particles_anim_loop = true
+
+[sub_resource type="Curve" id="Curve_munab"]
+_data = [Vector2(0, 1), 0.0, -0.120934, 0, 0, Vector2(0.493151, 0.967033), -0.24066, -0.24066, 0, 0, Vector2(0.936073, 0), -1.52613, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_li5fu"]
+curve = SubResource("Curve_munab")
+
+[sub_resource type="Curve" id="Curve_lwvf6"]
+max_value = 1024.0
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.356164, 753.934), 635.961, 635.961, 0, 0, Vector2(0.995434, 618.901), -2112.3, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_10gro"]
+curve_x = SubResource("Curve_lwvf6")
+
+[sub_resource type="Curve" id="Curve_t48r4"]
+_data = [Vector2(0, 0.0659341), 0.0, 2.10577, 0, 0, Vector2(0.178082, 1), 0.0, 0.0, 0, 0, Vector2(0.849315, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -0.636226, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_3dttq"]
+curve = SubResource("Curve_t48r4")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_oiifw"]
+particle_flag_disable_z = true
+spread = 0.0
+directional_velocity_min = 1.0
+directional_velocity_max = 1.0
+directional_velocity_curve = SubResource("CurveXYZTexture_10gro")
+gravity = Vector3(0, 0, 0)
+scale_min = 2.5
+scale_max = 2.5
+scale_curve = SubResource("CurveTexture_3dttq")
+alpha_curve = SubResource("CurveTexture_li5fu")
+anim_speed_min = 4.0
+anim_speed_max = 4.0
+
+[node name="particle" type="GPUParticles2D"]
+material = SubResource("CanvasItemMaterial_apxr5")
+emitting = false
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_oiifw")
+texture = ExtResource("1_4ysxs")
+lifetime = 0.5
+one_shot = true
+local_coords = true

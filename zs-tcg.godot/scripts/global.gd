@@ -50,8 +50,10 @@ enum {
 #endregion
 
 
+signal card_attacked(card:Card2D, target:CardSpace2D, damage:int, anim:String)
+signal card_updated(card:Card2D)
 
-var SaveData : Dictionary = {"display_name":"PLAYER","user_deck":[]}#TODO add save data
+#var SaveData : Dictionary = {"display_name":"PLAYER","user_deck":[]}#TODO add save data
 var USERDATA := Player.new()
 
 func _init() -> void:
@@ -105,7 +107,7 @@ func return_to_title():
 	if PLAYAREA:
 		PLAYAREA.queue_free()
 		PLAYAREA=null
-	if NETWORK: 
+	if NETWORK:
 		NETWORK.queue_free()
 		NETWORK=null
 	MAINMENU.show()

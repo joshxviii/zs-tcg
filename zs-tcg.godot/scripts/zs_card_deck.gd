@@ -88,7 +88,7 @@ func _on_card_removed(_card):
 func auto_add_to_hand(amount):
 	for i in amount:
 		if cards.size()<1:break
-		await get_tree().create_timer(0.2).timeout
+		await get_tree().create_timer(0.1).timeout
 		Global.PLAYER_HAND.add(cards[0])
 
 func _on_input_event(_viewport, e, _shape_idx):
