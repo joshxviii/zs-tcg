@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://cbe660iv61ju5"]
+
+[ext_resource type="Texture2D" uid="uid://cufj4pjbgblxi" path="res://assets/textures/particles/slash.png" id="1_won74"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_mroj0"]
+particles_animation = true
+particles_anim_h_frames = 6
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_oiifw"]
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(48, 0, 0)
+gravity = Vector3(0, 0, 0)
+scale_min = 4.0
+scale_max = 4.0
+anim_speed_min = 4.0
+anim_speed_max = 4.0
+
+[node name="particle" type="GPUParticles2D"]
+material = SubResource("CanvasItemMaterial_mroj0")
+emitting = false
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_oiifw")
+texture = ExtResource("1_won74")
+one_shot = true
+local_coords = true
+metadata/_edit_vertical_guides_ = [111.0]

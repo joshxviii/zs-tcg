@@ -1,7 +1,7 @@
 @tool
 extends AnimationPlayer
 
-var target_position := Vector2.ZERO
+var target_rot := Vector2.RIGHT
 
 @export var particle : PackedScene:
 	set(value):
@@ -21,7 +21,7 @@ func play_particle():
 		var particle_inst = particle.instantiate()
 		particle_inst.emitting = true
 		add_child(particle_inst)
-		particle_inst.rotation = get_parent().global_position.angle_to_point(target_position)
+		particle_inst.rotation = target_rot.angle()
 		particle_inst.position = get_parent().position
 		
 		await animation_finished

@@ -2,3 +2,4 @@
 *.cfg
 /zs-tcg.godot/.godot/editor
 ZS TCG - Shortcut.lnk
+/zs-tcg.godot/.godot/exported

@@ -12,6 +12,27 @@ var turn_timer := SecondTimer.new()
 const ENDTURN_TIME := 1.0
 const TURN_POINTS := 3
 
+@onready var hp_user:=PLAYERHEALTH:
+	set(value):
+		var tween = get_tree().create_tween()
+		tween.tween_method(update_hp_text.bind($status/vbox2/user_health), hp_user, value, 0.5)
+		hp_user=value
+		if hp_user<=0:
+			pass
+signal opponent_hp_changed
+@onready var hp_opponent:=PLAYERHEALTH:
+	set(value):
+		opponent_hp_changed.emit(value)
+		var tween = get_tree().create_tween()
+		tween.tween_method(update_hp_text.bind($status/vbox2/opponent_health), hp_opponent, value, 0.5)
+		hp_opponent=value
+		if hp_opponent<=0:
+			pass
+
+func update_hp_text(hp:float,label:Label):
+	label.text = str(floor(hp))+"hp"
+	#TODO play beep sounds when health changes
+
 
 var turn_points := TURN_POINTS:
 	set(value):
@@ -97,8 +118,7 @@ func update_game_state(): #state machine for game state changes
 			turn_timer.start(TURN_TIME)
 			#var tween = create_tween()
 			#tween.tween_property($status/vbox/timer,"value",0,TURN_TIME)
-			await turn_timer.timeout
-			end_turn()
+
 		USER_ATTACKING:
 			if gamemode==MULTIPLAYER:Global.NETWORK.OPPONENT.rpc("switch_game_state",OPPONENT_ATTACKING)
 			print("user attacking")
@@ -151,23 +171,28 @@ func switch_state(state:int):
 func _on_end_turn_pressed():
 	end_turn()
 
+func on_turn_timer_timeout():
+	end_turn()
+
 func end_turn():
 	turn_timer.stop()
+	$status/vbox/end_turn.disabled=true
 	Global.can_drag = false
 	Global.BOARD.lock_spaces()
 	Global.GUI.close_move_info()
 	if Global.is_dragging: Global.dragged_card.release()
-	$status/vbox/end_turn.disabled=true
 	$status/vbox/timer.value = 100.0
 	match gamemode:
 		SINGLEPLAYER:pass
 		MULTIPLAYER:Global.NETWORK.OPPONENT.rpc("filp_cards")
 	await get_tree().create_timer(1).timeout
+	turn_time_text.text="0:00"
 	switch_state(USER_ATTACKING)
 
 func _ready():
 	Global.can_drag = false
 	turn_timer.connect("time_changed",update_turn_time)
+	turn_timer.connect("timeout",on_turn_timer_timeout)
 	
 	match gamemode:
 		SINGLEPLAYER:

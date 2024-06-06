@@ -5,11 +5,13 @@ func _get_class(): return "CardSpace2D"
 
 @export_color_no_alpha var highlight_color := Color.LIGHT_BLUE:
 	set(value):
-		$area.modulate = Color(value,0.5)
+		modulate = Color(value,0.5)
 		highlight_color = value
 
 @export var disabled:= false
 @export var MAX_CARDS := 1
+
+@onready var anim = $animator 
 
 var space_index:=0 #only used for tracking spaces on board/multiplayer
 
@@ -24,11 +26,11 @@ var selected := false:
 		if value && has_open_space:
 			#var tween = get_tree().create_tween()
 			#tween.tween_property($area,"modulate",Color(highlight_color,1),0.0).set_ease(Tween.EASE_IN)
-			$area.modulate=Color(highlight_color,1.0)
+			modulate=Color(highlight_color,1.0)
 		else:
 			#var tween = get_tree().create_tween()
 			#tween.tween_property($area,"modulate",Color(highlight_color,0.5),0.0).set_ease(Tween.EASE_IN)
-			$area.modulate=Color(highlight_color,0.5)
+			modulate=Color(highlight_color,0.5)
 		selected = value
 
 @onready var open_position := global_position
@@ -58,7 +60,7 @@ func add(card:Card2D):
 	space_changed.emit(self,card,space_index,ADDED)
 	#var tween = get_tree().create_tween()
 	#tween.tween_property($area,"modulate",Color(highlight_color,0.5),0.0).set_ease(Tween.EASE_IN)
-	$area.modulate=Color(highlight_color,0.5)
+	modulate=Color(highlight_color,0.5)
 	pass
 	
 func remove(card:Card2D):

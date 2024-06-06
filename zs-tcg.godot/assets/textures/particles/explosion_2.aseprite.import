@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://cl45byjgf5vnl"
+path="res://.godot/imported/explosion_2.aseprite-4207f639e79775e948228ef3ddfa2c0a.res"
+
+[deps]
+
+source_file="res://assets/textures/particles/explosion_2.aseprite"
+dest_files=["res://.godot/imported/explosion_2.aseprite-4207f639e79775e948228ef3ddfa2c0a.res"]
+
+[params]
+

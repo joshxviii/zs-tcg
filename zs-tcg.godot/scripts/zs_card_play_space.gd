@@ -1,3 +1,4 @@
+@tool
 @icon("res://assets/icons/card_play_space2D.svg")
 class_name CardPlaySpace2D extends CardSpace2D
 func _get_class(): return "CardPlaySpace2D"

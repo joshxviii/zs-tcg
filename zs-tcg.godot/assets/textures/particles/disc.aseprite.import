@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://bbgotft7jld2k"
+path="res://.godot/imported/disc.aseprite-c2216dbd2ca2e92743248e8166f71c61.res"
+
+[deps]
+
+source_file="res://assets/textures/particles/disc.aseprite"
+dest_files=["res://.godot/imported/disc.aseprite-c2216dbd2ca2e92743248e8166f71c61.res"]
+
+[params]
+

@@ -17,8 +17,8 @@ point_count = 3
 curve = SubResource("Curve_munab")
 
 [sub_resource type="Curve" id="Curve_lwvf6"]
-max_value = 1024.0
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.356164, 753.934), 635.961, 635.961, 0, 0, Vector2(0.995434, 618.901), -2112.3, 0.0, 0, 0]
+max_value = 512.0
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.351598, 303.824), 635.961, 635.961, 0, 0, Vector2(0.949772, 292.571), -2112.3, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="CurveXYZTexture" id="CurveXYZTexture_10gro"]
@@ -51,6 +51,7 @@ emitting = false
 amount = 1
 process_material = SubResource("ParticleProcessMaterial_oiifw")
 texture = ExtResource("1_4ysxs")
-lifetime = 0.5
+lifetime = 0.6
 one_shot = true
 local_coords = true
+metadata/_edit_vertical_guides_ = [111.0]

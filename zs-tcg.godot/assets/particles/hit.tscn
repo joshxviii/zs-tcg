@@ -25,3 +25,4 @@ process_material = SubResource("ParticleProcessMaterial_oiifw")
 texture = ExtResource("1_f81dc")
 one_shot = true
 local_coords = true
+metadata/_edit_vertical_guides_ = [111.0]

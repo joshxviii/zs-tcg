@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://qhensyuxipka"
+path="res://.godot/imported/slash.aseprite-81ec4452284ea889154a4fa47823b0e8.res"
+
+[deps]
+
+source_file="res://assets/textures/particles/slash.aseprite"
+dest_files=["res://.godot/imported/slash.aseprite-81ec4452284ea889154a4fa47823b0e8.res"]
+
+[params]
+

@@ -13,6 +13,8 @@ signal id_changed
 			if get_parent() != null: id_changed.emit()
 
 var inst_id := get_instance_id()
+var atk_anim := "attack/default"
+var atk_rot := Vector2.RIGHT
 
 ##Data for the card
 @onready var attributes : Dictionary = Global.DB.retrive_attributes("cards",id)
@@ -36,7 +38,7 @@ var current_move_info:Dictionary
 			0:
 				m1_star.visible=false
 				m2_star.visible=false
-				current_move_info={"target_mode":-1}
+				current_move_info={}
 
 
 signal facing_changed
@@ -112,8 +114,13 @@ var max_health : int = 0
 @onready var current_health : int:
 	set(value):
 		
-		if value<current_health:
-			atk_animator.play("effect/hit")
+		if !is_facing_down:
+			if value<current_health:
+				print("hit")
+				atk_animator.play("effect/hit")
+			elif value>current_health:
+				print("heal")
+				atk_animator.play("effect/heal")
 		
 		if value > max_health:
 			current_health = max_health
@@ -336,29 +343,52 @@ func add_to_hand(hand : CardHand2D) -> bool:
 		release()
 		return false
 
-func attack_anim(target_pos:Vector2,anim:String):
-	atk_animator.target_position = target_pos
+func attack_anim(target_rot:Vector2,anim:String):
+	atk_animator.target_rot = target_rot
 	atk_animator.play(anim)
 	await atk_animator.animation_finished
 
-func attack_directly():pass
+func target_directly(target:CardSpace2D):
+	Global.GUI.create_float_text(Vector2(80,64),str(current_move_info["power"]),Color.RED,2.5)
+	Global.PLAYAREA.hp_opponent-=current_move_info["power"]
+	await target.anim.animation_finished
+
+func target_card(card:Card2D):
+	Global.GUI.create_float_text(card.global_position,str(current_move_info["power"]),Color.RED)
+	card.current_health-=current_move_info["power"]
+	Global.card_updated.emit(card)
+	if card.animator.is_playing(): await card.animator.animation_finished
+	elif card.atk_animator.is_playing(): await card.atk_animator.animation_finished
 
 func attack():
+	if selected_move==0:return
 	
-	var anim = "attack/default"
+	atk_anim = "attack/" + current_move_info["animation"]
+	var target_mode : int = current_move_info["target_mode"]
+	match target_mode:
+		#-1:atk_rot=Vector2.RIGHT;return
+		Global.SELF:atk_rot=Vector2.RIGHT
+		Global.FOE:atk_rot=(owner_space.targets[0].global_position-global_position)
+		Global.ALLY:atk_rot=(owner_space.targets[0].global_position-global_position)
+		Global.FOE_ALL:atk_rot=Vector2.UP
+		Global.ALLY_ALL:atk_rot=Vector2.RIGHT
+		Global.ALL:atk_rot=Vector2.RIGHT
+		Global.ANY:atk_rot=(owner_space.targets[0].global_position-global_position)
+		Global.RANDOM:atk_rot=(owner_space.targets[0].global_position-global_position)
 	
-	await attack_anim(Vector2.UP,anim)
+	Global.card_attacked.emit(self)
 	
-	#damage all the cards
+	await attack_anim(atk_rot,atk_anim)
+	
 	for target : CardSpace2D in owner_space.targets:
+		target.anim.play("hit")
 		if target.cards.size()>0:
-			for card in target.cards:
-				card.current_health-=current_move_info["power"]
-				Global.card_updated.emit(card)
+			await target_card(target.cards[0])
 		else:
-			attack_directly()
+			await target_directly(target) # target opponenets hp directly
+			
 	
-	#Global.card_attacked.emit(self,owner_space,current_move_info["power"],anim)
+	
 	
 	#if target.is_in_group("opposing_space"):
 		#if target.cards.size()<1:

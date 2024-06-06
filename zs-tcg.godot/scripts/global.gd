@@ -50,7 +50,7 @@ enum {
 #endregion
 
 
-signal card_attacked(card:Card2D, target:CardSpace2D, damage:int, anim:String)
+signal card_attacked(card:Card2D)
 signal card_updated(card:Card2D)
 
 #var SaveData : Dictionary = {"display_name":"PLAYER","user_deck":[]}#TODO add save data

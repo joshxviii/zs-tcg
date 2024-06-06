@@ -1,3 +1,4 @@
+@tool
 extends CardSpace2D
 
 func _on_card_added(card):

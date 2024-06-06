@@ -49,6 +49,7 @@ input_pickable = false
 
 [node name="zs_card_deck" parent="." instance=ExtResource("7_tl6p3")]
 position = Vector2(720, 368)
+randomized = true
 MAX_CARDS = 5
 
 [node name="zs_card_hand" parent="." instance=ExtResource("8_vl5x2")]
@@ -67,21 +68,22 @@ grow_vertical = 2
 theme = ExtResource("6_uilbc")
 
 [node name="vbox2" type="VBoxContainer" parent="status"]
-layout_mode = 0
+layout_mode = 1
 offset_left = 56.0
-offset_top = 72.0
+offset_top = 64.0
 offset_right = 102.0
-offset_bottom = 304.0
-
-[node name="user_health" type="Label" parent="status/vbox2"]
-layout_mode = 2
-size_flags_vertical = 2
-text = "100hp"
+offset_bottom = 306.0
+theme_override_constants/separation = 190
 
 [node name="opponent_health" type="Label" parent="status/vbox2"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 10
+text = "100hp"
+
+[node name="user_health" type="Label" parent="status/vbox2"]
+layout_mode = 2
+size_flags_vertical = 2
 text = "100hp"
 
 [node name="vbox" type="VBoxContainer" parent="status"]

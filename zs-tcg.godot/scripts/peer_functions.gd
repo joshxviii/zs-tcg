@@ -18,6 +18,7 @@ func _ready():
 		Global.BOARD.board_changed.connect(on_board_changed)
 		Global.card_attacked.connect(on_card_attacked)
 		Global.card_updated.connect(on_card_update)
+		Global.PLAYAREA.opponent_hp_changed.connect(on_hp_update)
 		USERBOARD=Global.PLAYAREA
 		DISPLAY_NAME = Global.USERDATA.display_name
 		$multiplayer_ui/you.text = DISPLAY_NAME
@@ -43,9 +44,10 @@ func send_move_data(_id,move_data):
 		Global.PLAYAREA.update_opponent_cards(move_data)
 
 @rpc("any_peer","call_remote","reliable")
-func send_attack_info(inst_id, space_index:int, damage:int, anim:String):
+func send_attack_info(inst_id, atk_rot, atk_anim):
 	if !is_multiplayer_authority():
-		print("AAAAAAAAAAAAA")
+		if Global.PLAYAREA.all_cards.has(inst_id):
+			Global.PLAYAREA.all_cards[inst_id].attack_anim(atk_rot,atk_anim)
 
 @rpc("any_peer","call_local","reliable")
 func update_card(inst_id,health:int):
@@ -54,6 +56,10 @@ func update_card(inst_id,health:int):
 		if Global.PLAYAREA.all_cards.has(inst_id):
 			Global.PLAYAREA.all_cards[inst_id].current_health=health
 
+@rpc("any_peer","call_local","reliable")
+func update_hp(hp:float):
+	if !is_multiplayer_authority():
+		Global.PLAYAREA.hp_user=hp
 
 @rpc("any_peer","call_local","reliable")
 func start_game():
@@ -81,7 +87,10 @@ func on_card_update(card:Card2D):
 	if is_multiplayer_authority():
 		rpc("update_card", card.inst_id, card.current_health)
 
-func on_card_attacked(card:Card2D, target:CardSpace2D, damage:int, anim:String):
+func on_card_attacked(card:Card2D):
 	if is_multiplayer_authority():
-		rpc("send_attack_info", card.inst_id, target.space_index, damage, anim)
-		print(str(card)+" "+str(target)+" "+str(damage))
+		rpc("send_attack_info", card.inst_id, Vector2(card.atk_rot.x,-card.atk_rot.y), card.atk_anim)
+
+func on_hp_update(hp):
+	if is_multiplayer_authority():
+		rpc("update_hp", hp)

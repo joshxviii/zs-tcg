@@ -1,0 +1,57 @@
+[gd_scene load_steps=10 format=3 uid="uid://dvi5i58hykjfr"]
+
+[ext_resource type="Texture2D" uid="uid://b5f5gufcfnar" path="res://assets/textures/particles/spiritbomb.png" id="1_6xg2a"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_4f787"]
+particles_animation = true
+particles_anim_h_frames = 10
+particles_anim_v_frames = 1
+particles_anim_loop = true
+
+[sub_resource type="Curve" id="Curve_munab"]
+_data = [Vector2(0, 0), 0.0, 2.28626, 0, 0, Vector2(0.666667, 1), 0.0, -0.120934, 0, 0, Vector2(0.940639, 1), -0.24066, -0.24066, 0, 0, Vector2(1, 0), -1.52613, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_li5fu"]
+curve = SubResource("Curve_munab")
+
+[sub_resource type="Curve" id="Curve_lwvf6"]
+max_value = 256.0
+_data = [Vector2(0, 0), 0.0, -108.721, 0, 0, Vector2(0.479452, 22.5055), 44.0064, 44.0064, 0, 0, Vector2(0.6621, 101.275), 616.088, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_10gro"]
+curve_x = SubResource("Curve_lwvf6")
+
+[sub_resource type="Curve" id="Curve_t48r4"]
+_data = [Vector2(0, 0), 0.0, 0.880461, 0, 0, Vector2(0.753425, 1), 1.0696, 1.0696, 0, 0, Vector2(0.986301, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -0.636226, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_3dttq"]
+curve = SubResource("Curve_t48r4")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ep8vc"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(1, 0, 1)
+spread = 0.0
+directional_velocity_min = 1.0
+directional_velocity_max = 1.0
+directional_velocity_curve = SubResource("CurveXYZTexture_10gro")
+gravity = Vector3(0, 0, 0)
+scale_min = 2.0
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_3dttq")
+alpha_curve = SubResource("CurveTexture_li5fu")
+anim_speed_min = 10.0
+anim_speed_max = 10.0
+
+[node name="particle" type="GPUParticles2D"]
+material = SubResource("CanvasItemMaterial_4f787")
+emitting = false
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_ep8vc")
+texture = ExtResource("1_6xg2a")
+lifetime = 3.5
+one_shot = true
+local_coords = true
+metadata/_edit_vertical_guides_ = [111.0]

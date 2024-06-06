@@ -1,3 +1,4 @@
+@tool
 @icon("res://assets/icons/card_hand2D.svg")
 class_name CardHand2D extends CardSpace2D
 func _get_class(): return "CardHand2D"
@@ -24,7 +25,7 @@ var prev_selected_card
 		else: pass 
 
 func _ready():
-	Global.PLAYER_HAND = self
+	if not Engine.is_editor_hint(): Global.PLAYER_HAND = self
 
 
 func _on_card_added(card):
@@ -57,38 +58,39 @@ func _on_input_event(_viewport, _e, _shape_idx):##Select card hovered over
 	pass
 
 func _process(_delta):
-	if Global.can_drag:
-		if selected_card:
-			var tween = get_tree().create_tween()
-			tween.tween_property(selected_card,"rotation",( (get_global_mouse_position().x - selected_card.position.x)/-360 ) ,0.12).set_ease(Tween.EASE_IN)
-			#selected_card.rotation=( (get_global_mouse_position().x - selected_card.position.x)/-360 )
-		if hovered && cards.size() > 0:
-			var select_pos = get_global_mouse_position()-Vector2(cards.size()/2.0,0)
-			if !Global.is_dragging:
-				if can_select:
-					var test_card = cards[0]
-					for card in cards:
-						if card.target_pos.distance_to(select_pos) < test_card.target_pos.distance_to(select_pos):
-							test_card = card
-					selected_card = test_card
-					selection_changed.emit(selected_card,prev_selected_card)
-					var tween = get_tree().create_tween()
-					tween.tween_property(selected_card,"rotation",( (get_global_mouse_position().x - position.x)/360 ) ,0.12).set_ease(Tween.EASE_IN)
-		if Global.is_dragging && cards.has(Global.dragged_card):
-			var dragged_card = swap_card
-			swap_card = cards[0]
-			for card in cards:
-				if card.target_pos.distance_to(get_global_mouse_position()) < swap_card.target_pos.distance_to(get_global_mouse_position()):
-					swap_card = card
-			if Global.dragged_card != swap_card:
-				if cards.has(swap_card):
-					
-					insert(Global.dragged_card,swap_card,cards)
-					update_hand()
+	if not Engine.is_editor_hint():
+		if Global.can_drag:
+			if selected_card:
+				var tween = get_tree().create_tween()
+				tween.tween_property(selected_card,"rotation",( (get_global_mouse_position().x - selected_card.position.x)/-360 ) ,0.12).set_ease(Tween.EASE_IN)
+				#selected_card.rotation=( (get_global_mouse_position().x - selected_card.position.x)/-360 )
+			if hovered && cards.size() > 0:
+				var select_pos = get_global_mouse_position()-Vector2(cards.size()/2.0,0)
+				if !Global.is_dragging:
+					if can_select:
+						var test_card = cards[0]
+						for card in cards:
+							if card.target_pos.distance_to(select_pos) < test_card.target_pos.distance_to(select_pos):
+								test_card = card
+						selected_card = test_card
+						selection_changed.emit(selected_card,prev_selected_card)
+						var tween = get_tree().create_tween()
+						tween.tween_property(selected_card,"rotation",( (get_global_mouse_position().x - position.x)/360 ) ,0.12).set_ease(Tween.EASE_IN)
+			if Global.is_dragging && cards.has(Global.dragged_card):
+				var dragged_card = swap_card
+				swap_card = cards[0]
+				for card in cards:
+					if card.target_pos.distance_to(get_global_mouse_position()) < swap_card.target_pos.distance_to(get_global_mouse_position()):
+						swap_card = card
+				if Global.dragged_card != swap_card:
+					if cards.has(swap_card):
 						
-						#swap(Global.dragged_card,swap_card,cards)
-						#update_hand()
-	else:selected_card=null
+						insert(Global.dragged_card,swap_card,cards)
+						update_hand()
+							
+							#swap(Global.dragged_card,swap_card,cards)
+							#update_hand()
+		else:selected_card=null
 
 func swap(c1:Card2D,c2:Card2D,a:Array[Card2D]):
 	var i = a.find(c1)

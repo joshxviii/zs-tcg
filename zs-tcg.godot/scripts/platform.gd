@@ -47,9 +47,6 @@ func user_attack():
 		if space.cards.size()<1:continue
 		var card = space.cards[0]
 		await card.attack()
-
-		print( space.targets )
-		print( str(card.current_move_info) )
 	
 func opponent_attack():
 	for space in op_spaces:

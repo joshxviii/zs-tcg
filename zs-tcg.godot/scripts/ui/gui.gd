@@ -26,19 +26,21 @@ func create_move_info(card : Card2D):
 	await closer.closed
 	if move_info: move_info.close()
 
-func create_float_text(pos:Vector2,text:String,color:=Color.WHITE):
+func create_float_text(pos:Vector2,text:String,color:=Color.WHITE,text_scale:=1.0):
 	var float_text = float_text_path.instantiate()
 	add_child(float_text)
 	float_text.global_position = pos
 	float_text.text = text
 	float_text.color = color
+	float_text.text_scale = text_scale
 	float_text.start()
 	
-func create_screen_text(text:String,time:=2.0,color:=Color.WHITE):
+func create_screen_text(text:String,time:=2.0,color:=Color.WHITE,text_scale:=1.0):
 	var screen_text = screen_text_path.instantiate()
 	add_child(screen_text)
 	screen_text.text = text
 	screen_text.color = color
+	screen_text.text_scale = text_scale
 	screen_text.start(time)
 
 func create_coin_flip(outcome:int):

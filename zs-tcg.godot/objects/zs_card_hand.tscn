@@ -8,8 +8,9 @@ resource_local_to_scene = true
 size = Vector2(13.3333, 20)
 
 [node name="zs_card_hand" groups=["card_hand"] instance=ExtResource("1_rsnjt")]
-modulate = Color(0, 0.752941, 1, 0.682353)
+modulate = Color(0.235294, 0.454902, 1, 0.5)
 script = ExtResource("1_o2lyk")
+highlight_color = Color(0.235294, 0.454902, 1, 1)
 MAX_CARDS = 9
 
 [node name="shape" parent="." index="0"]
