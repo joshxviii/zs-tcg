@@ -13,7 +13,8 @@ func _get_class(): return "CardSpace2D"
 
 @onready var anim = $animator 
 
-var space_index:=0 #only used for tracking spaces on board/multiplayer
+var space_pos:=Vector2.ZERO #used for targeting and tracking spaces on board
+#var space_index:=0 #only used for tracking spaces on board/multiplayer
 
 enum {
 	ADDED,
@@ -57,7 +58,7 @@ func add(card:Card2D):
 	cards.append(card)
 	card.owner_space = self
 	card_added.emit(card)
-	space_changed.emit(self,card,space_index,ADDED)
+	space_changed.emit(self,card,space_pos,ADDED)
 	#var tween = get_tree().create_tween()
 	#tween.tween_property($area,"modulate",Color(highlight_color,0.5),0.0).set_ease(Tween.EASE_IN)
 	modulate=Color(highlight_color,0.5)
@@ -68,8 +69,8 @@ func remove(card:Card2D):
 	card.prev_owner_space = self
 	cards.erase(card)
 	card_removed.emit(card)
-	if card.current_health>0: space_changed.emit(self,card,space_index,REMOVED)
-	else: space_changed.emit(self,card,space_index,KILLED)
+	if card.current_health>0: space_changed.emit(self,card,space_pos,REMOVED)
+	else: space_changed.emit(self,card,space_pos,KILLED)
 
 func card_return(card:Card2D):
 	card_returned.emit(card)

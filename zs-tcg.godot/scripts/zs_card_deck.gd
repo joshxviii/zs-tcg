@@ -22,7 +22,7 @@ const DECK_SPERATION := 5
 func _ready():
 	Global.PLAYER_DECK = self
 	if randomized:
-		generate_random_cards(15)
+		generate_random_cards(25)
 	else: 
 		deck = Global.USERDATA.deck.duplicate()
 		deck.shuffle() 

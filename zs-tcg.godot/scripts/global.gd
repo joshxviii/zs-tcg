@@ -53,6 +53,8 @@ enum {
 signal card_attacked(card:Card2D)
 signal card_updated(card:Card2D)
 
+signal space_updated(space:CardSpace2D)
+
 #var SaveData : Dictionary = {"display_name":"PLAYER","user_deck":[]}#TODO add save data
 var USERDATA := Player.new()
 
@@ -68,7 +70,7 @@ func load_userdata():
 		USERDATA.deck = data["deck"]
 		file.close()
 	else:
-		print("file not found, creating user data")
+		print("file not found, creating file")
 		save_userdata()
 
 func save_userdata():
@@ -77,6 +79,15 @@ func save_userdata():
 	var data := {"display_name":USERDATA.display_name,"deck":USERDATA.deck}
 	file.store_var(data, true)
 	file.close()
+
+func erase_userdata():
+	print("erasing userdata")
+	USERDATA = Player.new()
+	var file = FileAccess.open(userdata_path, FileAccess.WRITE)
+	var data := {"display_name":USERDATA.display_name,"deck":USERDATA.deck}
+	file.store_var(data, true)
+	file.close()
+	
 
 func _exit_tree() -> void:
 	save_userdata()

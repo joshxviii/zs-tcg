@@ -16,21 +16,29 @@ class_name Board extends Node2D
 	$player_space_5
 	]
 
-signal board_changed(space:CardSpace2D,space_index:int,card:Card2D,card_id:int,event:int)
+@onready var all_spaces := [user_spaces,op_spaces]
+
+signal board_changed(space:CardSpace2D,space_pos:Vector2,card:Card2D,card_id:int,event:int)
 
 func _init():
 	Global.BOARD = self
 	
 func _ready() -> void:
-	for i in user_spaces.size():
-		user_spaces[i].space_index = i+1
+	for i in user_spaces.size(): #give spaces on board a position. (bottom left space is 0,0)
+		user_spaces[i].space_pos = Vector2(i,0)
 		user_spaces[i].connect("space_changed",_on_player_space_altered)
 	for i in op_spaces.size():
-		op_spaces[i].space_index = i+1
+		op_spaces[i].space_pos = Vector2(i,1)
 
-func _on_player_space_altered(space:CardPlaySpace2D,card:Card2D,index:int,event:int):
+func get_space(coordinates:Vector2) -> CardSpace2D: # get space on board from space_pos coordinate
+	if coordinates.x<0 || coordinates.x>all_spaces[coordinates.y].size()-1:
+		return null
+	return all_spaces[coordinates.y][coordinates.x]
+
+
+func _on_player_space_altered(space:CardPlaySpace2D,card:Card2D,pos:Vector2,event:int):
 	#print( str(index) + ", " + str(space) + ", " + str(!(card.prev_owner_space==space)) )
-	board_changed.emit(index,card,event)
+	board_changed.emit(pos,card,event)
 
 func lock_spaces():
 	for space in user_spaces:

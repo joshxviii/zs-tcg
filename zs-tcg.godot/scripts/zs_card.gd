@@ -117,6 +117,7 @@ var max_health : int = 0
 		if !is_facing_down:
 			if value<current_health:
 				print("hit")
+				Global.GUI.create_float_text(global_position,str(current_health-value),Color.RED)
 				atk_animator.play("effect/hit")
 			elif value>current_health:
 				print("heal")
@@ -349,12 +350,17 @@ func attack_anim(target_rot:Vector2,anim:String):
 	await atk_animator.animation_finished
 
 func target_directly(target:CardSpace2D):
-	Global.GUI.create_float_text(Vector2(80,64),str(current_move_info["power"]),Color.RED,2.5)
-	Global.PLAYAREA.hp_opponent-=current_move_info["power"]
-	await target.anim.animation_finished
+	target.anim.play("hit")
+	Global.space_updated.emit(target)
+	match int(target.space_pos.y):
+		0:
+			Global.PLAYAREA.hp_user-=current_move_info["power"]
+		1:
+			Global.PLAYAREA.hp_opponent-=current_move_info["power"]
+	await get_tree().create_timer(0.2).timeout
+	#await target.anim.animation_finished
 
 func target_card(card:Card2D):
-	Global.GUI.create_float_text(card.global_position,str(current_move_info["power"]),Color.RED)
 	card.current_health-=current_move_info["power"]
 	Global.card_updated.emit(card)
 	if card.animator.is_playing(): await card.animator.animation_finished
@@ -365,23 +371,26 @@ func attack():
 	
 	atk_anim = "attack/" + current_move_info["animation"]
 	var target_mode : int = current_move_info["target_mode"]
+	
+	var targets = owner_space.update_targets()
+	
 	match target_mode:
 		#-1:atk_rot=Vector2.RIGHT;return
 		Global.SELF:atk_rot=Vector2.RIGHT
-		Global.FOE:atk_rot=(owner_space.targets[0].global_position-global_position)
-		Global.ALLY:atk_rot=(owner_space.targets[0].global_position-global_position)
+		Global.FOE:atk_rot=(targets[0].global_position-global_position)
+		Global.ALLY:atk_rot=(targets[0].global_position-global_position)
 		Global.FOE_ALL:atk_rot=Vector2.UP
 		Global.ALLY_ALL:atk_rot=Vector2.RIGHT
 		Global.ALL:atk_rot=Vector2.RIGHT
-		Global.ANY:atk_rot=(owner_space.targets[0].global_position-global_position)
-		Global.RANDOM:atk_rot=(owner_space.targets[0].global_position-global_position)
+		Global.ANY:atk_rot=(targets[0].global_position-global_position)
+		Global.RANDOM:atk_rot=(targets[0].global_position-global_position)
 	
 	Global.card_attacked.emit(self)
 	
 	await attack_anim(atk_rot,atk_anim)
 	
-	for target : CardSpace2D in owner_space.targets:
-		target.anim.play("hit")
+	for target : CardSpace2D in targets:
+		
 		if target.cards.size()>0:
 			await target_card(target.cards[0])
 		else:

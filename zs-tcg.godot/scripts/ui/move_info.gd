@@ -12,6 +12,8 @@ extends UIWindow
 @onready var m2_name = $moves/move_2/name
 @onready var m1_star = $moves/move_1/select_star
 @onready var m2_star = $moves/move_2/select_star
+@onready var m1_target = $moves/move_1/target_mode/mode
+@onready var m2_target = $moves/move_2/target_mode/mode
 
 @onready var m1_box = $moves/move_1
 @onready var m2_box = $moves/move_2
@@ -36,27 +38,27 @@ func _on_move_1_button_down(button_pressed):
 	if m1.button_pressed:
 		if card.current_move_info.size() > 0:
 			target_mode = int(card.current_move_info["target_mode"])
-			if target_mode != int(card.m1_attributes["target_mode"]): target_mode_changed.emit(int(card.m1_attributes["target_mode"]))
+			#if target_mode != int(card.m1_attributes["target_mode"]): target_mode_changed.emit(int(card.m1_attributes["target_mode"]))
 			#target_mode_changed.emit(int(card.m1_attributes["target_mode"]))
 			card.selected_move = 1
 	elif !m1.button_pressed:
 		if !m2.button_pressed:
 			card.selected_move = 0
-			target_mode_changed.emit(-1)
-			target_mode = -1
+			#target_mode_changed.emit(-1)
+			#target_mode = -1
 func _on_move_2_button_down(button_pressed):
 	m2_star.visible=button_pressed
 	if m2.button_pressed:
 		if card.current_move_info.size() > 0:
 			target_mode = int(card.current_move_info["target_mode"])
-			if target_mode != int(card.m2_attributes["target_mode"]): target_mode_changed.emit(int(card.m2_attributes["target_mode"]))
+			#if target_mode != int(card.m2_attributes["target_mode"]): target_mode_changed.emit(int(card.m2_attributes["target_mode"]))
 			#target_mode_changed.emit(int(card.m2_attributes["target_mode"]))
 			card.selected_move = 2
 	elif !m1.button_pressed:
 		if !m2.button_pressed:
 			card.selected_move = 0
-			target_mode_changed.emit(-1)
-			target_mode = -1
+			#target_mode_changed.emit(-1)
+			#target_mode = -1
 		
 func _on_m1_icon_pressed():
 	m1.button_pressed=!m1.button_pressed
@@ -79,21 +81,23 @@ func update_info():
 		m1_power.text = "+" + str(card.m1_attributes["power"])
 		m1_power.modulate=Global.get_type_color(card.m1_attributes["type"])
 		m1_icon.texture_normal = ResourceLoader.load("res://assets/textures/ui/type_indicators/type_indicator_"+str(card.m1_attributes["type"])+".png")
+		m1_target.frame = int(card.m1_attributes["target_mode"])
 	else: m1_box.visible = false
 	if card.m2_attributes.size() > 0:
 		m2_name.text = card.m2_attributes["name"]
 		m2_power.text =  "+" + str(card.m2_attributes["power"])
 		m2_power.modulate=Global.get_type_color(card.m2_attributes["type"])
 		m2_icon.texture_normal = ResourceLoader.load("res://assets/textures/ui/type_indicators/type_indicator_"+str(card.m2_attributes["type"])+".png")
+		m2_target.frame = int(card.m2_attributes["target_mode"])
 	else: m2_box.visible = false
 
 func open():
-	card.owner_space.target_selector_box.visible=true
+	#card.owner_space.target_selector_box.visible=true
 	pass
 	
 func close():
 	super.close()
-	if card.owner_space.is_in_group("play_space"):card.owner_space.target_selector_box.visible=false
+	#if card.owner_space.is_in_group("play_space"):card.owner_space.target_selector_box.visible=false
 	if m1.button_pressed:card.selected_move = 1
 	elif m2.button_pressed:card.selected_move = 2
 	else: card.selected_move = 0
@@ -102,4 +106,3 @@ func close():
 
 func _on_target_mode_changed(mode):
 	target_mode = mode
-	card.owner_space.target_mode = mode

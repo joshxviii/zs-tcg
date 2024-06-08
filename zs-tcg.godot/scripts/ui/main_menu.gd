@@ -58,6 +58,7 @@ func _on_exit_pressed():
 var display_name = Global.USERDATA.display_name
 func _on_display_name_text_changed(new_text):
 	display_name = new_text
+	Global.save_userdata()
 var online_address := ""
 func _on_online_address_changed(new_text):
 	online_address=new_text
@@ -65,12 +66,10 @@ func _on_online_join_pressed():
 	if online_address!="": Network.new().join(online_address)
 	else: Network.new().join()
 	if display_name!="": Global.USERDATA.display_name = display_name
-	Global.save_userdata()
 
 func _on_online_host_pressed():
 	Network.new().host()
 	if display_name!="": Global.USERDATA.display_name = display_name
-	Global.save_userdata()
 
 
 
@@ -86,3 +85,7 @@ func _input(e):
 			$title_screen.hide()
 			tween = create_tween()
 			tween.tween_property($fader,"color",Color($fader.color,0),0.7).set_ease(Tween.EASE_IN_OUT)
+
+
+func _on_erase_data_pressed() -> void:
+	Global.erase_userdata()

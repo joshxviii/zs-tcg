@@ -12,22 +12,28 @@ var turn_timer := SecondTimer.new()
 const ENDTURN_TIME := 1.0
 const TURN_POINTS := 3
 
+signal hps_changed
 @onready var hp_user:=PLAYERHEALTH:
 	set(value):
+		if value==hp_user:return
+		Global.GUI.create_float_text(Vector2(80,280),str(hp_user-value),Color.RED,2.5)
+		print(hp_user-value)
+		hps_changed.emit(value,0)
 		var tween = get_tree().create_tween()
 		tween.tween_method(update_hp_text.bind($status/vbox2/user_health), hp_user, value, 0.5)
-		hp_user=value
-		if hp_user<=0:
+		if value<=0:
 			pass
-signal opponent_hp_changed
+		hp_user=value
 @onready var hp_opponent:=PLAYERHEALTH:
 	set(value):
-		opponent_hp_changed.emit(value)
+		if value==hp_opponent:return
+		Global.GUI.create_float_text(Vector2(80,64),str(hp_opponent-value),Color.RED,2.5)
+		hps_changed.emit(value,1)
 		var tween = get_tree().create_tween()
 		tween.tween_method(update_hp_text.bind($status/vbox2/opponent_health), hp_opponent, value, 0.5)
-		hp_opponent=value
-		if hp_opponent<=0:
+		if value<=0:
 			pass
+		hp_opponent=value
 
 func update_hp_text(hp:float,label:Label):
 	label.text = str(floor(hp))+"hp"
@@ -190,6 +196,7 @@ func end_turn():
 	switch_state(USER_ATTACKING)
 
 func _ready():
+	Global.load_userdata()
 	Global.can_drag = false
 	turn_timer.connect("time_changed",update_turn_time)
 	turn_timer.connect("timeout",on_turn_timer_timeout)
@@ -206,7 +213,7 @@ func _ready():
 func update_opponent_cards(move_data:Dictionary):
 	var event = move_data["event"]
 	var card_id = move_data["card_id"]
-	var space_index = move_data["space_index"]
+	var space_pos = move_data["space_pos"]
 	var card_inst = move_data["card_inst"]
 	
 	match event:
@@ -220,7 +227,7 @@ func update_opponent_cards(move_data:Dictionary):
 				new_card.facing_direction=1
 				add_child(new_card)
 				all_cards[card_inst] = new_card
-				Global.BOARD.op_spaces[space_index-1].add(new_card)
+				Global.BOARD.op_spaces[space_pos.x].add(new_card)
 		CardSpace2D.REMOVED:
 			if all_cards.has(card_inst):
 				all_cards[card_inst].owner_space.remove(all_cards[card_inst])
@@ -236,15 +243,6 @@ func update_turn_time():
 	turn_time_text.text = (str(int(turn_timer.time_left/60)) + ":" + str(int(turn_timer.time_left/10)%6) + str(int(turn_timer.time_left)%10))
 	if (turn_timer.time_left < 6.0):
 		Global.GUI.create_screen_text(str(floor(turn_timer.time_left)),0.9,Color.TOMATO)
-
-func damage_user(_damage:float):
-	#p1.health -= damage
-	#$status/opponent_health.text = str(p1.health)
-	pass
-func damage_opponent(_damage:float):
-	#p2.health -= damage
-	#$status/user_health.text = str(p2.health)
-	pass
 	
 func flip_coin() -> int:
 	var result = randi_range(0,1)

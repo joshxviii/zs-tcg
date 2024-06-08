@@ -4,7 +4,7 @@ extends Node
 var USERBOARD
 var op_id=0
 
-@export var move := {"space_index":0,"card_inst":0,"card_id":0,"added":true}:
+@export var move := {"space_pos":Vector2.ZERO,"card_inst":0,"card_id":0,"added":true}:
 	set(value):
 		if value!=move:
 			move=value
@@ -18,7 +18,8 @@ func _ready():
 		Global.BOARD.board_changed.connect(on_board_changed)
 		Global.card_attacked.connect(on_card_attacked)
 		Global.card_updated.connect(on_card_update)
-		Global.PLAYAREA.opponent_hp_changed.connect(on_hp_update)
+		Global.space_updated.connect(on_space_update)
+		Global.PLAYAREA.hps_changed.connect(hp_update)
 		USERBOARD=Global.PLAYAREA
 		DISPLAY_NAME = Global.USERDATA.display_name
 		$multiplayer_ui/you.text = DISPLAY_NAME
@@ -57,9 +58,16 @@ func update_card(inst_id,health:int):
 			Global.PLAYAREA.all_cards[inst_id].current_health=health
 
 @rpc("any_peer","call_local","reliable")
-func update_hp(hp:float):
+func update_hp(hp:float,indx:int):
+		if !is_multiplayer_authority():
+			match indx:
+				0:Global.PLAYAREA.hp_opponent=hp
+				1:Global.PLAYAREA.hp_user=hp
+				
+@rpc("any_peer","call_local","reliable")
+func animate_space(space_pos:Vector2):
 	if !is_multiplayer_authority():
-		Global.PLAYAREA.hp_user=hp
+		Global.BOARD.get_space(space_pos).anim.play("hit")
 
 @rpc("any_peer","call_local","reliable")
 func start_game():
@@ -75,9 +83,9 @@ func filp_cards():
 	if is_multiplayer_authority():
 		Global.BOARD.flip_opponent_cards()
 
-func on_board_changed(space_index, card, event):
+func on_board_changed(space_pos, card, event):
 	if is_multiplayer_authority():
-		move["space_index"] = space_index
+		move["space_pos"] = space_pos
 		move["card_inst"] = card.inst_id
 		move["card_id"] = card.id
 		move["event"] = event
@@ -87,10 +95,14 @@ func on_card_update(card:Card2D):
 	if is_multiplayer_authority():
 		rpc("update_card", card.inst_id, card.current_health)
 
+func on_space_update(space:CardSpace2D):
+	if is_multiplayer_authority():
+		rpc("animate_space", Vector2(space.space_pos.x,int(space.space_pos.y+1)%2))
+		
 func on_card_attacked(card:Card2D):
 	if is_multiplayer_authority():
 		rpc("send_attack_info", card.inst_id, Vector2(card.atk_rot.x,-card.atk_rot.y), card.atk_anim)
 
-func on_hp_update(hp):
+func hp_update(hp, indx):
 	if is_multiplayer_authority():
-		rpc("update_hp", hp)
+		rpc("update_hp", hp, indx)

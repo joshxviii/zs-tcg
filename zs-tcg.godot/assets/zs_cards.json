@@ -2759,7 +2759,7 @@
 					"type": 0,
 					"power": 2,
 					"target_mode": 5,
-					"animation": "default"
+					"animation": "explode"
 				},
 				{
 					"id_name": "slam",
