@@ -5,6 +5,7 @@ particle_flag_disable_z = true
 gravity = Vector3(0, 0, 0)
 
 [node name="particle" type="GPUParticles2D"]
+emitting = false
 process_material = SubResource("ParticleProcessMaterial_oiifw")
 one_shot = true
 local_coords = true

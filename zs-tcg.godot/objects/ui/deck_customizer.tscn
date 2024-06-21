@@ -1,0 +1,296 @@
+[gd_scene load_steps=8 format=3 uid="uid://ctaxmuvad6moh"]
+
+[ext_resource type="Script" path="res://scripts/ui/deck_customizer.gd" id="1_kjtid"]
+[ext_resource type="Texture2D" uid="uid://b0kw633qcl75k" path="res://assets/textures/backgrounds/simulation_background_white.png" id="2_5sxkv"]
+[ext_resource type="Texture2D" uid="uid://f0rb4y2cpljp" path="res://assets/textures/cards/card_type_indicator.png" id="2_or5xq"]
+[ext_resource type="FontFile" uid="uid://3wrkvjx6bpvf" path="res://assets/fonts/pxlsupersmall.ttf" id="4_xomul"]
+[ext_resource type="Texture2D" uid="uid://bggkjgl2nd0su" path="res://assets/textures/cards/select_star.png" id="6_06c7s"]
+[ext_resource type="Texture2D" uid="uid://oyugamtydu3h" path="res://assets/textures/ui/target_modes.png" id="7_8e5kh"]
+[ext_resource type="Texture2D" uid="uid://c3ifc5ssb2i6x" path="res://assets/textures/ui/x.png" id="7_cqka7"]
+
+[node name="customize_deck" type="Control"]
+clip_contents = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kjtid")
+
+[node name="bg" type="TextureRect" parent="."]
+modulate = Color(0.0431373, 0.52549, 0.0745098, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_5sxkv")
+
+[node name="collection_menu" type="TabContainer" parent="."]
+clip_contents = true
+layout_mode = 0
+offset_left = 80.0
+offset_top = 56.0
+offset_right = 480.0
+offset_bottom = 296.0
+theme_override_constants/side_margin = 0
+
+[node name="title" type="Panel" parent="."]
+layout_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 192.0
+offset_top = 8.0
+offset_right = -400.0
+offset_bottom = -384.0
+
+[node name="Label" type="Label" parent="title"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -53.0
+offset_top = -14.0
+offset_right = 53.0
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 27
+text = "COLLECTION"
+horizontal_alignment = 1
+
+[node name="info_panel" type="Panel" parent="."]
+layout_mode = 2
+offset_left = 80.0
+offset_top = 296.0
+offset_right = 480.0
+offset_bottom = 424.0
+
+[node name="title" type="Control" parent="info_panel"]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="type_icon" type="Sprite2D" parent="info_panel/title"]
+position = Vector2(24, 24)
+scale = Vector2(2.28571, 2.28571)
+texture = ExtResource("2_or5xq")
+hframes = 5
+
+[node name="name" type="Label" parent="info_panel/title"]
+layout_mode = 2
+offset_left = 48.0
+offset_top = 8.0
+offset_right = 158.0
+offset_bottom = 24.0
+scale = Vector2(2, 2)
+theme_override_colors/font_color = Color(1, 0.972549, 0.396078, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.470588)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 0
+theme_override_font_sizes/font_size = 13
+text = "NAME HERE"
+vertical_alignment = 1
+autowrap_mode = 1
+
+[node name="moves" type="VBoxContainer" parent="info_panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.3125
+anchor_right = 0.57
+anchor_bottom = 0.699125
+offset_right = -72.0
+offset_bottom = -18.488
+scale = Vector2(1.8, 1.8)
+theme_override_constants/separation = -1
+metadata/_edit_use_anchors_ = true
+
+[node name="move_1" type="HBoxContainer" parent="info_panel/moves"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_constants/separation = 3
+
+[node name="type" type="HBoxContainer" parent="info_panel/moves/move_1"]
+layout_mode = 2
+theme_override_constants/separation = 1
+
+[node name="type" type="Control" parent="info_panel/moves/move_1/type"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+
+[node name="icon" type="Sprite2D" parent="info_panel/moves/move_1/type/type"]
+texture = ExtResource("2_or5xq")
+offset = Vector2(8, 8)
+hframes = 5
+
+[node name="power" type="Label" parent="info_panel/moves/move_1/type"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 0.27451)
+theme_override_constants/outline_size = 1
+theme_override_fonts/font = ExtResource("4_xomul")
+theme_override_font_sizes/font_size = 8
+text = "+1"
+
+[node name="name" type="Label" parent="info_panel/moves/move_1"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Move attack 1"
+
+[node name="select_star" type="TextureRect" parent="info_panel/moves/move_1"]
+visible = false
+layout_mode = 2
+texture = ExtResource("6_06c7s")
+stretch_mode = 5
+
+[node name="target_mode" type="Control" parent="info_panel/moves/move_1"]
+custom_minimum_size = Vector2(15, 14)
+layout_mode = 2
+
+[node name="mode" type="Sprite2D" parent="info_panel/moves/move_1/target_mode"]
+texture = ExtResource("7_8e5kh")
+offset = Vector2(7.5, 7)
+hframes = 7
+
+[node name="move_2" type="HBoxContainer" parent="info_panel/moves"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_constants/separation = 3
+
+[node name="type" type="HBoxContainer" parent="info_panel/moves/move_2"]
+layout_mode = 2
+theme_override_constants/separation = 1
+
+[node name="type" type="Control" parent="info_panel/moves/move_2/type"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+
+[node name="icon" type="Sprite2D" parent="info_panel/moves/move_2/type/type"]
+texture = ExtResource("2_or5xq")
+offset = Vector2(8, 8)
+hframes = 5
+
+[node name="power" type="Label" parent="info_panel/moves/move_2/type"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 0.27451)
+theme_override_constants/outline_size = 1
+theme_override_fonts/font = ExtResource("4_xomul")
+theme_override_font_sizes/font_size = 8
+text = "+1"
+
+[node name="name" type="Label" parent="info_panel/moves/move_2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Move attack 2"
+
+[node name="select_star" type="TextureRect" parent="info_panel/moves/move_2"]
+visible = false
+layout_mode = 2
+texture = ExtResource("6_06c7s")
+stretch_mode = 5
+
+[node name="target_mode" type="Control" parent="info_panel/moves/move_2"]
+custom_minimum_size = Vector2(15, 14)
+layout_mode = 2
+
+[node name="mode" type="Sprite2D" parent="info_panel/moves/move_2/target_mode"]
+texture = ExtResource("7_8e5kh")
+offset = Vector2(7.5, 7)
+hframes = 7
+
+[node name="buttons" type="HBoxContainer" parent="info_panel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -120.0
+offset_top = -32.0
+offset_right = 120.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 1
+
+[node name="remove" type="Button" parent="info_panel/buttons"]
+layout_mode = 2
+text = "REMOVE FROM DECK"
+
+[node name="add" type="Button" parent="info_panel/buttons"]
+layout_mode = 2
+text = "ADD TO DECK"
+
+[node name="deck_panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 480.0
+offset_top = 56.0
+offset_right = 688.0
+offset_bottom = 424.0
+
+[node name="Panel2" type="Panel" parent="deck_panel"]
+layout_mode = 0
+offset_right = 208.0
+offset_bottom = 32.0
+
+[node name="Label" type="Label" parent="deck_panel/Panel2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -28.0
+offset_top = -13.5
+offset_right = 28.0
+offset_bottom = 13.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 26
+text = "DECK"
+horizontal_alignment = 1
+
+[node name="deck_scroll" type="ScrollContainer" parent="deck_panel"]
+layout_mode = 2
+offset_left = 8.0
+offset_top = 32.0
+offset_right = 200.0
+offset_bottom = 274.0
+
+[node name="deck" type="GridContainer" parent="deck_panel/deck_scroll"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="deck_panel"]
+layout_mode = 0
+offset_top = 272.0
+offset_right = 208.0
+offset_bottom = 368.0
+
+[node name="main_menu" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -56.0
+offset_top = 16.0
+offset_right = -30.0
+offset_bottom = 42.0
+grow_horizontal = 0
+scale = Vector2(1.5, 1.5)
+icon = ExtResource("7_cqka7")
+
+[connection signal="pressed" from="info_panel/buttons/remove" to="." method="_on_remove_pressed"]
+[connection signal="pressed" from="info_panel/buttons/add" to="." method="_on_add_pressed"]
+[connection signal="pressed" from="main_menu" to="." method="_on_main_menu_pressed"]

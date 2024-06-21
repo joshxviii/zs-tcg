@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dkiwyqh13b43g"]
+[gd_scene load_steps=24 format=3 uid="uid://dkiwyqh13b43g"]
 
 [ext_resource type="Theme" uid="uid://cxeu476d0lrtm" path="res://assets/themes/theme_1.tres" id="2_5fipb"]
 [ext_resource type="Script" path="res://scripts/zs_card.gd" id="2_vxoh7"]
@@ -19,6 +19,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ojokj"]
 resource_local_to_scene = true
 size = Vector2(12, 17)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pf3uy"]
+bg_color = Color(0.803922, 0.521569, 0.247059, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_n0p6y"]
 
@@ -184,6 +187,9 @@ libraries = {
 autoplay = "RESET"
 script = ExtResource("11_taey2")
 
+[node name="animation_particles" type="Node2D" parent="attack_animations"]
+z_index = 5
+
 [node name="animation_rot" type="Node2D" parent="."]
 
 [node name="card_ui" type="Control" parent="animation_rot"]
@@ -295,44 +301,83 @@ mouse_filter = 2
 texture = ExtResource("5_m0ibl")
 expand_mode = 1
 stretch_mode = 5
+flip_h = true
 
-[node name="type_icon" type="Sprite2D" parent="animation_rot/card_ui/front"]
-position = Vector2(-25, -40)
-texture = ExtResource("4_ruwno")
-hframes = 5
+[node name="darken" type="ColorRect" parent="animation_rot/card_ui/front"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -36.0
+offset_top = -51.0
+offset_right = 36.0
+offset_bottom = 51.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.0588235)
 
-[node name="hp" type="Label" parent="animation_rot/card_ui/front"]
-clip_contents = true
+[node name="hpbar" type="ProgressBar" parent="animation_rot/card_ui/front"]
 layout_mode = 0
-offset_left = -32.0
-offset_top = -33.0
-offset_right = -18.0
-offset_bottom = -25.0
-theme_override_colors/font_color = Color(0.996078, 1, 1, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.443137)
-theme_override_constants/shadow_offset_x = 1
-theme_override_constants/shadow_offset_y = 1
-theme_override_constants/shadow_outline_size = -1
-theme_override_fonts/font = ExtResource("4_y4yww")
-theme_override_font_sizes/font_size = 8
-theme_override_styles/normal = SubResource("StyleBoxEmpty_n0p6y")
-text = "10
-"
-horizontal_alignment = 1
+offset_left = -23.0
+offset_top = -40.0
+offset_right = 17.0
+offset_bottom = -36.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_pf3uy")
+max_value = 1.0
+step = 0.1
+value = 0.5
+show_percentage = false
 
-[node name="name" type="Label" parent="animation_rot/card_ui/front"]
+[node name="hp" type="Label" parent="animation_rot/card_ui/front/hpbar"]
+clip_contents = true
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -34.0
-offset_top = -52.0
-offset_right = 34.0
-offset_bottom = -38.0
+offset_left = -14.0
+offset_top = -4.0
+offset_right = 14.0
+offset_bottom = 4.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(0.921569, 0.784314, 0.654902, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = -1
+theme_override_fonts/font = ExtResource("4_y4yww")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/normal = SubResource("StyleBoxEmpty_n0p6y")
+text = "50/100
+"
+horizontal_alignment = 1
+
+[node name="icon" type="Control" parent="animation_rot/card_ui/front"]
+custom_minimum_size = Vector2(14, 14)
+layout_mode = 2
+anchors_preset = 0
+offset_left = -34.0
+offset_top = -49.0
+offset_right = -20.0
+offset_bottom = -35.0
+
+[node name="type_icon" type="Sprite2D" parent="animation_rot/card_ui/front/icon"]
+texture = ExtResource("4_ruwno")
+offset = Vector2(7, 7)
+hframes = 5
+
+[node name="name" type="Label" parent="animation_rot/card_ui/front"]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+offset_left = -26.0
+offset_top = -53.0
+offset_right = 34.0
+offset_bottom = -39.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(60, 7)
 theme_override_colors/font_color = Color(1, 0.972549, 0.396078, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.470588)
 theme_override_constants/shadow_offset_x = 1
@@ -345,26 +390,42 @@ vertical_alignment = 1
 autowrap_mode = 1
 clip_text = true
 
-[node name="vbox" type="VBoxContainer" parent="animation_rot/card_ui/front"]
+[node name="moves" type="VBoxContainer" parent="animation_rot/card_ui/front"]
 layout_mode = 0
-offset_left = -28.0
+offset_left = -31.0
 offset_top = 28.0
-offset_right = 31.0
+offset_right = 32.0
 offset_bottom = 46.0
 mouse_filter = 2
 theme_override_constants/separation = 1
 
-[node name="m1_box" type="HBoxContainer" parent="animation_rot/card_ui/front/vbox"]
+[node name="m1_box" type="HBoxContainer" parent="animation_rot/card_ui/front/moves"]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 0
 
-[node name="type_icon" type="Sprite2D" parent="animation_rot/card_ui/front/vbox/m1_box"]
-position = Vector2(-1, 3)
+[node name="icon" type="Control" parent="animation_rot/card_ui/front/moves/m1_box"]
+custom_minimum_size = Vector2(4, 4)
+layout_mode = 2
+
+[node name="type_icon" type="Sprite2D" parent="animation_rot/card_ui/front/moves/m1_box/icon"]
 texture = ExtResource("4_glblq")
+offset = Vector2(2, 2)
 hframes = 5
 
-[node name="move" type="Label" parent="animation_rot/card_ui/front/vbox/m1_box"]
+[node name="power" type="Label" parent="animation_rot/card_ui/front/moves/m1_box"]
+clip_contents = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.803922, 0.521569, 0.247059, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = -1
+theme_override_fonts/font = ExtResource("4_y4yww")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/normal = SubResource("StyleBoxEmpty_n0p6y")
+text = "10"
+
+[node name="move" type="Label" parent="animation_rot/card_ui/front/moves/m1_box"]
 clip_contents = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.996078, 1, 0.47451, 1)
@@ -377,23 +438,39 @@ theme_override_font_sizes/font_size = 8
 theme_override_styles/normal = SubResource("StyleBoxEmpty_n0p6y")
 text = "[placeholder]"
 
-[node name="select_star" type="TextureRect" parent="animation_rot/card_ui/front/vbox/m1_box"]
+[node name="select_star" type="TextureRect" parent="animation_rot/card_ui/front/moves/m1_box"]
 visible = false
 layout_mode = 2
 texture = ExtResource("8_k8s6k")
 stretch_mode = 5
 
-[node name="m2_box" type="HBoxContainer" parent="animation_rot/card_ui/front/vbox"]
+[node name="m2_box" type="HBoxContainer" parent="animation_rot/card_ui/front/moves"]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 0
 
-[node name="type_icon" type="Sprite2D" parent="animation_rot/card_ui/front/vbox/m2_box"]
-position = Vector2(-1, 3)
+[node name="icon" type="Control" parent="animation_rot/card_ui/front/moves/m2_box"]
+custom_minimum_size = Vector2(4, 4)
+layout_mode = 2
+
+[node name="type_icon" type="Sprite2D" parent="animation_rot/card_ui/front/moves/m2_box/icon"]
 texture = ExtResource("4_glblq")
+offset = Vector2(2, 2)
 hframes = 5
 
-[node name="move" type="Label" parent="animation_rot/card_ui/front/vbox/m2_box"]
+[node name="power" type="Label" parent="animation_rot/card_ui/front/moves/m2_box"]
+clip_contents = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.803922, 0.521569, 0.247059, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = -1
+theme_override_fonts/font = ExtResource("4_y4yww")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/normal = SubResource("StyleBoxEmpty_n0p6y")
+text = "10"
+
+[node name="move" type="Label" parent="animation_rot/card_ui/front/moves/m2_box"]
 clip_contents = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.996078, 1, 0.47451, 1)
@@ -406,7 +483,7 @@ theme_override_font_sizes/font_size = 8
 theme_override_styles/normal = SubResource("StyleBoxEmpty_n0p6y")
 text = "[placeholder]"
 
-[node name="select_star" type="TextureRect" parent="animation_rot/card_ui/front/vbox/m2_box"]
+[node name="select_star" type="TextureRect" parent="animation_rot/card_ui/front/moves/m2_box"]
 visible = false
 layout_mode = 2
 texture = ExtResource("8_k8s6k")
@@ -470,6 +547,13 @@ theme_override_constants/shadow_outline_size = 0
 theme_override_font_sizes/font_size = 25
 text = "000"
 
+[node name="status_effects" type="VBoxContainer" parent="animation_rot/card_ui"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 0
+offset_left = 72.0
+offset_right = 88.0
+offset_bottom = 16.0
+
 [node name="animation_player" type="AnimationPlayer" parent="animation_rot/card_ui"]
 root_node = NodePath("../../..")
 libraries = {
@@ -482,8 +566,6 @@ offset_left = -36.0
 offset_top = -51.0
 offset_right = 36.0
 offset_bottom = 51.0
-grow_horizontal = 2
-grow_vertical = 2
 mouse_filter = 2
 color = Color(1, 1, 1, 0)
 metadata/_edit_use_anchors_ = true

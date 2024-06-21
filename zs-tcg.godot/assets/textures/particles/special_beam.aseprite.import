@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://cur41pia6se3s"
+path="res://.godot/imported/special_beam.aseprite-9b40e6ae25bfd6d86742262eba011391.res"
+
+[deps]
+
+source_file="res://assets/textures/particles/special_beam.aseprite"
+dest_files=["res://.godot/imported/special_beam.aseprite-9b40e6ae25bfd6d86742262eba011391.res"]
+
+[params]
+

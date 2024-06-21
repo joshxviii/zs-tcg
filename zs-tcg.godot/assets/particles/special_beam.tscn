@@ -1,0 +1,45 @@
+[gd_scene load_steps=8 format=3 uid="uid://ctlekoxdaxjx1"]
+
+[ext_resource type="Texture2D" uid="uid://tqeq61vs6irt" path="res://assets/textures/particles/special_beam.png" id="1_d3fqy"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_cahuy"]
+particles_animation = true
+particles_anim_h_frames = 6
+particles_anim_v_frames = 1
+particles_anim_loop = true
+
+[sub_resource type="Curve" id="Curve_xrp4d"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_burjh"]
+_data = [Vector2(0, 0), 0.0, 18.2901, 0, 0, Vector2(0.260274, 1), 1.11074, 0.0, 0, 0, Vector2(0.780822, 1), -0.481319, -0.481319, 0, 0, Vector2(1, 0), 1.90289, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Curve" id="Curve_bmyf5"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_27ivl"]
+curve_x = SubResource("Curve_xrp4d")
+curve_y = SubResource("Curve_burjh")
+curve_z = SubResource("Curve_bmyf5")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_aiynh"]
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(64, 0, 0)
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveXYZTexture_27ivl")
+anim_speed_min = 3.0
+anim_speed_max = 3.0
+
+[node name="particle" type="GPUParticles2D"]
+texture_repeat = 3
+material = SubResource("CanvasItemMaterial_cahuy")
+emitting = false
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_aiynh")
+texture = ExtResource("1_d3fqy")
+one_shot = true
+local_coords = true
+metadata/_edit_vertical_guides_ = [111.0]

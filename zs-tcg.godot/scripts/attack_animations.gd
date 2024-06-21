@@ -17,10 +17,9 @@ func _on_animation_started(anim_name):
 
 func play_particle():
 	if particle && current_animation != "":
-		print("create_particle")
 		var particle_inst = particle.instantiate()
 		particle_inst.emitting = true
-		add_child(particle_inst)
+		get_child(0).add_child(particle_inst)
 		particle_inst.rotation = target_rot.angle()
 		particle_inst.position = get_parent().position
 		

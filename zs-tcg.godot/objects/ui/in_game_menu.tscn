@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://d1ndlffcdqcdt"]
 
 [ext_resource type="Script" path="res://scripts/ui/in-game_menu.gd" id="1_3gc0g"]
-[ext_resource type="Theme" uid="uid://dxxt0em6v1rwd" path="res://assets/themes/main_menu.tres" id="1_khw7y"]
+[ext_resource type="Texture2D" uid="uid://c3ifc5ssb2i6x" path="res://assets/textures/ui/x.png" id="2_va2hs"]
 
 [node name="in-game_menu" type="Control"]
 layout_mode = 3
@@ -10,7 +10,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_khw7y")
 script = ExtResource("1_3gc0g")
 
 [node name="focus" type="ColorRect" parent="."]
@@ -42,10 +41,13 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -20.0
-offset_bottom = 14.0
+offset_left = -24.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = 24.0
 grow_horizontal = 0
-text = "X"
+theme_override_font_sizes/font_size = 25
+icon = ExtResource("2_va2hs")
 
 [node name="leave" type="Button" parent="menu"]
 layout_mode = 1
@@ -54,10 +56,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -50.5
-offset_top = -20.0
-offset_right = 50.5
-offset_bottom = 20.0
+offset_left = -39.5
+offset_top = -12.0
+offset_right = 39.5
+offset_bottom = 12.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Leave Game"

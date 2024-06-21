@@ -6,7 +6,7 @@ var all_cards : Dictionary = {}
 @onready var opponenent_pos = $opponenet_hand.position
 @onready var turn_time_text = $status/vbox/timer/time
 
-const PLAYERHEALTH := 100.0
+const PLAYERHEALTH := 1000.0
 const TURN_TIME := 30.0 # turn time in seconds
 var turn_timer := SecondTimer.new()
 const ENDTURN_TIME := 1.0
@@ -17,10 +17,9 @@ signal hps_changed
 	set(value):
 		if value==hp_user:return
 		Global.GUI.create_float_text(Vector2(80,280),str(hp_user-value),Color.RED,2.5)
-		print(hp_user-value)
 		hps_changed.emit(value,0)
 		var tween = get_tree().create_tween()
-		tween.tween_method(update_hp_text.bind($status/vbox2/user_health), hp_user, value, 0.5)
+		tween.tween_method(update_hp_text.bind($status/vbox2/user_health), hp_user, value, 0.9)
 		if value<=0:
 			pass
 		hp_user=value
@@ -30,7 +29,7 @@ signal hps_changed
 		Global.GUI.create_float_text(Vector2(80,64),str(hp_opponent-value),Color.RED,2.5)
 		hps_changed.emit(value,1)
 		var tween = get_tree().create_tween()
-		tween.tween_method(update_hp_text.bind($status/vbox2/opponent_health), hp_opponent, value, 0.5)
+		tween.tween_method(update_hp_text.bind($status/vbox2/opponent_health), hp_opponent, value, 0.9)
 		if value<=0:
 			pass
 		hp_opponent=value
@@ -56,6 +55,7 @@ var turn_points := TURN_POINTS:
 		#if turn_points <= 0: Global.can_drag = false
 	get:
 		return turn_points
+signal turn_ended
 enum {
 	USER_TURN,
 	OPPONENT_TURN
@@ -135,6 +135,7 @@ func update_game_state(): #state machine for game state changes
 		USER_ENDTURN:
 			if gamemode==MULTIPLAYER:Global.NETWORK.OPPONENT.rpc("switch_game_state",OPPONENT_ENDTURN)
 			print("user end turn")
+			turn_ended.emit(0)
 			await get_tree().create_timer(ENDTURN_TIME).timeout
 			if turn_points<TURN_POINTS: turn_points+=1
 			match gamemode:
@@ -163,16 +164,23 @@ func update_game_state(): #state machine for game state changes
 				MULTIPLAYER:pass
 		OPPONENT_ENDTURN:
 			print("opponent end turn")
+			turn_ended.emit(1)
 			match gamemode:
 				SINGLEPLAYER:
 					await get_tree().create_timer(1).timeout
 					switch_state(USER_PLAYING)
 				MULTIPLAYER:pass
-		
 		ENDING:
-			print("end")
+			print("game over")
+			Global.GUI.create_screen_text("GAME OVER!",2)
+			await get_tree().create_timer(2).timeout
+			Global.return_to_title()
+
 func switch_state(state:int):
-	game_state=state
+	if hp_user<=0 || hp_opponent<=0:
+		game_state=ENDING
+	else:
+		game_state=state
 
 func _on_end_turn_pressed():
 	end_turn()
@@ -196,6 +204,8 @@ func end_turn():
 	switch_state(USER_ATTACKING)
 
 func _ready():
+	update_hp_text(PLAYERHEALTH,$status/vbox2/opponent_health)
+	update_hp_text(PLAYERHEALTH,$status/vbox2/user_health)
 	Global.load_userdata()
 	Global.can_drag = false
 	turn_timer.connect("time_changed",update_turn_time)
@@ -226,6 +236,7 @@ func update_opponent_cards(move_data:Dictionary):
 				new_card.position = opponenent_pos
 				new_card.facing_direction=1
 				add_child(new_card)
+				new_card.move_box.visible = false
 				all_cards[card_inst] = new_card
 				Global.BOARD.op_spaces[space_pos.x].add(new_card)
 		CardSpace2D.REMOVED:

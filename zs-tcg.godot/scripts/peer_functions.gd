@@ -51,11 +51,25 @@ func send_attack_info(inst_id, atk_rot, atk_anim):
 			Global.PLAYAREA.all_cards[inst_id].attack_anim(atk_rot,atk_anim)
 
 @rpc("any_peer","call_local","reliable")
-func update_card(inst_id,health:int):
+func update_card(event,card_data):
 	if !is_multiplayer_authority():
-		print(Global.PLAYAREA.all_cards)
-		if Global.PLAYAREA.all_cards.has(inst_id):
-			Global.PLAYAREA.all_cards[inst_id].current_health=health
+		if Global.PLAYAREA.all_cards.has(card_data["instance_id"]):
+			var card : Card2D = Global.PLAYAREA.all_cards[card_data["instance_id"]]
+			
+			match int(event):
+				Card2D.HEALTH_CHANGE:
+					if card.current_health!=card_data["current_health"]: card.current_health=card_data["current_health"]
+				Card2D.EFFECT_ADDED:
+					var effect = card_data["current_status_effects"][-1]
+					StatusEffect.new(card,effect["id"],effect["duration"],effect["strength"],Global.PLAYAREA.all_cards[effect["target_card_inst_id"]])
+				Card2D.EFFECT_ADDED:pass
+			
+			if card.get_card_data()!=card_data:
+				card.id=int(card_data["id"])
+				card.attributes=card_data["attributes"]
+				card.profile_path = card_data["profile_path"]
+				card.update_attributes()
+				card.atk_animator.play("effect/heal")
 
 @rpc("any_peer","call_local","reliable")
 func update_hp(hp:float,indx:int):
@@ -91,9 +105,9 @@ func on_board_changed(space_pos, card, event):
 		move["event"] = event
 		rpc("send_move_data", Global.NETWORK.op_id, move)
 
-func on_card_update(card:Card2D):
+func on_card_update(card:Card2D,event:int):
 	if is_multiplayer_authority():
-		rpc("update_card", card.inst_id, card.current_health)
+		rpc("update_card", event, card.get_card_data())
 
 func on_space_update(space:CardSpace2D):
 	if is_multiplayer_authority():

@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=3 uid="uid://dbhk5owvvxiyh"]
+
+[ext_resource type="Texture2D" uid="uid://0rl8016cdib0" path="res://assets/textures/particles/gun.png" id="1_81l0i"]
+
+[sub_resource type="Curve" id="Curve_ea5lt"]
+max_value = 2.0
+_data = [Vector2(0, 0), 0.0, 2.8619, 0, 0, Vector2(0.246575, 0.967033), 0.907008, 0.907008, 0, 0, Vector2(0.3, 1), 0.0, 0.0, 0, 0, Vector2(0.4, 1.2), 6.31062, -0.666667, 0, 1, Vector2(0.7, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 1, 0]
+point_count = 6
+
+[sub_resource type="CurveTexture" id="CurveTexture_sftob"]
+curve = SubResource("Curve_ea5lt")
+
+[sub_resource type="Curve" id="Curve_c3txt"]
+_data = [Vector2(0, 0), 0.0, 27.375, 0, 0, Vector2(0.1, 1), 28.122, 0.0, 0, 0, Vector2(0.8, 1), 0.0, 0.0, 0, 0, Vector2(0.9, 0), -15.7136, 0.0, 0, 0]
+point_count = 4
+metadata/_snap_enabled = true
+
+[sub_resource type="CurveTexture" id="CurveTexture_eagx3"]
+curve = SubResource("Curve_c3txt")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vhr0j"]
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(8, 4, 0)
+angle_min = 360.0
+angle_max = 360.0
+angle_curve = SubResource("CurveTexture_sftob")
+gravity = Vector3(0, 0, 0)
+scale_min = 2.5
+scale_max = 2.5
+scale_curve = SubResource("CurveTexture_eagx3")
+
+[node name="particle" type="GPUParticles2D"]
+emitting = false
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_vhr0j")
+texture = ExtResource("1_81l0i")
+one_shot = true
+visibility_rect = Rect2(-17, -17, 42, 38)
+local_coords = true
+metadata/_edit_vertical_guides_ = [111.0]

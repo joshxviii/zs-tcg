@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://bclq5peejdkf7"
+path="res://.godot/imported/status_effects.aseprite-77ddae9a9aabf600cc230d87b9034d44.res"
+
+[deps]
+
+source_file="res://assets/textures/ui/status_effects.aseprite"
+dest_files=["res://.godot/imported/status_effects.aseprite-77ddae9a9aabf600cc230d87b9034d44.res"]
+
+[params]
+

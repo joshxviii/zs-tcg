@@ -15,12 +15,29 @@ signal id_changed
 var inst_id := get_instance_id()
 var atk_anim := "attack/default"
 var atk_rot := Vector2.RIGHT
+var profile_path := str(id)
 
 ##Data for the card
-@onready var attributes : Dictionary = Global.DB.retrive_attributes("cards",id)
+@onready var attributes : Dictionary = Global.DB.retrive_attributes("cards",id).duplicate()
 @onready var m1_attributes : Dictionary = {}
 @onready var m2_attributes : Dictionary = {}
 var is_in_deck := false
+enum {
+DAMAGING,
+BLOCKING,
+HEALING,
+SPEACIAL
+}
+
+enum {
+	HEALTH_CHANGE,
+	EFFECT_ADDED,
+	EFFECT_REMOVED,
+	ATTRIBUTES_CHANGED
+}
+
+@onready var status_effects_box = $animation_rot/card_ui/status_effects
+var current_status_effects : Array[StatusEffect]=[]
 
 var current_move_info:Dictionary
 @onready var selected_move:=0:
@@ -94,33 +111,44 @@ var target_z_layer := 0
 @onready var shadow = $animation_rot/card_ui/shadow
 
 @onready var name_text = $animation_rot/card_ui/front/name
-@onready var type_icon = $animation_rot/card_ui/front/type_icon
-@onready var m1_box = $animation_rot/card_ui/front/vbox/m1_box
-@onready var m2_box = $animation_rot/card_ui/front/vbox/m2_box
-@onready var m1_indicator = $animation_rot/card_ui/front/vbox/m1_box/type_icon
-@onready var m2_indicator = $animation_rot/card_ui/front/vbox/m2_box/type_icon
-@onready var m1_star = $animation_rot/card_ui/front/vbox/m1_box/select_star
-@onready var m2_star = $animation_rot/card_ui/front/vbox/m2_box/select_star
-@onready var m1_text = $animation_rot/card_ui/front/vbox/m1_box/move
-@onready var m2_text = $animation_rot/card_ui/front/vbox/m2_box/move
-@onready var hp_text = $animation_rot/card_ui/front/hp
+@onready var type_icon = $animation_rot/card_ui/front/icon/type_icon
+@onready var move_box = $animation_rot/card_ui/front/moves
+@onready var m1_box = $animation_rot/card_ui/front/moves/m1_box
+@onready var m2_box = $animation_rot/card_ui/front/moves/m2_box
+@onready var m1_indicator = $animation_rot/card_ui/front/moves/m1_box/icon/type_icon
+@onready var m2_indicator = $animation_rot/card_ui/front/moves/m2_box/icon/type_icon
+@onready var m1_star = $animation_rot/card_ui/front/moves/m1_box/select_star
+@onready var m2_star = $animation_rot/card_ui/front/moves/m2_box/select_star
+@onready var m1_text = $animation_rot/card_ui/front/moves/m1_box/move
+@onready var m2_text = $animation_rot/card_ui/front/moves/m2_box/move
+@onready var m1_power = $animation_rot/card_ui/front/moves/m1_box/power
+@onready var m2_power = $animation_rot/card_ui/front/moves/m2_box/power
+@onready var hp = $animation_rot/card_ui/front/hpbar
+@onready var hp_text = $animation_rot/card_ui/front/hpbar/hp
+
+
 
 @onready var animator = $animation_rot/card_ui/animation_player
 
 @onready var atk_animator : AnimationPlayer = $attack_animations
 
+signal hurt
+signal healed
 ##Health variables
-var max_health : int = 0
+var max_health : int = 0:
+	set(value):
+		if current_health>value: current_health=value
+		max_health=value
 @onready var current_health : int:
 	set(value):
-		
 		if !is_facing_down:
+			if value==current_health:
+				Global.GUI.create_float_text(global_position,"BLOCKED",Color.GRAY)
 			if value<current_health:
-				print("hit")
 				Global.GUI.create_float_text(global_position,str(current_health-value),Color.RED)
 				atk_animator.play("effect/hit")
 			elif value>current_health:
-				print("heal")
+				Global.GUI.create_float_text(global_position,str(value-current_health),Color.GREEN)
 				atk_animator.play("effect/heal")
 		
 		if value > max_health:
@@ -130,25 +158,44 @@ var max_health : int = 0
 			die()
 		else:
 			current_health = value
-		hp_text.text = str(current_health)
+		hp_text.text = str(current_health)+"/"+str(max_health)
+		hp.value=current_health/float(max_health)
+var defense:=0:
+	set(value):
+		if value<=0:
+			defense=0
+		else:
+			defense=value
 		
 #endregion
 
 #region Load Card
+
+func get_card_data() -> Dictionary:
+	var card_data : Dictionary = {
+		"instance_id":inst_id,
+		"id":id,
+		"current_health":current_health,
+		"attributes":attributes,
+		"profile_path":profile_path,
+		"current_status_effects":get_current_effects()
+	}
+	return card_data
+
 func _ready():
-	load_attributes()
+	profile_path = str(id)
+	update_attributes()
 	if is_facing_down:
 		back.visible = true
 
 func _on_id_changed():
-	load_attributes()
+	atk_animator.play("effect/heal")
 
-func load_attributes():##Use id number to fill in all the attributes
+func update_attributes():##Use id number to fill in all the attributes
 	
 	$animation_rot/card_ui/ID.text = str("%03d" % id)
 	
 	if attributes.has("name"): 
-		attributes = Global.DB.retrive_attributes("cards",id)
 		name_text.text = attributes["name"]
 		if name_text.text.length() > 11:
 			var size = clamp(13 - (name_text.text.length() - 10),9,13)
@@ -157,31 +204,43 @@ func load_attributes():##Use id number to fill in all the attributes
 
 		type_icon.frame = attributes["type"]
 		max_health = attributes["hp"]
+		var fill_style = StyleBoxFlat.new()
+		fill_style.bg_color = Global.get_type_color(attributes["type"])
+		var bg_style = StyleBoxFlat.new()
+		bg_style.bg_color = Color(fill_style.bg_color.darkened(0.75),1)
+		hp.add_theme_stylebox_override("fill",fill_style)
+		hp.add_theme_stylebox_override("background",bg_style)
+		hp_text.add_theme_color_override("font_color",Color(fill_style.bg_color.lightened(0.8),1))
 		current_health = max_health
 		
-		profile.texture = Global.image_load("res://assets/textures/cards/profiles/" + str(id) + ".png")
+		profile.texture = Global.image_load("res://assets/textures/cards/profiles/" + profile_path + ".png")
 		border.texture = Global.image_load("res://assets/textures/cards/card_layers/border_" + str(attributes["pack_id"]) + ".png")
-		border_back.texture = Global.image_load("res://assets/textures/cards/card_layers/border_background_" + "0" + ".png")
+		border_back.texture = Global.image_load("res://assets/textures/cards/card_layers/border_background_" + str(attributes["pack_id"]) + ".png")
 		back_img.texture = Global.image_load("res://assets/textures/cards/card_layers/back_" + "0" + ".png")
-		
 	if attributes.has("move_1"):
 		m1_attributes = Global.DB.retrive_attributes("moves",attributes["move_1"])
 		m1_text.text = m1_attributes["name"]
 		m1_indicator.frame = m1_attributes["type"]
+		if m1_attributes.has("power"): m1_power.text = str(m1_attributes["power"])
+		m1_power.add_theme_color_override("font_color",Global.get_type_color(m1_attributes["type"]))
 		m1_text.visible_characters = 13
 		current_move_info=m1_attributes
+		m1_box.visible = true
 	else:
 		m1_attributes = {}
 		m1_box.visible = false
-
 	if attributes.has("move_2"):
 		m2_attributes = Global.DB.retrive_attributes("moves",attributes["move_2"])
 		m2_text.text = m2_attributes["name"]
 		m2_indicator.frame = m2_attributes["type"]
+		if m2_attributes.has("power"): m2_power.text = str(m2_attributes["power"])
+		m2_power.add_theme_color_override("font_color",Global.get_type_color(m2_attributes["type"]))
 		m2_text.visible_characters = 13
+		m2_box.visible = true
 	else: 
 		m2_attributes = {}
 		m2_box.visible = false
+
 #endregion
 
 #region Dragging/Moving Card
@@ -203,10 +262,7 @@ func _on_input_event(_viewport, e, _shape_idx):
 				tween.parallel().tween_property(shadow,"position",Vector2(14,23),0.06).set_ease(Tween.EASE_IN)
 				tween.parallel().tween_property(self,"global_position",( Vector2(get_global_mouse_position().x+90, get_global_mouse_position().y)),0.12).set_ease(Tween.EASE_IN)
 				tween.parallel().tween_property(self,"rotation",( 1 ) ,0.12).set_ease(Tween.EASE_IN)
-				#shadow.position=Vector2(14,23)
-				#global_position=( Vector2(get_global_mouse_position().x+90, get_global_mouse_position().y))
-				#rotation=1
-				
+
 		#realeased Left Mouse Button
 		if e is InputEventMouseButton and e.button_mask==0 and !e.double_click and e.button_index==1:
 			if !Global.is_dragging && Global.can_drag && started_interaction:
@@ -216,17 +272,6 @@ func _on_input_event(_viewport, e, _shape_idx):
 							if Global.GUI.move_info.card==self: Global.GUI.close_move_info()
 							else:Global.GUI.create_move_info(self)
 						else:Global.GUI.create_move_info(self)
-					#elif owner_space.is_in_group("card_deck"):
-						#dragging = true
-						#add_to_hand()
-
-		#if e is InputEventMouseButton and e.pressed and !e.double_click and e.button_mask==2:
-			#if owner_space && Global.GUI:
-				#if owner_space.is_in_group("play_space"):
-					#if Global.GUI.move_info:
-						#if Global.GUI.move_info.card==self: Global.GUI.close_move_info()
-						#else:Global.GUI.create_move_info(self)
-					#else:Global.GUI.create_move_info(self)
 			
 func _input(e):
 	if Global.can_drag:
@@ -269,9 +314,6 @@ func move_to(pos:Vector2,rot:=0,z_layer:=target_z_layer,wait:=true,time:=.3):
 	tween.parallel().tween_property(self,"position",pos,time).set_ease(Tween.EASE_OUT)
 	tween.parallel().tween_property(self,"rotation",rot,time).set_ease(Tween.EASE_OUT)
 	
-	#position=pos
-	#rotation=rot
-	
 	if wait:
 		await tween.finished
 		z_index = z_layer
@@ -302,17 +344,6 @@ func _on_body_entered(space): # added spaces to a list of selected spaces
 			selected_spaces.append(space)
 		elif space.is_in_group("play_space") && space.cards.size()>0:
 			if space.can_swap && space.cards[0].draggable: selected_spaces.append(space)
-		
-		#if space.is_in_group("play_space") && !space.has_open_space && space.cards.size()>0:
-			#if space.can_swap && space.cards[0].draggable:
-				#selected_spaces.append(space)
-		#elif space.is_in_group("card_deck"):
-			#if space.can_add_to: selected_spaces.append(space)
-		##elif space.is_in_group("card_hand"): pass
-		#elif space.is_in_group("card_hand"):
-			#if space selected_spaces.append(space)
-		#elif space.has_open_space:
-			#selected_spaces.append(space)
 
 func _on_body_exited(space):
 	selected_spaces.erase(space)
@@ -349,22 +380,105 @@ func attack_anim(target_rot:Vector2,anim:String):
 	atk_animator.play(anim)
 	await atk_animator.animation_finished
 
-func target_directly(target:CardSpace2D):
-	target.anim.play("hit")
-	Global.space_updated.emit(target)
-	match int(target.space_pos.y):
-		0:
-			Global.PLAYAREA.hp_user-=current_move_info["power"]
-		1:
-			Global.PLAYAREA.hp_opponent-=current_move_info["power"]
-	await get_tree().create_timer(0.2).timeout
-	#await target.anim.animation_finished
+func target_damage(target:CardSpace2D):
+	if !current_move_info.has("power"): return
+	var card = null
+	if target.cards.size()>0:card=target.cards[0]
+	
+	if card:
+		
+		var t1 = current_move_info["type"]
+		var t2 = card.attributes["type"]
+		var matchup_score = Global.matchup_chart[t1][t2]
+		
+		card.damage(current_move_info["power"]*matchup_score)
+		if card.animator.is_playing(): await card.animator.animation_finished
+		elif card.atk_animator.is_playing(): await card.atk_animator.animation_finished
+	else:
+		target.anim.play("hit")
+		Global.space_updated.emit(target)
+		match int(target.space_pos.y):
+			0:
+				Global.PLAYAREA.hp_user-=current_move_info["power"]
+			1:
+				Global.PLAYAREA.hp_opponent-=current_move_info["power"]
+		await get_tree().create_timer(0.2).timeout
 
-func target_card(card:Card2D):
-	card.current_health-=current_move_info["power"]
-	Global.card_updated.emit(card)
-	if card.animator.is_playing(): await card.animator.animation_finished
-	elif card.atk_animator.is_playing(): await card.atk_animator.animation_finished
+func target_block(target:CardSpace2D):
+	if !current_move_info.has("power"): return
+	var card = null
+	if target.cards.size()>0:card=target.cards[0]
+	
+	if card: card.apply_status_effect(StatusEffect.BLOCK,1,current_move_info["power"])
+	
+
+func target_heal(target:CardSpace2D):
+	if !current_move_info.has("power"): return
+	var card = null
+	if target.cards.size()>0:card=target.cards[0]
+	
+	
+
+func scan_moves(target:CardSpace2D):
+	var card = null
+	if target.cards.size()>0:card=target.cards[0]
+	
+	var power = current_move_info["power"]
+	
+	match current_move_info["id_name"]:
+		"android_barrier":
+			if card: card.apply_status_effect(StatusEffect.BLOCK,1,power)
+		"block":
+			if card: card.apply_status_effect(StatusEffect.BLOCK,1,power)
+		"candy_beam":
+			if card:
+				if card.profile_path=="candy":
+					await target_damage(target)
+				else:
+					card.apply_status_effect(StatusEffect.CANDIFY,3,power)
+			else:
+				await target_damage(target)
+		"counter":
+			if card: card.apply_status_effect(StatusEffect.COUNTER,1,power)
+		"dodge":
+			if card: card.apply_status_effect(StatusEffect.DODGE,1,power)
+		"fat_shield":
+			if card: card.apply_status_effect(StatusEffect.BLOCK,1,power)
+		"future_sight":
+			if card: card.apply_status_effect(StatusEffect.DODGE,1,power)
+		"heal": 
+			if card: await card.heal(card.max_health/10)
+		"impostor":
+			if card:
+				apply_status_effect(StatusEffect.TRANSFORM,-1,power,card)
+		"senzu_bean":
+			if card: await card.heal(card.max_health/50)
+		
+		_:
+			await target_damage(target)
+
+func apply_status_effect(effect_id:int,duration:=1,strength:=1,target_card:=self):
+	StatusEffect.new(self,effect_id,duration,strength,target_card)
+	Global.card_updated.emit(self,Card2D.EFFECT_ADDED)
+
+func get_current_effects() -> Array[Dictionary]:
+	var effects : Array[Dictionary] = []
+	for effect in current_status_effects:
+		effects.append(effect.get_effect_info())
+	return effects
+
+func damage(amount:float):
+	current_health-=clamp(amount-defense,0,999)
+	hurt.emit(amount)
+	Global.card_updated.emit(self,HEALTH_CHANGE)
+
+func heal(amount:int):
+	current_health+=clamp(amount,0,999)
+	healed.emit(amount)
+	Global.card_updated.emit(self,HEALTH_CHANGE)
+	
+	if animator.is_playing(): await animator.animation_finished
+	elif atk_animator.is_playing(): await atk_animator.animation_finished
 
 func attack():
 	if selected_move==0:return
@@ -372,7 +486,7 @@ func attack():
 	atk_anim = "attack/" + current_move_info["animation"]
 	var target_mode : int = current_move_info["target_mode"]
 	
-	var targets = owner_space.update_targets()
+	var targets = owner_space.get_targets()
 	
 	match target_mode:
 		#-1:atk_rot=Vector2.RIGHT;return
@@ -389,27 +503,10 @@ func attack():
 	
 	await attack_anim(atk_rot,atk_anim)
 	
-	for target : CardSpace2D in targets:
-		
-		if target.cards.size()>0:
-			await target_card(target.cards[0])
-		else:
-			await target_directly(target) # target opponenets hp directly
-			
-	
-	
-	
-	#if target.is_in_group("opposing_space"):
-		#if target.cards.size()<1:
-			#pass#attack directly
-		#else:
-			#target_card = target.cards[0]
-			#card.attack(target_card)
-			#target_card.current_health-=card.current_move_info["power"]
-	#elif target.is_in_group("play_space"):
-		#if target.cards.size()<1:continue
-		#target_card = target.cards[0]
+	for target:CardSpace2D in targets:
+		await scan_moves(target)
 
+signal death
 func die(death_animation:="death_1"):
 	if  Global.PLAYAREA.all_cards.has(inst_id): Global.PLAYAREA.all_cards.erase(inst_id)
 	if owner_space: owner_space.remove(self)
@@ -418,5 +515,7 @@ func die(death_animation:="death_1"):
 	
 	animator.play(death_animation)
 	await animator.animation_finished
+	
+	death.emit()
 	
 	queue_free()

@@ -1,17 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://sjckyl6cd7o"]
+[gd_scene load_steps=8 format=3 uid="uid://sjckyl6cd7o"]
 
-[ext_resource type="Theme" uid="uid://dxxt0em6v1rwd" path="res://assets/themes/main_menu.tres" id="1_fyxab"]
 [ext_resource type="Script" path="res://scripts/ui/main_menu.gd" id="1_txojc"]
 [ext_resource type="FontFile" uid="uid://3wrkvjx6bpvf" path="res://assets/fonts/pxlsupersmall.ttf" id="2_nsepl"]
 [ext_resource type="Texture2D" uid="uid://b0kw633qcl75k" path="res://assets/textures/backgrounds/simulation_background_white.png" id="3_guwkx"]
+[ext_resource type="Texture2D" uid="uid://c3ifc5ssb2i6x" path="res://assets/textures/ui/x.png" id="4_8xf6l"]
 [ext_resource type="Texture2D" uid="uid://oxt7xwnnouht" path="res://assets/textures/backgrounds/title_screen.png" id="4_wu632"]
 [ext_resource type="Texture2D" uid="uid://ctrrk3ujuvtgd" path="res://assets/textures/ui/start_button_box.png" id="5_4r44e"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5fwau"]
-bg_color = Color(0.247059, 0.188235, 0.34902, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_47dv8"]
-bg_color = Color(0.317647, 0.243137, 0.45098, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_agcef"]
 texture = ExtResource("5_4r44e")
@@ -24,7 +18,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_fyxab")
 script = ExtResource("1_txojc")
 metadata/_edit_vertical_guides_ = [384.0]
 
@@ -69,6 +62,11 @@ text = "Singleplayer"
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
 text = "Multiplayer"
+
+[node name="customize_deck" type="Button" parent="main_menu/menu"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Collection"
 
 [node name="options" type="Button" parent="main_menu/menu"]
 layout_mode = 2
@@ -129,11 +127,13 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -20.0
-offset_bottom = 14.0
+offset_left = -31.0
+offset_top = 5.0
+offset_right = -5.0
+offset_bottom = 31.0
 grow_horizontal = 0
 theme_override_font_sizes/font_size = 25
-text = "X"
+icon = ExtResource("4_8xf6l")
 
 [node name="menu" type="VBoxContainer" parent="mutliplayer/multiplayer_menu"]
 layout_mode = 1
@@ -206,11 +206,13 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -20.0
-offset_bottom = 14.0
+offset_left = -31.0
+offset_top = 5.0
+offset_right = -5.0
+offset_bottom = 31.0
 grow_horizontal = 0
 theme_override_font_sizes/font_size = 25
-text = "X"
+icon = ExtResource("4_8xf6l")
 
 [node name="menu" type="VBoxContainer" parent="mutliplayer/online"]
 layout_mode = 1
@@ -229,11 +231,6 @@ grow_vertical = 2
 [node name="host" type="Button" parent="mutliplayer/online/menu"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
-theme_override_styles/normal = SubResource("StyleBoxFlat_5fwau")
-theme_override_styles/hover = SubResource("StyleBoxFlat_47dv8")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_5fwau")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_5fwau")
-theme_override_styles/focus = SubResource("StyleBoxFlat_5fwau")
 text = "HOST"
 
 [node name="separator" type="HSeparator" parent="mutliplayer/online/menu"]
@@ -249,11 +246,6 @@ placeholder_text = "ADDRESS"
 [node name="join" type="Button" parent="mutliplayer/online/menu"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
-theme_override_styles/normal = SubResource("StyleBoxFlat_5fwau")
-theme_override_styles/hover = SubResource("StyleBoxFlat_47dv8")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_5fwau")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_5fwau")
-theme_override_styles/focus = SubResource("StyleBoxFlat_5fwau")
 text = "JOIN"
 
 [node name="lan" type="Panel" parent="mutliplayer"]
@@ -283,11 +275,13 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -20.0
-offset_bottom = 14.0
+offset_left = -31.0
+offset_top = 5.0
+offset_right = -5.0
+offset_bottom = 31.0
 grow_horizontal = 0
 theme_override_font_sizes/font_size = 25
-text = "X"
+icon = ExtResource("4_8xf6l")
 
 [node name="menu" type="VBoxContainer" parent="mutliplayer/lan"]
 layout_mode = 1
@@ -306,11 +300,6 @@ grow_vertical = 2
 [node name="host" type="Button" parent="mutliplayer/lan/menu"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
-theme_override_styles/normal = SubResource("StyleBoxFlat_5fwau")
-theme_override_styles/hover = SubResource("StyleBoxFlat_47dv8")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_5fwau")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_5fwau")
-theme_override_styles/focus = SubResource("StyleBoxFlat_5fwau")
 text = "HOST"
 
 [node name="separator" type="HSeparator" parent="mutliplayer/lan/menu"]
@@ -326,11 +315,6 @@ placeholder_text = "ADDRESS"
 [node name="join" type="Button" parent="mutliplayer/lan/menu"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
-theme_override_styles/normal = SubResource("StyleBoxFlat_5fwau")
-theme_override_styles/hover = SubResource("StyleBoxFlat_47dv8")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_5fwau")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_5fwau")
-theme_override_styles/focus = SubResource("StyleBoxFlat_5fwau")
 text = "JOIN"
 
 [node name="options" type="Control" parent="."]
@@ -397,13 +381,13 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -115.0
-offset_top = 68.0
-offset_right = -103.0
-offset_bottom = 94.0
+offset_left = -128.0
+offset_top = 60.0
+offset_right = -102.0
+offset_bottom = 86.0
 grow_horizontal = 0
 theme_override_font_sizes/font_size = 25
-text = "X"
+icon = ExtResource("4_8xf6l")
 
 [node name="title_screen" type="Control" parent="."]
 layout_mode = 1
@@ -469,6 +453,7 @@ color = Color(1, 1, 1, 0)
 
 [connection signal="pressed" from="main_menu/menu/singleplayer" to="." method="_on_singleplayer_pressed"]
 [connection signal="pressed" from="main_menu/menu/multiplayer" to="." method="_on_multiplayer_pressed"]
+[connection signal="pressed" from="main_menu/menu/customize_deck" to="." method="_on_customize_deck_pressed"]
 [connection signal="pressed" from="main_menu/menu/options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="main_menu/menu/exit" to="." method="_on_exit_pressed"]
 [connection signal="pressed" from="mutliplayer/multiplayer_menu/back" to="." method="_on_multiplayer_back_pressed"]

@@ -1,3 +1,4 @@
+@tool
 @icon("db_handler.svg")
 class_name DataBaseHandler extends Node
 ##Used to handler json files made with castle db.

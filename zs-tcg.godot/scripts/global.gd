@@ -4,6 +4,7 @@ var VERSION = ProjectSettings.get_setting_with_override("application/config/vers
 var NULLIMAGE = ResourceLoader.load("res://assets/textures/missing.png")
 
 var userdata_path = "user://userdata.save"
+var type_matchup_path = "res://assets/type_matchups.csv"
 
 #region Variables
 
@@ -18,9 +19,9 @@ enum {
 }
 
 const NEUTRAL_COLOR=Color.PERU
-const KI_COLOR=Color.AQUA
+const KI_COLOR=Color.DARK_TURQUOISE
 const STRENGTH_COLOR=Color.CRIMSON
-const DEFENSE_COLOR=Color.CHARTREUSE
+const DEFENSE_COLOR=Color.FOREST_GREEN
 const SPEED_COLOR=Color.BLUE_VIOLET
 func get_type_color(type:int) -> Color:
 	match type:
@@ -47,11 +48,30 @@ enum {
 	ANY,
 	RANDOM
 }
+
+var matchup_chart : Array[Array] = []
+
+func import_type_matchups():
+	if FileAccess.file_exists(type_matchup_path):
+		var file = FileAccess.open(type_matchup_path, FileAccess.READ)
+		var line_count:=0
+		while !file.eof_reached():
+			var line = Array(file.get_csv_line())
+			line_count+=1
+			if line_count==1: continue #skip the first line
+			var new_line : Array[float]
+			for i in line.size():
+				if i == 0: continue #skip the first column
+				new_line.append(float(line[i]))
+			matchup_chart.append(new_line)
+			
+		file.close()
+		
 #endregion
 
 
 signal card_attacked(card:Card2D)
-signal card_updated(card:Card2D)
+signal card_updated(card:Card2D,event:int)
 
 signal space_updated(space:CardSpace2D)
 
@@ -59,6 +79,7 @@ signal space_updated(space:CardSpace2D)
 var USERDATA := Player.new()
 
 func _init() -> void:
+	import_type_matchups()
 	load_userdata()
 
 func load_userdata():
@@ -67,6 +88,7 @@ func load_userdata():
 		var file = FileAccess.open(userdata_path, FileAccess.READ)
 		var data = file.get_var(true)
 		USERDATA.display_name = data["display_name"]
+		USERDATA.collection = data["collection"]
 		USERDATA.deck = data["deck"]
 		file.close()
 	else:
@@ -76,7 +98,7 @@ func load_userdata():
 func save_userdata():
 	print("saving userdata")
 	var file = FileAccess.open(userdata_path, FileAccess.WRITE)
-	var data := {"display_name":USERDATA.display_name,"deck":USERDATA.deck}
+	var data := {"display_name":USERDATA.display_name,"collection":USERDATA.collection,"deck":USERDATA.deck}
 	file.store_var(data, true)
 	file.close()
 
@@ -84,7 +106,7 @@ func erase_userdata():
 	print("erasing userdata")
 	USERDATA = Player.new()
 	var file = FileAccess.open(userdata_path, FileAccess.WRITE)
-	var data := {"display_name":USERDATA.display_name,"deck":USERDATA.deck}
+	var data := {"display_name":USERDATA.display_name,"collection":USERDATA.collection,"deck":USERDATA.deck}
 	file.store_var(data, true)
 	file.close()
 	
@@ -147,3 +169,4 @@ func _input(_event):
 			DEBUG_WINDOW = load("res://debugger.tscn").instantiate()
 			get_tree().root.add_child(DEBUG_WINDOW)
 		else: DEBUG_WINDOW.queue_free()
+

@@ -1,0 +1,6 @@
+﻿TYPE,vs. Neutral,vs. Ki,vs. Strength ,vs. Defense ,vs. Speed
+Neutral,1,1,1,1,1
+Ki,1,0.9,1.25,0.75,1.5
+Strength,1,1.25,0.9,1.5,0.75
+Defense,1,0.75,1.5,0.9,1.25
+Speed,1,1.5,0.75,1.25,0.9

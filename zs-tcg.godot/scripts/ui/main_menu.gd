@@ -26,6 +26,11 @@ func _on_options_pressed():
 	$main_menu.hide()
 #endregion
 
+func _on_customize_deck_pressed() -> void:
+	var scene = load("res://objects/ui/deck_customizer.tscn").instantiate()
+	get_tree().root.add_child(scene)
+	self.hide()
+
 func _on_multiplayer_back_pressed():
 	$main_menu.show()
 	$mutliplayer.hide()
@@ -89,3 +94,6 @@ func _input(e):
 
 func _on_erase_data_pressed() -> void:
 	Global.erase_userdata()
+
+
+

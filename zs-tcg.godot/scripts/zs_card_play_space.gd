@@ -103,7 +103,7 @@ func _on_card_returned(card):
 		#target_arrow.add_point(Vector2(0.0,0.0),0)
 		#target_arrow.add_point(space.global_position-global_position,1)
 
-func update_targets():
+func get_targets():
 	var card : Card2D
 	#base cases
 	if cards.size()<=0:return [null]
