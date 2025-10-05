@@ -1,5 +1,18 @@
-/zs-tcg.godot/.godot
-*.cfg
-/zs-tcg.godot/.godot/editor
-ZS TCG - Shortcut.lnk
-/zs-tcg.godot/.godot/exported
+# Godot 4+ specific ignores
+.godot/
+.nomedia
+
+# Godot-specific ignores
+.import/
+export.cfg
+export_credentials.cfg
+*.tmp
+
+# Imported translations (automatically generated from CSV files)
+*.translation
+
+# Mono-specific ignores
+.mono/
+data_*/
+mono_crash.*.json
+/addons/AsepriteWizard

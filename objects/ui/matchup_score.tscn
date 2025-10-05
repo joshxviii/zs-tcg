@@ -1,0 +1,65 @@
+[gd_scene load_steps=4 format=3 uid="uid://c377qwhdh5udl"]
+
+[ext_resource type="Script" uid="uid://buma13usiwvtl" path="res://scripts/ui/matchup_score.gd" id="1_5xk0w"]
+[ext_resource type="Texture2D" uid="uid://cog5qafv0etwm" path="res://assets/textures/ui/matchup_indicators.png" id="1_vj0ws"]
+[ext_resource type="Texture2D" uid="uid://csmqc328ah5q6" path="res://assets/textures/ui/ATK.png" id="3_70n3y"]
+
+[node name="matchup" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+scale = Vector2(2, 2)
+mouse_filter = 2
+script = ExtResource("1_5xk0w")
+
+[node name="label" type="Label" parent="."]
+self_modulate = Color(0, 1, 0, 1)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = -8.0
+offset_bottom = 6.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/outline_size = 3
+theme_override_constants/shadow_outline_size = 3
+text = "100"
+horizontal_alignment = 1
+
+[node name="matchup_icon" type="Control" parent="label"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="icon" type="Sprite2D" parent="label/matchup_icon"]
+z_index = -1
+position = Vector2(4, -3)
+texture = ExtResource("1_vj0ws")
+hframes = 5
+frame = 1
+metadata/_edit_lock_ = true
+
+[node name="atk_icon" type="Control" parent="label"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+grow_vertical = 2
+
+[node name="icon" type="Sprite2D" parent="label/atk_icon"]
+position = Vector2(-5, 1)
+texture = ExtResource("3_70n3y")
+metadata/_edit_lock_ = true
